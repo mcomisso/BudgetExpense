@@ -23,16 +23,16 @@ class BEHomePageViewController: BEViewController {
         addExpense.tintColor = UIColor.purple
         addExpense.setTitle("Add Expense", for: .normal)
         addExpense.tag = BEExpenseAction.expense.rawValue
-        addExpense.target(forAction: #selector(self.actionButtonPressed(sender:)), withSender: addExpense)
+        addExpense.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
 
         let addIncome = UIButton(type: .custom)
         addExpense.tintColor = UIColor.blue
         addIncome.setTitle("Add Income", for: .normal)
         addIncome.tag = BEExpenseAction.income.rawValue
-        addIncome.target(forAction: #selector(self.actionButtonPressed(sender:)), withSender: addIncome)
+        addIncome.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
 
         // Stackviews
-        let stackView = UIStackView(arrangedSubviews: [addExpense, addIncome])
+        let stackView = UIStackView(arrangedSubviews: [addIncome, addExpense])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = UIStackViewAlignment.fill
         stackView.distribution = UIStackViewDistribution.fillEqually
@@ -51,20 +51,17 @@ class BEHomePageViewController: BEViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-    func actionButtonPressed(sender: AnyObject) {
-        if let button = sender as? UIButton {
-            if button.tag == BEExpenseAction.expense.rawValue {
-
-
-            } else if button.tag == BEExpenseAction.income.rawValue {
-
-
-            }
-
-            let addDataViewController = BEAddDataViewController()
-            self.navigationController?.pushViewController(addDataViewController, animated: true)
+    /// This method calls the next viewController for handle data input from the user.
+    /// The tag of a button is synced with expense/income.
+    ///
+    /// - parameter sender: the button sending the event
+    @objc fileprivate func actionButtonPressed(_ sender: AnyObject) {
+        guard let button = sender as? UIButton,
+            let expenseAction = BEExpenseAction(rawValue: button.tag) else {
+            return
         }
+        let addDataViewController = BEAddDataViewController(with: expenseAction)
+        self.present(addDataViewController, animated: true, completion: nil)
     }
 }
 
