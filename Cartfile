@@ -1,0 +1,5 @@
+# SwiftDate
+github "malcommac/SwiftDate" ~> 4.0
+
+# Realm
+github "realm/realm-cocoa"

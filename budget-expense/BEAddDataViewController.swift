@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  FirstViewController.swift
 //  budget-expense
 //
 //  Created by Matteo Comisso on 02/10/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class BEAddDataViewController: BEViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
