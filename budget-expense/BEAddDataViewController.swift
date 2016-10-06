@@ -32,16 +32,42 @@ class BEAddDataViewController: BEViewController {
         // Add a cancel button
         let cancel = UIButton(type: .custom)
         cancel.addTarget(self, action: #selector(BEAddDataViewController.cancel), for: .touchUpInside)
+        cancel.setTitle("Cancel", for: .normal)
+        cancel.setTitleColor(.white, for: .normal)
 
         let save = UIButton(type: .custom)
         save.addTarget(self, action: #selector(BEAddDataViewController.save), for: .touchUpInside)
+        save.setTitle("Save", for: .normal)
+        save.setTitleColor(.white, for: .normal)
 
-        // Add a collectionView of categories
-        let availableCategories = UICollectionView()
+        // Buttons [Cancel] [Save]
+        let buttonStack = UIStackView(arrangedSubviews: [cancel, save])
+        buttonStack.alignment = .center
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
 
         // add a textfield for adding properties
-        let dataInput = UITextField(frame: CGRect.zero)
+        let dataInput = UITextField()
         dataInput.placeholder = "0.00"
+        dataInput.font = UIFont.systemFont(ofSize: 32.0)
+        dataInput.sizeToFit()
+
+        let keypad = BEKeyPad(frame: CGRect.zero)
+
+        // ViewController
+        let viewControllerStack = UIStackView(arrangedSubviews: [buttonStack, dataInput, keypad])
+        viewControllerStack.axis = .vertical
+        viewControllerStack.alignment = .fill
+        viewControllerStack.translatesAutoresizingMaskIntoConstraints = false
+
+        // Add to view controller
+        self.view.addSubview(viewControllerStack)
+
+        // UIViewController stack
+        viewControllerStack.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
+        viewControllerStack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+
+        viewControllerStack.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        viewControllerStack.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
     }
 
     func cancel() {

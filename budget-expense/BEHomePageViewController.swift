@@ -19,31 +19,41 @@ class BEHomePageViewController: BEViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let addExpense = UIButton(type: .custom)
-        addExpense.tintColor = UIColor.purple
-        addExpense.setTitle("Add Expense", for: .normal)
-        addExpense.tag = BEExpenseAction.expense.rawValue
-        addExpense.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
+        let amountLabel = UILabel(frame: CGRect.zero)
+        amountLabel.font = UIFont.boldSystemFont(ofSize: 60)
+        amountLabel.text = "15782,23"
+        amountLabel.textAlignment = .center
 
-        let addIncome = UIButton(type: .custom)
-        addExpense.tintColor = UIColor.blue
-        addIncome.setTitle("Add Income", for: .normal)
-        addIncome.tag = BEExpenseAction.income.rawValue
-        addIncome.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
+        let addExpenseButton = UIButton(type: .custom)
+        addExpenseButton.setTitleColor(UIColor.purple, for: .normal)
+        addExpenseButton.setTitle("Add Expense", for: .normal)
+        addExpenseButton.tag = BEExpenseAction.expense.rawValue
+        addExpenseButton.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
+
+        let addIncomeButton = UIButton(type: .custom)
+        addIncomeButton.setTitleColor(UIColor.blue, for: .normal)
+        addIncomeButton.setTitle("Add Income", for: .normal)
+        addIncomeButton.tag = BEExpenseAction.income.rawValue
+        addIncomeButton.addTarget(self, action: #selector(BEHomePageViewController.actionButtonPressed(_:)), for: .touchUpInside)
 
         // Stackviews
-        let stackView = UIStackView(arrangedSubviews: [addIncome, addExpense])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = UIStackViewAlignment.fill
-        stackView.distribution = UIStackViewDistribution.fillEqually
-        stackView.axis = .horizontal
+        let buttonsStackview = UIStackView(arrangedSubviews: [addIncomeButton, addExpenseButton])
+        buttonsStackview.alignment = UIStackViewAlignment.fill
+        buttonsStackview.distribution = UIStackViewDistribution.fillEqually
+        buttonsStackview.axis = .horizontal
 
-        self.view.addSubview(stackView)
+        // Generic stackView
+        let genericStackView = UIStackView(arrangedSubviews: [amountLabel, buttonsStackview])
+        genericStackView.translatesAutoresizingMaskIntoConstraints = false
+        genericStackView.axis = .vertical
+        genericStackView.distribution = .fillProportionally
 
-        stackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
-        stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.view.addSubview(genericStackView)
+
+        genericStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+        genericStackView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        genericStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        genericStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 
     override func didReceiveMemoryWarning() {
