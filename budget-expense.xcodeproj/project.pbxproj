@@ -14,6 +14,8 @@
 		B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B999580C1DA217DF007274BB /* LaunchScreen.storyboard */; };
 		B99958191DA217DF007274BB /* budget_expenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958181DA217DF007274BB /* budget_expenseTests.swift */; };
 		B99958241DA21BD0007274BB /* BEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958231DA21BD0007274BB /* BEViewController.swift */; };
+		B9DAEF491DA4B5390019C9F6 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9DAEF481DA4B5390019C9F6 /* CollectionViewCell.xib */; };
+		B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		B99958181DA217DF007274BB /* budget_expenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budget_expenseTests.swift; sourceTree = "<group>"; };
 		B999581A1DA217DF007274BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B99958231DA21BD0007274BB /* BEViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BEViewController.swift; path = BaseClasses/BEViewController.swift; sourceTree = "<group>"; };
+		B9DAEF481DA4B5390019C9F6 /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEKeyPad.swift; sourceTree = "<group>"; };
 		B9F7CF591DA37F2D00A097FA /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 				B99958251DA21BD3007274BB /* BaseClasses */,
 				B99958051DA217DF007274BB /* BEHomePageViewController.swift */,
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+				B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */,
+				B9DAEF481DA4B5390019C9F6 /* CollectionViewCell.xib */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
 				B999580C1DA217DF007274BB /* LaunchScreen.storyboard */,
 				B999580F1DA217DF007274BB /* Info.plist */,
@@ -192,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DAEF491DA4B5390019C9F6 /* CollectionViewCell.xib in Resources */,
 				B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */,
 				B999580B1DA217DF007274BB /* Assets.xcassets in Resources */,
 			);
@@ -215,6 +222,7 @@
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
+				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
