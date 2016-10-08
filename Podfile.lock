@@ -1,0 +1,23 @@
+PODS:
+  - FSLineChart (0.1.7)
+  - Realm (2.0.2):
+    - Realm/Headers (= 2.0.2)
+  - Realm/Headers (2.0.2)
+  - RealmSwift (2.0.2):
+    - Realm (= 2.0.2)
+  - SwiftDate (4.0.4)
+
+DEPENDENCIES:
+  - FSLineChart
+  - RealmSwift
+  - SwiftDate
+
+SPEC CHECKSUMS:
+  FSLineChart: 1b8d3727e8feb323144126d381184bf1b15e6efc
+  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
+  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  SwiftDate: 16d9e299eafb8021d921e874f13c0f79e7f1a801
+
+PODFILE CHECKSUM: fc12ec4dac41f3d4d73e2500bb42a292c034bf70
+
+COCOAPODS: 1.0.1
