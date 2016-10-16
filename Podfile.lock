@@ -1,7 +1,4 @@
 PODS:
-  - ChameleonFramework/Default (2.1.0)
-  - ChameleonFramework/Swift (2.1.0):
-    - ChameleonFramework/Default
   - FSLineChart (0.1.7)
   - Realm (2.0.2):
     - Realm/Headers (= 2.0.2)
@@ -11,18 +8,16 @@ PODS:
   - SwiftDate (4.0.5)
 
 DEPENDENCIES:
-  - ChameleonFramework/Swift
   - FSLineChart
   - RealmSwift
   - SwiftDate
 
 SPEC CHECKSUMS:
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FSLineChart: 1b8d3727e8feb323144126d381184bf1b15e6efc
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   SwiftDate: a945bf4150ef977824df91116ca30a04604216d3
 
-PODFILE CHECKSUM: 48c70241fe846943dcab1eab1c5dd2a63b7e6d7b
+PODFILE CHECKSUM: 7ab8943e62f0e365742bff278042d7ed436221b7
 
 COCOAPODS: 1.0.1
