@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  budget-expense
+//  playground
 //
-//  Created by Matteo Comisso on 02/10/16.
+//  Created by Matteo Comisso on 13/10/16.
 //  Copyright © 2016 mcomisso. All rights reserved.
 //
 
@@ -13,9 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
         return true
     }
 

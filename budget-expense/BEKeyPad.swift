@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol BEKeyPadDelegate {
+protocol BEKeyPadDelegate: class {
 
     func didTapButton()
 }
@@ -18,6 +18,8 @@ class BEKeyPad: UIView {
     fileprivate var firstVertical: UIStackView? = nil
     fileprivate var secondVertical: UIStackView? = nil
     fileprivate var thirdVertical: UIStackView? = nil
+
+    weak var delegate: BEKeyPadDelegate? = nil
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +31,7 @@ class BEKeyPad: UIView {
             button.setTitle("\(i)", for: .normal)
             button.tag = i
             button.titleLabel?.textAlignment = .center
-
+//            button.addTarget(self, action: #selector(didTapButton()), for: .touchUpInside)
             numbers.append(button)
         }
 
