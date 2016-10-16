@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */; };
+		B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95356B81DB352820024C6D5 /* BEExtensions.swift */; };
+		B98A85541DB4341A00EEF953 /* BESettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */; };
 		B99958021DA217DF007274BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958011DA217DF007274BB /* AppDelegate.swift */; };
 		B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958031DA217DF007274BB /* BEAddDataViewController.swift */; };
 		B999580B1DA217DF007274BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B999580A1DA217DF007274BB /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		836F756D0A5B157CE5139909 /* Pods-budget-expenseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budget_expense.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B95356B81DB352820024C6D5 /* BEExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEExtensions.swift; sourceTree = "<group>"; };
+		B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESettingsTableViewController.swift; sourceTree = "<group>"; };
 		B99957FE1DA217DF007274BB /* budget-expense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budget-expense.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99958011DA217DF007274BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B99958031DA217DF007274BB /* BEAddDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEAddDataViewController.swift; sourceTree = "<group>"; };
@@ -103,13 +107,15 @@
 		B99958001DA217DF007274BB /* budget-expense */ = {
 			isa = PBXGroup;
 			children = (
+				B9A7F5201DA8BA270051090F /* old */,
 				B9C884211DB3197400D7A9BC /* BEConstants.swift */,
 				B99958011DA217DF007274BB /* AppDelegate.swift */,
-				B9A7F5201DA8BA270051090F /* old */,
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
 				B9C884231DB321C600D7A9BC /* BEModel.swift */,
 				B9C884251DB34A2E00D7A9BC /* BETheme.swift */,
+				B95356B81DB352820024C6D5 /* BEExtensions.swift */,
 				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
 				B999580C1DA217DF007274BB /* LaunchScreen.storyboard */,
@@ -380,10 +386,12 @@
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
 				B9A7F51C1DA8B5930051090F /* BEStartViewController.swift in Sources */,
 				B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */,
+				B98A85541DB4341A00EEF953 /* BESettingsTableViewController.swift in Sources */,
 				B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
+				B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

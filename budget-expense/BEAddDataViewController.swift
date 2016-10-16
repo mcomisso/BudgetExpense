@@ -8,76 +8,42 @@
 
 import UIKit
 
-enum ContinueCases: String {
-    case comma = ","
-    case save = "Save"
-    case doubleZero = "00"
+enum BEAddDataType {
+    case expense, income
 }
 
 class BEAddDataViewController: UIViewController {
 
-    var memory: String = ""
+    // Public
+    public var type: BEAddDataType = .expense
 
+    fileprivate var memory: String = "0,00" {
+        didSet {
+            self.currentDigits.text = self.memory
+        }
+    }
+
+    @IBOutlet var buttons: [UIButton]! // Array containing all digits buttons
     @IBOutlet weak var currentDigits: UILabel!
+    @IBOutlet weak var deleteButton: UIButton! // Delete digit button
 
-    // Array containing all digits buttons
-    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet weak var dateLabel: UILabel!
 
-    // Comma and save button
-    @IBOutlet weak var genericConfirmationButton: UIButton!
-
-    // Delete digit button
-    @IBOutlet weak var deleteButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        self.currentDigits.text = String(memory)
-
-        for button in self.buttons {
-            button.addTarget(self, action: #selector(didPressDigit(sender:)), for: .touchUpInside)
+        switch self.type {
+        case .income:
+            self.view.backgroundColor = BETheme.Colors.primary
+        case .expense:
+            self.view.backgroundColor = BETheme.Colors.accent
         }
 
+        self.dateLabel.textColor = BETheme.Colors.textIcons
 
-        let closegesture = UITapGestureRecognizer(target: self, action: #selector(closeViewController))
-        closegesture.delegate = self
-        closegesture.numberOfTapsRequired = 2
-        self.view.addGestureRecognizer(closegesture)
-
-        self.genericConfirmationButton.addTarget(self, action: #selector(addCommaOrContinue), for: .touchUpInside)
-        self.deleteButton.addTarget(self, action: #selector(deleteText), for: .touchUpInside)
-    }
-
-    func didPressDigit(sender: UIButton) {
-        if self.buttons.contains(sender) {
-            self.memory.append((sender.titleLabel?.text?.characters.first)!)
-            self.currentDigits.text = memory
-        }
-    }
-
-    func addCommaOrContinue() {
-        guard let textCheck = self.currentDigits.text else {
-            return
-        }
-
-        if !textCheck.contains(",") {
-            self.memory.append(",")
-            self.currentDigits.text = self.memory
-            self.genericConfirmationButton.setTitle("Save", for: .normal)
-        } else if textCheck.contains(",") && self.genericConfirmationButton.titleLabel?.text == "Save" {
-            let amount = Double(self.memory.replacingOccurrences(of: ",", with: "."))
-            BERealmManager.shared.saveAmount(amount: amount!)
-        }
-    }
-
-    func deleteText() {
-        let character = self.memory.characters.last
-        if character == "," {
-            self.genericConfirmationButton.setTitle(",", for: .normal)
-        }
-        self.memory.remove(at: self.memory.index(before: self.memory.endIndex))
-        self.currentDigits.text = self.memory
+        self.setupButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,10 +51,40 @@ class BEAddDataViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-}
+    func setupButtons() {
+        for button in self.buttons {
 
-extension BEAddDataViewController: UIGestureRecognizerDelegate {
-    func closeViewController() {
+            button.setTitleColor(BETheme.Colors.textIcons, for: .normal)
+            button.addTarget(self, action: #selector(didPressDigit(sender:)), for: .touchUpInside)
+
+            let attributedString = NSMutableAttributedString(string: (button.titleLabel?.text)!)
+            attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 30)], range: NSMakeRange(0, attributedString.string.characters.count))
+            button.setAttributedTitle(attributedString, for: .highlighted)
+
+            attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.characters.count))
+            button.setAttributedTitle(attributedString, for: .normal)
+        }
+    }
+
+    func didPressDigit(sender: UIButton) {
+        if self.buttons.contains(sender) {
+            self.memory.append((sender.titleLabel?.text?.characters.first)!)
+        }
+    }
+
+    @IBAction func deleteLastDigit(_ sender: AnyObject) {
+        self.memory.remove(at: self.memory.index(before: self.memory.endIndex))
+    }
+
+
+    // MARK: - IBActions
+    @IBAction func close(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func saveAmount(_ sender: AnyObject) {
+        let amount = Double(self.memory.replacingOccurrences(of: ",", with: "."))
+        BERealmManager.shared.saveAmount(amount: amount!, type: self.type)
         self.dismiss(animated: true, completion: nil)
     }
 }

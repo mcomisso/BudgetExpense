@@ -1,5 +1,6 @@
 PODS:
   - FSLineChart (0.1.7)
+  - Material (2.1.2)
   - Realm (2.0.2):
     - Realm/Headers (= 2.0.2)
   - Realm/Headers (2.0.2)
@@ -9,15 +10,17 @@ PODS:
 
 DEPENDENCIES:
   - FSLineChart
+  - Material (~> 2.0)
   - RealmSwift
   - SwiftDate
 
 SPEC CHECKSUMS:
   FSLineChart: 1b8d3727e8feb323144126d381184bf1b15e6efc
+  Material: e27257b2efea0ea145150b141da22e1d68bef552
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   SwiftDate: a945bf4150ef977824df91116ca30a04604216d3
 
-PODFILE CHECKSUM: 7ab8943e62f0e365742bff278042d7ed436221b7
+PODFILE CHECKSUM: 1802e1cf26d7c71aff571fd67ff196aa7285d4fe
 
 COCOAPODS: 1.0.1

@@ -9,7 +9,7 @@ target 'budget-expense' do
   pod "FSLineChart"
   pod "SwiftDate"
   pod "RealmSwift"
-  # pod "ChameleonFramework/Swift"
+  pod "Material", "~> 2.0"
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing
