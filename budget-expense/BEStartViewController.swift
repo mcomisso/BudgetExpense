@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import FSLineChart
 import Material
+import SwiftCharts
 
 class BEHomeViewController: UIViewController {
 
-    @IBOutlet weak var lineChart: FSLineChart!
+    @IBOutlet weak var chartView: ChartView!
 
     @IBOutlet weak var incomeLabel: UILabel!
     @IBOutlet weak var arrowDown: UIImageView!
@@ -21,8 +21,13 @@ class BEHomeViewController: UIViewController {
 
     @IBOutlet weak var amountDisplay: UILabel!
 
+
+    fileprivate var chart: Chart?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.amountDisplay.textColor = BETheme.Colors.textIcons
+        self.view.backgroundColor = Color.teal.lighten5
 
         self.arrowUp.tintColor = Color.grey.lighten5
         self.arrowDown.tintColor = Color.grey.lighten5
@@ -38,18 +43,21 @@ class BEHomeViewController: UIViewController {
         self.view.backgroundColor = BETheme.Colors.divider
         self.amountDisplay.textColor = BETheme.Colors.primaryText
 
-        self.lineChart.animationDuration = 0
-        self.lineChart.axisColor = .clear // the X Y axis
-        self.lineChart.drawInnerGrid = false
-        self.lineChart.bezierSmoothingTension = 0.5
-        self.lineChart.axisLineWidth = 0.0
-        self.lineChart.lineWidth = 4.0
-        self.lineChart.color = BETheme.Colors.darkPrimary
-        self.lineChart.fillColor = BETheme.Colors.primary
-        self.lineChart.backgroundColor = .clear
-        self.lineChart.verticalGridStep = 10
-        self.lineChart.horizontalGridStep = 1
-        self.lineChart.margin = 0.0
+        let chartConfig = ChartConfigXY(xAxisConfig: ChartAxisConfig(from: 0, to: 7, by: 1), yAxisConfig: ChartAxisConfig(from: -10, to: 10, by: 2))
+
+        let values = BERealmManager.shared.getWeekData()
+
+        var arr = [(Double, Double)]()
+        for (index, value) in values.enumerated() {
+            arr.append((Double(index), value))
+        }
+
+        let chartLine = (chartPoints: arr, color: UIColor.red)
+
+        let chart = LineChart(frame: self.chartView.frame, chartConfig: chartConfig, xTitle: "", yTitle: "", line: chartLine)
+
+        self.chart = chart
+
 
         let expenseGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
         expenseGestureRecognizer.direction = .up
@@ -67,32 +75,41 @@ class BEHomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.amountDisplay.text = BERealmManager.shared.getAmount()
+        self.view.transform = CGAffineTransform.identity
 
-        let chartData = BERealmManager.shared.getWeekData()
-        lineChart.clearData()
-        lineChart.setChartData(chartData)
+        self.amountDisplay.text = BEUtils.formatNumberToCurrency(number: BERealmManager.shared.getAmount())
     }
 
 }
 
 extension BEHomeViewController: UIGestureRecognizerDelegate {
     func inputData(recognizer: UISwipeGestureRecognizer) {
+
+        var feedbackGenerator: UISelectionFeedbackGenerator? = UISelectionFeedbackGenerator()
+        feedbackGenerator?.prepare()
+
         switch recognizer.direction {
         case UISwipeGestureRecognizerDirection.down:
             // Add income
             guard let addDataVC = self.storyboard?.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else {
                 break
             }
+            feedbackGenerator?.selectionChanged()
             addDataVC.type = .income
-            self.present(addDataVC, animated: true, completion: nil)
+            self.present(addDataVC, animated: true, completion: { 
+
+            })
         case UISwipeGestureRecognizerDirection.up:
             // Add expense
             guard let addDataVC = self.storyboard?.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else {
                 break
             }
+
+            feedbackGenerator?.selectionChanged()
             addDataVC.type = .expense
-            self.present(addDataVC, animated: true, completion: nil)
+            self.present(addDataVC, animated: true, completion: {
+                feedbackGenerator = nil
+            })
         default:
             break
             // Do nothing

@@ -12,5 +12,6 @@ struct BEConstants {
     struct Identifiers {
         static let addDataViewController = "AddDataViewController"
         static let overviewCellIdentifier = "overviewCellIdentifier"
+        static let categoriesCellIdentifier = "categoriesCellIdentifier"
     }
 }
