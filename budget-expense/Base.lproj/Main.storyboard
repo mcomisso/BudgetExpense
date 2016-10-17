@@ -120,31 +120,47 @@
         <scene sceneID="GzM-se-Zw4">
             <objects>
                 <tableViewController id="NDi-JY-ICn" customClass="BESettingsTableViewController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" id="7hM-W1-zLa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" id="7hM-W1-zLa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="UWP-5W-fzH" userLabel="Header" customClass="BEH">
+                            <rect key="frame" x="0.0" y="64" width="375" height="81"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFb-lJ-pmp" userLabel="Card">
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="yFb-lJ-pmp" secondAttribute="bottom" constant="8" id="pVa-Ek-qJ2"/>
+                                <constraint firstAttribute="trailing" secondItem="yFb-lJ-pmp" secondAttribute="trailing" constant="8" id="ue4-Ff-kC1"/>
+                                <constraint firstItem="yFb-lJ-pmp" firstAttribute="leading" secondItem="UWP-5W-fzH" secondAttribute="leading" constant="8" id="uvb-kC-aEn"/>
+                                <constraint firstItem="yFb-lJ-pmp" firstAttribute="top" secondItem="UWP-5W-fzH" secondAttribute="top" constant="8" id="yIq-FQ-eEC"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="overviewCellIdentifier" rowHeight="160" id="wrZ-mh-ERy" customClass="BETableViewCell" customModule="Material">
-                                <rect key="frame" x="0.0" y="92" width="375" height="160"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="overviewCellIdentifier" rowHeight="160" id="wrZ-mh-ERy" customClass="BETableViewCell" customModule="budget_expense" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="173" width="375" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wrZ-mh-ERy" id="cz1-h1-7iq">
                                     <frame key="frameInset" width="375" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-Py-rYX" customClass="Card" customModule="Material">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17k-Hd-dLP" customClass="Card" customModule="Material">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="e3S-Py-rYX" secondAttribute="bottom" id="Urd-5x-l3P"/>
-                                        <constraint firstItem="e3S-Py-rYX" firstAttribute="top" secondItem="cz1-h1-7iq" secondAttribute="top" id="YZ6-IK-zho"/>
-                                        <constraint firstAttribute="trailing" secondItem="e3S-Py-rYX" secondAttribute="trailing" id="mWg-0V-tpN"/>
-                                        <constraint firstItem="e3S-Py-rYX" firstAttribute="leading" secondItem="cz1-h1-7iq" secondAttribute="leading" id="x3u-xt-n2g"/>
+                                        <constraint firstItem="17k-Hd-dLP" firstAttribute="top" secondItem="cz1-h1-7iq" secondAttribute="top" id="Ejh-Py-dK4"/>
+                                        <constraint firstAttribute="bottom" secondItem="17k-Hd-dLP" secondAttribute="bottom" constant="2" id="rUc-ld-9NV"/>
+                                        <constraint firstAttribute="trailing" secondItem="17k-Hd-dLP" secondAttribute="trailing" constant="8" id="spq-WQ-qCv"/>
+                                        <constraint firstItem="17k-Hd-dLP" firstAttribute="leading" secondItem="cz1-h1-7iq" secondAttribute="leading" constant="8" id="txb-nr-RNl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cardView" destination="e3S-Py-rYX" id="W2d-Yb-wBQ"/>
+                                    <outlet property="card" destination="17k-Hd-dLP" id="Ms7-kM-3Me"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -154,7 +170,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="c9I-sr-jyf">
-                        <barButtonItem key="leftBarButtonItem" title="close" id="n0C-Wy-uUe"/>
+                        <barButtonItem key="leftBarButtonItem" title="close" id="n0C-Wy-uUe">
+                            <connections>
+                                <action selector="closeView:" destination="NDi-JY-ICn" id="w20-JF-aal"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="closeButton" destination="n0C-Wy-uUe" id="ucu-Ao-Iht"/>
@@ -370,7 +390,7 @@
         <scene sceneID="YKx-gH-V8F">
             <objects>
                 <collectionViewController id="nTj-fN-6vp" customClass="BECategoriesCollectionView" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZM0-Oo-huH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZM0-Oo-huH">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="147.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -429,7 +449,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZJ-zn-2K2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ErX-sq-Yy2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ErX-sq-Yy2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

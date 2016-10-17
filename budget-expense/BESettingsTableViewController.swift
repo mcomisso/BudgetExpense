@@ -10,13 +10,32 @@ import UIKit
 import RealmSwift
 import Material
 
-class BETableViewCell: TableViewCell {
+class BEHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var cardView: Card!
+}
+
+class BETableViewCell: UITableViewCell {
+
+    @IBOutlet weak var card: Card!
+
+    func prepareCardWithAmounObject(amount: Amount) {
+        let amountLabel = UILabel()
+        amountLabel.font = UIFont.systemFont(ofSize: 40)
+        amountLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountLabel.numberOfLines = 1
+        amountLabel.text = BEUtils.formatNumberToCurrency(number: NSNumber(value: amount.amount))
+
+        if amount.isExpense {
+            amountLabel.textColor = BETheme.Colors.accent
+        } else {
+            amountLabel.textColor = BETheme.Colors.primary
+        }
+
+        card.contentView = amountLabel
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.backgroundColor = .clear
     }
 }
 
@@ -37,7 +56,13 @@ class BESettingsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func closeView(_ sender: AnyObject) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+}
     // MARK: - Table view data source
+extension BESettingsTableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -48,17 +73,15 @@ class BESettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath) as! BETableViewCell
+
         let amountObject = BERealmManager.shared.getWeekDataForTableView()[indexPath.row]
-        cell.textLabel?.text = String(amountObject.amount)
-        if amountObject.isExpense {
-            cell.backgroundColor = BETheme.Colors.accent
-        } else {
-            cell.backgroundColor = BETheme.Colors.primary
-        }
+
+        cell.prepareCardWithAmounObject(amount: amountObject)
+
         return cell
     }
-
+}
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,5 +126,3 @@ class BESettingsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
