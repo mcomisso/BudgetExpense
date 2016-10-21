@@ -1,12 +1,12 @@
 PODS:
-  - Material (2.1.2)
+  - Material (2.2.2)
   - Realm (2.0.2):
     - Realm/Headers (= 2.0.2)
   - Realm/Headers (2.0.2)
   - RealmSwift (2.0.2):
     - Realm (= 2.0.2)
   - SwiftCharts (0.4)
-  - SwiftDate (4.0.5)
+  - SwiftDate (4.0.6)
 
 DEPENDENCIES:
   - Material (~> 2.0)
@@ -24,12 +24,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/i-schuetz/SwiftCharts.git
 
 SPEC CHECKSUMS:
-  Material: e27257b2efea0ea145150b141da22e1d68bef552
+  Material: a4effb7596a06d33a6d67d9fca33e3c78363beae
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   SwiftCharts: 84b43d9d70b791459ff5f50ae5a6704326de309d
-  SwiftDate: a945bf4150ef977824df91116ca30a04604216d3
+  SwiftDate: 549729eaa54bd9f64fd80abfd12ddd3d44ff5098
 
-PODFILE CHECKSUM: '049c7510f6adcc3f998367cbccf0c847b30caca7'
+PODFILE CHECKSUM: da0b2167bbd68d9d5a8a0a47a67e4644820088b1
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
