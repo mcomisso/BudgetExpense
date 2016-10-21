@@ -12,6 +12,7 @@ import Material
 
 class BEHeaderView: UITableViewHeaderFooterView {
 
+    // Add a date
 }
 
 class BETableViewCell: UITableViewCell {
@@ -23,15 +24,29 @@ class BETableViewCell: UITableViewCell {
         amountLabel.font = UIFont.systemFont(ofSize: 40)
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         amountLabel.numberOfLines = 1
+        amountLabel.textAlignment = .center
         amountLabel.text = BEUtils.formatNumberToCurrency(number: NSNumber(value: amount.amount))
+        amountLabel.textColor = amount.isExpense ? BETheme.Colors.accent : BETheme.Colors.primary
 
-        if amount.isExpense {
-            amountLabel.textColor = BETheme.Colors.accent
-        } else {
-            amountLabel.textColor = BETheme.Colors.primary
-        }
+        let verticalIconButton = IconButton(image: Icon.cm.moreVertical, tintColor: Color.blueGrey.base)
 
+
+        let toolbar = Toolbar(rightViews: [verticalIconButton])
+        toolbar.detail = amount.isExpense ? "Expense" : "Income"
+        toolbar.detailLabel.textAlignment = .left
+        toolbar.title = amount.category?.name
+        toolbar.titleLabel.textAlignment = .left
+
+        let dateLabel = UILabel()
+        dateLabel.font = RobotoFont.regular(with: 12)
+        dateLabel.textColor = Color.blueGrey.base
+        dateLabel.text = BEUtils().dateFormatter.string(from: amount.date)
+
+        let bottomBar = Bar(leftViews: [dateLabel])
+
+        card.toolbar = toolbar
         card.contentView = amountLabel
+        card.bottomBar = bottomBar
     }
 
     override func prepareForReuse() {

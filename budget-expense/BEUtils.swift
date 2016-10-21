@@ -10,6 +10,13 @@ import Foundation
 
 struct BEUtils {
 
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .medium
+        return dateFormatter
+    }()
+
     static func formatNumberToCurrency(number: NSNumber) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
@@ -18,4 +25,5 @@ struct BEUtils {
         numberFormatter.locale = Locale.current
         return numberFormatter.string(from: number) ?? ""
     }
+
 }
