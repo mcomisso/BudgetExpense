@@ -11,6 +11,7 @@ target 'budget-expense' do
   pod "SwiftDate"
   pod "RealmSwift"
   pod "Material", "~> 2.0"
+  pod "Crashlytics"
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing

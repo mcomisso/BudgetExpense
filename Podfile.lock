@@ -1,14 +1,20 @@
 PODS:
-  - Material (2.2.2)
-  - Realm (2.0.2):
-    - Realm/Headers (= 2.0.2)
-  - Realm/Headers (2.0.2)
-  - RealmSwift (2.0.2):
-    - Realm (= 2.0.2)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - Material (2.3.16):
+    - Material/Core (= 2.3.16)
+  - Material/Core (2.3.16)
+  - Realm (2.1.0):
+    - Realm/Headers (= 2.1.0)
+  - Realm/Headers (2.1.0)
+  - RealmSwift (2.1.0):
+    - Realm (= 2.1.0)
   - SwiftCharts (0.4)
-  - SwiftDate (4.0.6)
+  - SwiftDate (4.0.7)
 
 DEPENDENCIES:
+  - Crashlytics
   - Material (~> 2.0)
   - RealmSwift
   - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
@@ -24,12 +30,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/i-schuetz/SwiftCharts.git
 
 SPEC CHECKSUMS:
-  Material: a4effb7596a06d33a6d67d9fca33e3c78363beae
-  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
-  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Material: db663ff81d7c72a8f7454fc297d147dcba8bb869
+  Realm: bc829ad0ef3d4eea70c34cfcc3b1704d18d50df1
+  RealmSwift: a4d4abbf0088c337cab5b738054395842e4b3052
   SwiftCharts: 84b43d9d70b791459ff5f50ae5a6704326de309d
-  SwiftDate: 549729eaa54bd9f64fd80abfd12ddd3d44ff5098
+  SwiftDate: 0efb04a6751b1ab804049b2b09a69848cd304c12
 
-PODFILE CHECKSUM: da0b2167bbd68d9d5a8a0a47a67e4644820088b1
+PODFILE CHECKSUM: 4b027efd3bc84b54220ea11d07518931911cad66
 
 COCOAPODS: 1.1.1

@@ -237,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = mcomisso;
 				TargetAttributes = {
 					B99957FD1DA217DF007274BB = {
@@ -582,7 +582,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
 				INFOPLIST_FILE = "budget-expenseTests/Info.plist";
@@ -598,7 +597,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 836F756D0A5B157CE5139909 /* Pods-budget-expenseTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
 				INFOPLIST_FILE = "budget-expenseTests/Info.plist";
