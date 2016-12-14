@@ -53,10 +53,14 @@ struct NumericMem {
     }
 }
 
+
+
 class BEAddDataViewController: UIViewController {
 
     // Public
     public var type: BEAddDataType = .expense
+
+    fileprivate let dismissAnimator = BETransitioningDismissingAnimator()
 
     fileprivate var numericMem = NumericMem() {
         didSet {
@@ -136,12 +140,14 @@ class BEAddDataViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func close(_ sender: AnyObject) {
+        self.transitioningDelegate = self
         self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func saveAmount(_ sender: AnyObject) {
         let amount = self.numericMem.toDouble()
         BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!)
+        self.transitioningDelegate = self
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -152,4 +158,11 @@ extension BEAddDataViewController: UITextFieldDelegate {
         return false
     }
 
+}
+
+
+extension BEAddDataViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self.dismissAnimator
+    }
 }

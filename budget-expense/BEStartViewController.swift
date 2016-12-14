@@ -21,6 +21,7 @@ class BEHomeViewController: UIViewController {
 
     @IBOutlet weak var amountDisplay: UILabel!
 
+    fileprivate var presentAnimator: BETransitioningPresentingAnimator? = nil
 
     fileprivate var chart: Chart?
 
@@ -96,6 +97,9 @@ extension BEHomeViewController: UIGestureRecognizerDelegate {
             }
             feedbackGenerator?.selectionChanged()
             addDataVC.type = .income
+
+            self.presentAnimator = BETransitioningPresentingAnimator(direction: .down)
+            addDataVC.transitioningDelegate = self
             self.present(addDataVC, animated: true, completion: { 
 
             })
@@ -107,6 +111,8 @@ extension BEHomeViewController: UIGestureRecognizerDelegate {
 
             feedbackGenerator?.selectionChanged()
             addDataVC.type = .expense
+            self.presentAnimator = BETransitioningPresentingAnimator(direction: .up)
+            addDataVC.transitioningDelegate = self
             self.present(addDataVC, animated: true, completion: {
                 feedbackGenerator = nil
             })
@@ -114,5 +120,16 @@ extension BEHomeViewController: UIGestureRecognizerDelegate {
             break
             // Do nothing
         }
+    }
+}
+
+extension BEHomeViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return self.presentAnimator
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+
     }
 }

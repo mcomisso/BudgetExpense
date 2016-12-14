@@ -58,7 +58,7 @@ class BERealmManager {
     ///
     /// - returns: Returns a Realm results with amount
     func getWeekDataForTableView() -> Results<Amount> {
-        return realm.objects(Amount.self)
+        return self.realm.objects(Amount.self)
     }
 
 
@@ -68,7 +68,7 @@ class BERealmManager {
     ///
     /// - returns: Return an array of double values
     func getWeekData(to date: Date = Date()) -> [Double] {
-        let amounts = realm.objects(Amount.self)
+        let amounts = self.realm.objects(Amount.self)
         return amounts.map { $0.amount }
     }
 
