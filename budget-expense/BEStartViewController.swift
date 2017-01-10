@@ -59,6 +59,9 @@ class BEHomeViewController: UIViewController {
 
         self.chart = chart
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(transactionsDetails(recognizer:)))
+        self.amountDisplay.addGestureRecognizer(tapGestureRecognizer)
+        self.amountDisplay.isUserInteractionEnabled = true
 
         let expenseGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
         expenseGestureRecognizer.direction = .up
@@ -81,9 +84,17 @@ class BEHomeViewController: UIViewController {
         self.amountDisplay.text = BEUtils.formatNumberToCurrency(number: BERealmManager.shared.getAmount())
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Insert here preparation
+    }
 }
 
 extension BEHomeViewController: UIGestureRecognizerDelegate {
+
+    func transactionsDetails(recognizer: UITapGestureRecognizer) {
+        self.performSegue(withIdentifier: "BEViewTransactionsSegue", sender: nil)
+    }
+
     func inputData(recognizer: UISwipeGestureRecognizer) {
 
         var feedbackGenerator: UISelectionFeedbackGenerator? = UISelectionFeedbackGenerator()

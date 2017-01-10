@@ -52,7 +52,7 @@ class BETransitioningPresentingAnimator: NSObject, UIViewControllerAnimatedTrans
             // Inser here the animations
 
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/5, animations: { 
-                fromView?.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+                fromView?.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 4/5, animations: {
                 toView.frame = finalFrameForToViewController
@@ -83,7 +83,7 @@ class BETransitioningDismissingAnimator: NSObject, UIViewControllerAnimatedTrans
 
         containerView.insertSubview(toView, at: 0)
 
-        toView.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+        toView.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
 
         UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: .calculationModeCubicPaced, animations: {
 

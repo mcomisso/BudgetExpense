@@ -106,6 +106,14 @@
 			name = "UI Helpers";
 			sourceTree = "<group>";
 		};
+		B9635F9C1E01336300AC6652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9C884231DB321C600D7A9BC /* BEModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		B99957F51DA217DF007274BB = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +143,7 @@
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
 				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
-				B9C884231DB321C600D7A9BC /* BEModel.swift */,
+				B9635F9C1E01336300AC6652 /* Model */,
 				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
 				B9C884251DB34A2E00D7A9BC /* BETheme.swift */,
 				B95356B81DB352820024C6D5 /* BEExtensions.swift */,

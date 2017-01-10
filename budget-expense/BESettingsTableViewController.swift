@@ -55,7 +55,7 @@ class BETableViewCell: UITableViewCell {
 }
 
 
-class BESettingsTableViewController: UITableViewController {
+class BETransactionsHistoryTableViewController: UITableViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
 
@@ -77,7 +77,7 @@ class BESettingsTableViewController: UITableViewController {
 
 }
     // MARK: - Table view data source
-extension BESettingsTableViewController {
+extension BETransactionsHistoryTableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
