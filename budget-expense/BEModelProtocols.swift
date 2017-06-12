@@ -43,7 +43,14 @@ protocol BEAccount {
 
 // MARK: MANAGER Protocol
 
-protocol BEManager {
+protocol BEManagerAccount {
+    func createAccount(name: String, currency: String)
+//    func deleteAccount()
+//    func editAccountName()
+//    func editAccountCurrency()
+}
+
+protocol BEManagerAmount {
 
     /// Get the current amount
     ///
