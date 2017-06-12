@@ -9,8 +9,28 @@
 import Foundation
 import Material
 import SwiftCharts
+protocol BEHomeViewControllerDelegate: class {
+
+    /// Expense screen
+    ///
+    /// - Parameter homeViewController: the source of the event
+    func didSelectExpenseScreen(_ homeViewController: BEHomeViewController)
+
+
+    /// Income screen
+    ///
+    /// - Parameter homeViewController: the source of the event
+    func didSelectIncomeScreen(_ homeViewController: BEHomeViewController)
+
+    /// List screen
+    ///
+    /// - Parameter homeViewController: The source of the event
+    func didSelectListScreen(_ homeViewController: BEHomeViewController)
+}
 
 class BEHomeViewController: UIViewController {
+
+    weak var delegate: BEHomeViewControllerDelegate?
 
     @IBOutlet weak var chartView: ChartView!
 
@@ -92,41 +112,24 @@ class BEHomeViewController: UIViewController {
 extension BEHomeViewController: UIGestureRecognizerDelegate {
 
     func transactionsDetails(recognizer: UITapGestureRecognizer) {
-        self.performSegue(withIdentifier: "BEViewTransactionsSegue", sender: nil)
+        self.delegate?.didSelectListScreen(self)
     }
 
     func inputData(recognizer: UISwipeGestureRecognizer) {
 
-        var feedbackGenerator: UISelectionFeedbackGenerator? = UISelectionFeedbackGenerator()
-        feedbackGenerator?.prepare()
-
         switch recognizer.direction {
         case UISwipeGestureRecognizerDirection.down:
-            // Add income
-            guard let addDataVC = self.storyboard?.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else {
-                break
-            }
-            feedbackGenerator?.selectionChanged()
-            addDataVC.type = .income
 
-            self.presentAnimator = BETransitioningPresentingAnimator(direction: .down)
-            addDataVC.transitioningDelegate = self
-            self.present(addDataVC, animated: true, completion: { 
+            // APPCOORDINATOR
 
-            })
+            self.delegate?.didSelectIncomeScreen(self)
+
         case UISwipeGestureRecognizerDirection.up:
-            // Add expense
-            guard let addDataVC = self.storyboard?.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else {
-                break
-            }
 
-            feedbackGenerator?.selectionChanged()
-            addDataVC.type = .expense
-            self.presentAnimator = BETransitioningPresentingAnimator(direction: .up)
-            addDataVC.transitioningDelegate = self
-            self.present(addDataVC, animated: true, completion: {
-                feedbackGenerator = nil
-            })
+            // Transitioning to appCoordinator
+
+            self.delegate?.didSelectExpenseScreen(self)
+
         default:
             break
             // Do nothing
