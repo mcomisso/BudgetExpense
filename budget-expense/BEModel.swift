@@ -42,16 +42,8 @@ class BERealmManager {
     ///
     /// - returns: A string representing the current amount
     func getAmount() -> NSNumber {
-        let amounts = realm.objects(Amount.self)
-        var memout = 0.0
-        for amount in amounts {
-            if amount.isExpense {
-                memout = memout - amount.amount
-            } else {
-                memout = memout + amount.amount
-            }
-        }
-        return NSNumber(value: memout)
+        let amount = realm.objects(Amount.self).map { $0.isExpense ? -$0.amount : $0.amount }.reduce(0.0) { $0 + $1 }
+        return NSNumber(value: amount)
     }
 
 
