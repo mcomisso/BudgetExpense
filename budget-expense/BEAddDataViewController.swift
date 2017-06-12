@@ -14,6 +14,7 @@ enum BEAddDataType {
 }
 
 struct NumericMem {
+
     var number = "" {
         didSet {
             if self.exp < -2 {
@@ -67,12 +68,6 @@ class BEAddDataViewController: UIViewController {
             self.currentDigits.text = BEUtils.formatNumberToCurrency(number: self.numericMem.toNumber())
         }
     }
-
-//    fileprivate var memory: String = "" {
-//        didSet {
-//            self.currentDigits.text = self.memory
-//        }
-//    }
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
     @IBOutlet weak var currentDigits: UILabel!
@@ -146,7 +141,10 @@ class BEAddDataViewController: UIViewController {
 
     @IBAction func saveAmount(_ sender: AnyObject) {
         let amount = self.numericMem.toDouble()
-        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!)
+
+        BECloudKitManager().save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+
+//        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!)
         self.transitioningDelegate = self
         self.dismiss(animated: true, completion: nil)
     }
@@ -161,8 +159,8 @@ extension BEAddDataViewController: UITextFieldDelegate {
 }
 
 
-extension BEAddDataViewController: UIViewControllerTransitioningDelegate {
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+extension BEAddDataViewController {
+    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.dismissAnimator
     }
 }

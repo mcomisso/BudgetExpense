@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */; };
+		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
+		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95356B81DB352820024C6D5 /* BEExtensions.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
@@ -21,6 +23,11 @@
 		B99958241DA21BD0007274BB /* BEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958231DA21BD0007274BB /* BEViewController.swift */; };
 		B9A7F51C1DA8B5930051090F /* BEStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */; };
 		B9A7F51F1DA8B87D0051090F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A7F51D1DA8B87D0051090F /* Main.storyboard */; };
+		B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */; };
+		B9B847FE1EEDA88000DF7C39 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B847FD1EEDA88000DF7C39 /* CloudKit.framework */; };
+		B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B847FF1EEDB9B500DF7C39 /* CloudKitAccount.swift */; };
+		B9B848021EEDDC2800DF7C39 /* CloudKitAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */; };
+		B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */; };
 		B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884211DB3197400D7A9BC /* BEConstants.swift */; };
 		B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884231DB321C600D7A9BC /* BEModel.swift */; };
 		B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884251DB34A2E00D7A9BC /* BETheme.swift */; };
@@ -43,6 +50,8 @@
 		836F756D0A5B157CE5139909 /* Pods-budget-expenseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budget_expense.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
+		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B95356B81DB352820024C6D5 /* BEExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEExtensions.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
@@ -61,6 +70,12 @@
 		B9A7F5191DA88A3D0051090F /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEStartViewController.swift; sourceTree = "<group>"; };
 		B9A7F51E1DA8B87D0051090F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BELocationManager.swift; sourceTree = "<group>"; };
+		B9B847FC1EEDA87A00DF7C39 /* budget-expense.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "budget-expense.entitlements"; sourceTree = "<group>"; };
+		B9B847FD1EEDA88000DF7C39 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		B9B847FF1EEDB9B500DF7C39 /* CloudKitAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitAccount.swift; sourceTree = "<group>"; };
+		B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitAmount.swift; sourceTree = "<group>"; };
+		B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEModelProtocols.swift; sourceTree = "<group>"; };
 		B9C884211DB3197400D7A9BC /* BEConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEConstants.swift; sourceTree = "<group>"; };
 		B9C884231DB321C600D7A9BC /* BEModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEModel.swift; sourceTree = "<group>"; };
 		B9C884251DB34A2E00D7A9BC /* BETheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETheme.swift; sourceTree = "<group>"; };
@@ -76,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */,
+				B9B847FE1EEDA88000DF7C39 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +106,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B91378D01EEF0B960075B118 /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				B9B847FF1EEDB9B500DF7C39 /* CloudKitAccount.swift */,
+				B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */,
+				B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */,
+				B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */,
+			);
+			name = CloudKit;
+			sourceTree = "<group>";
+		};
 		B9635F9A1E01241600AC6652 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,7 +136,9 @@
 		B9635F9C1E01336300AC6652 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B91378D01EEF0B960075B118 /* CloudKit */,
 				B9C884231DB321C600D7A9BC /* BEModel.swift */,
+				B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -137,11 +166,13 @@
 		B99958001DA217DF007274BB /* budget-expense */ = {
 			isa = PBXGroup;
 			children = (
+				B9B847FC1EEDA87A00DF7C39 /* budget-expense.entitlements */,
 				B9A7F5201DA8BA270051090F /* old */,
 				B9635F9A1E01241600AC6652 /* Constants */,
 				B99958011DA217DF007274BB /* AppDelegate.swift */,
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
 				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
 				B9635F9C1E01336300AC6652 /* Model */,
 				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
@@ -195,6 +226,7 @@
 		CD79DEC59651E69CA158CB41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9B847FD1EEDA88000DF7C39 /* CloudKit.framework */,
 				B9A7F5191DA88A3D0051090F /* SwiftDate.framework */,
 				8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */,
 				D1C8146CDF1E43F05A9A64E4 /* Pods_budget_expenseTests.framework */,
@@ -271,6 +303,14 @@
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					B99958131DA217DF007274BB = {
 						CreatedOnToolsVersion = 8.0;
@@ -331,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		469E524AAE520D99558ABE8A /* [CP] Copy Pods Resources */ = {
@@ -361,7 +401,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D17B0F68F9277A0290FA2DD3 /* [CP] Copy Pods Resources */ = {
@@ -416,15 +456,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
 				B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */,
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
+				B9B848021EEDDC2800DF7C39 /* CloudKitAmount.swift in Sources */,
 				B9A7F51C1DA8B5930051090F /* BEStartViewController.swift in Sources */,
 				B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */,
 				B98A85541DB4341A00EEF953 /* BESettingsTableViewController.swift in Sources */,
 				B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */,
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
+				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
+				B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */,
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
+				B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */,
+				B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
 				B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */,
@@ -570,6 +616,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -592,6 +639,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import CloudKit
 
 class Account: Object {
     dynamic var id = 0
