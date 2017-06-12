@@ -1,4 +1,5 @@
 PODS:
+  - AlertOnboarding (1.9)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -15,6 +16,7 @@ PODS:
   - SwiftDate (4.1.2)
 
 DEPENDENCIES:
+  - AlertOnboarding
   - Crashlytics
   - Material (~> 2.0)
   - RealmSwift
@@ -32,6 +34,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/i-schuetz/SwiftCharts.git
 
 SPEC CHECKSUMS:
+  AlertOnboarding: 0c97f5c4feac0a4e914bae5d530f66b4dbc6b771
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
@@ -41,6 +44,6 @@ SPEC CHECKSUMS:
   SwiftCharts: 84f84c2a94a3f51f055eeaacd9b8dc3ada3380eb
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
 
-PODFILE CHECKSUM: 6d74689b060b284b2c886116c6cbd10361ac44c2
+PODFILE CHECKSUM: 16f083c6d63b2cc89c74dacc848fcc66f615f6b7
 
 COCOAPODS: 1.2.1
