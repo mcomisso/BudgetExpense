@@ -13,44 +13,44 @@ enum BEAddDataType {
     case expense, income
 }
 
+class Stack<T: CustomStringConvertible> {
+    var basemem = [T]()
+
+    func addElement(element: T) {
+        self.basemem.append(element)
+    }
+
+    func removeElement() {
+        self.basemem.removeLast()
+    }
+
+    func toDecimal() -> Double {
+        guard let retVal = Double(basemem.map{ $0.description }.joined()) else { fatalError() }
+        return retVal / 100.0
+    }
+}
+
+
 struct NumericMem {
 
-    var number = "" {
-        didSet {
-            if self.exp < -2 {
-                self.exp = -2
-            }
-        }
-    }
-    var exp: Double = -2
+    var numberStack = Stack<String>()
 
     func toNumber() -> NSNumber {
-
-        let multiplier: Double = pow(10.0, self.exp)
-        let result =  (Double("0."+self.number) ?? 0.0) * multiplier
-
-        dump(self)
-        dump(result)
-        return NSNumber(value: result)
+        return NSNumber(value: self.toDouble())
     }
 
     func toDouble() -> Double {
-        return self.toNumber().doubleValue
+        return self.numberStack.toDecimal()
     }
 
     mutating func addDigit(digit: String) {
-        self.number.append(digit)
-        self.exp += 1
-        if digit == "00" {
-            self.exp += 1
-        }
+
+        self.numberStack.addElement(element: digit)
+
     }
 
     mutating func removeDigit() {
-        if self.number.characters.count > 0 {
-            self.exp -= 1
-            self.number.remove(at: self.number.index(before: self.number.endIndex))
-        }
+        self.numberStack.removeElement()
     }
 }
 
