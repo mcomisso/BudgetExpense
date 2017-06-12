@@ -9,6 +9,9 @@
 import Foundation
 import Material
 import SwiftCharts
+import AlertOnboarding
+import SQFeedbackGenerator
+
 protocol BEHomeViewControllerDelegate: class {
 
     /// Expense screen
@@ -41,7 +44,21 @@ class BEHomeViewController: UIViewController {
 
     @IBOutlet weak var amountDisplay: UILabel!
 
-    fileprivate var presentAnimator: BETransitioningPresentingAnimator? = nil
+    lazy var onboarding: AlertOnboarding = { [weak self] in
+        guard let `self` = self else { fatalError() }
+
+        let images = ["first"]
+        let titles = ["Title"]
+        let descriptions = ["Description"]
+
+        let ao = AlertOnboarding(arrayOfImage: images, arrayOfTitle: titles, arrayOfDescription: descriptions)
+        ao.delegate = self
+        ao.titleSkipButton = "SKIP"
+        ao.titleGotItButton = "im done"
+        return ao
+    }()
+
+    var presentAnimator: BETransitioningPresentingAnimator? = nil
 
     fileprivate var chart: Chart?
 
@@ -145,5 +162,29 @@ extension BEHomeViewController {
     override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
 
+    }
+}
+
+extension BEHomeViewController: AlertOnboardingDelegate {
+
+    func presentOnboarding() {
+        self.onboarding.show()
+    }
+
+    func setupOnboarding() {
+
+    }
+
+    func alertOnboardingSkipped(_ currentStep: Int, maxStep: Int) {
+        print("Skipped onboarding")
+    }
+
+    func alertOnboardingCompleted() {
+        print("Completed onboarding")
+        UserDefaults.standard.set(true, forKey:"onboarded")
+    }
+
+    func alertOnboardingNext(_ nextStep: Int) {
+        print("Next onboarding")
     }
 }
