@@ -48,15 +48,18 @@ class BETransitioningPresentingAnimator: NSObject, UIViewControllerAnimatedTrans
 
         let finalFrameForToViewController = transitionContext.finalFrame(for: toVC)
 
-        UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: .calculationModeCubic, animations: {
-            // Inser here the animations
+        UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext),
+                                delay: 0.0,
+                                options: .calculationModeCubic,
+                                animations: {
+                                    // Inser here the animations
 
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/5, animations: { 
-                fromView?.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 4/5, animations: {
-                toView.frame = finalFrameForToViewController
-            })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/5, animations: {
+                                        fromView?.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
+                                    })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 4/5, animations: {
+                                        toView.frame = finalFrameForToViewController
+                                    })
 
         }) { (completed) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
@@ -67,6 +70,14 @@ class BETransitioningPresentingAnimator: NSObject, UIViewControllerAnimatedTrans
 }
 
 class BETransitioningDismissingAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+
+    var direction: TransitionDirection = .down
+
+    convenience init(direction: TransitionDirection) {
+        self.init()
+        self.direction = direction
+    }
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return BEConstants.Values.transitionDuration
     }
@@ -83,22 +94,22 @@ class BETransitioningDismissingAnimator: NSObject, UIViewControllerAnimatedTrans
 
         containerView.insertSubview(toView, at: 0)
 
-        toView.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+        toView.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
 
         UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: .calculationModeCubicPaced, animations: {
 
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/5, animations: {
-                fromView.transform = CGAffineTransform(translationX: 0.0, y: -fromView.frame.height)
+                fromView.transform = CGAffineTransform(translationX: 0.0, y: self.direction == .down ? -fromView.frame.height : fromView.frame.height)
             })
-
+            
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 4/5, animations: {
                 toView.transform = CGAffineTransform.identity
             })
-
+            
         }) { (completed) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
         
     }
-
+    
 }

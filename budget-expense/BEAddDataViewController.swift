@@ -61,7 +61,10 @@ class BEAddDataViewController: UIViewController {
     // Public
     public var type: BEAddDataType = .expense
 
-    fileprivate let dismissAnimator = BETransitioningDismissingAnimator()
+    fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
+        guard let `self` = self else { fatalError() }
+        return BETransitioningDismissingAnimator(direction: self.type == .expense ? .down : .up)
+    }()
 
     fileprivate var numericMem = NumericMem() {
         didSet {
