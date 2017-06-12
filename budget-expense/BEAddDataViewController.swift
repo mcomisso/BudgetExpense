@@ -14,17 +14,22 @@ enum BEAddDataType {
 }
 
 class Stack<T: CustomStringConvertible> {
-    var basemem = [T]()
+    private var basemem = [T]()
 
     func addElement(element: T) {
         self.basemem.append(element)
     }
 
     func removeElement() {
-        self.basemem.removeLast()
+        if self.basemem.isEmpty == false {
+            self.basemem.removeLast()
+        }
     }
 
     func toDecimal() -> Double {
+        if basemem.isEmpty {
+            return 0.00
+        }
         guard let retVal = Double(basemem.map{ $0.description }.joined()) else { fatalError() }
         return retVal / 100.0
     }
