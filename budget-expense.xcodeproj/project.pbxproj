@@ -10,6 +10,8 @@
 		28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
+		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
+		B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D71EEF47020075B118 /* BEAppCoordinator.swift */; };
 		B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95356B81DB352820024C6D5 /* BEExtensions.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
@@ -52,6 +54,8 @@
 		94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
+		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
+		B91378D71EEF47020075B118 /* BEAppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEAppCoordinator.swift; sourceTree = "<group>"; };
 		B95356B81DB352820024C6D5 /* BEExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEExtensions.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
@@ -113,8 +117,27 @@
 				B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */,
 				B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */,
 				B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */,
+				B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */,
 			);
 			name = CloudKit;
+			sourceTree = "<group>";
+		};
+		B91378D51EEF40CF0075B118 /* ViewControllers  */ = {
+			isa = PBXGroup;
+			children = (
+				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
+				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
+				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+			);
+			name = "ViewControllers ";
+			sourceTree = "<group>";
+		};
+		B91378D61EEF40DD0075B118 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		B9635F9A1E01241600AC6652 /* Constants */ = {
@@ -170,15 +193,14 @@
 				B9A7F5201DA8BA270051090F /* old */,
 				B9635F9A1E01241600AC6652 /* Constants */,
 				B99958011DA217DF007274BB /* AppDelegate.swift */,
-				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
-				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
-				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
-				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
+				B91378D71EEF47020075B118 /* BEAppCoordinator.swift */,
+				B91378D61EEF40DD0075B118 /* Views */,
+				B91378D51EEF40CF0075B118 /* ViewControllers  */,
 				B9635F9C1E01336300AC6652 /* Model */,
-				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
 				B9C884251DB34A2E00D7A9BC /* BETheme.swift */,
 				B95356B81DB352820024C6D5 /* BEExtensions.swift */,
 				B9869D0E1DB496600087CBB7 /* BEUtils.swift */,
+				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
 				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
@@ -210,6 +232,7 @@
 		B9A7F5201DA8BA270051090F /* old */ = {
 			isa = PBXGroup;
 			children = (
+				B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */,
 				B99958251DA21BD3007274BB /* BaseClasses */,
 			);
 			name = old;
@@ -218,7 +241,6 @@
 		B9A7F5211DA8BA2D0051090F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -456,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */,
 				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
 				B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */,
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
@@ -466,6 +489,7 @@
 				B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */,
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
 				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
+				B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */,
 				B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */,
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
