@@ -25,38 +25,38 @@ final class CloudKitAmount: BEAmount {
 
     var amount: Double {
         get {
-            return self.record.object(forKey: "amount") as! Double
+            return self.record["amount"] as! Double
         }
         set {
-            self.record.setObject(NSNumber(value: newValue), forKey: "amount")
+            self.record["amount"] = NSNumber(value: newValue)
         }
     }
 
     var isExpense: Bool {
         get {
-            return self.record.object(forKey: "isExpense") as! Bool
+            return self.record["isExpense"] as! Bool
         }
         set {
-            self.record.setObject(newValue as NSNumber, forKey: "isExpense")
+            self.record["isExpense"] = newValue as NSNumber
         }
     }
 
     var notes: String {
         get {
-            return self.record.object(forKey: "notes") as! String
+            return self.record["notes"] as! String
         }
         set {
-            self.record.setObject(newValue as NSString, forKey: "notes")
+            self.record["notes"] = newValue as NSString
         }
     }
 
     var expenseDate: Date? {
         get {
-            return self.record.object(forKey: "expenseDate") as? Date
+            return self.record["expenseDate"] as? Date
         }
 
         set {
-            self.record.setObject(newValue! as NSDate, forKey: "expenseDate")
+            self.record["expenseDate"] = newValue! as NSDate
         }
     }
 
