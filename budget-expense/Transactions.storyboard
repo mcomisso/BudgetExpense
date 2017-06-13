@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="F1s-uP-Ely">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Transactions History Collection View Controller-->
+        <scene sceneID="50T-t0-dQ3">
+            <objects>
+                <collectionViewController id="ng1-Fb-rTZ" customClass="BETransactionsHistoryCollectionViewController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6sj-CG-7lc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dxe-4E-ILl">
+                            <size key="itemSize" width="375" height="128"/>
+                            <size key="headerReferenceSize" width="50" height="76"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="overviewCellIdentifier" id="bTB-f5-ft2" customClass="BECollectionViewCell" customModule="budget_expense" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="76" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oK4-mC-dyN" customClass="Card" customModule="Material">
+                                            <rect key="frame" x="8" y="8" width="359" height="112"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="zPosition">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="oK4-mC-dyN" secondAttribute="bottom" id="JWP-th-f67"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="oK4-mC-dyN" secondAttribute="trailing" id="aG7-he-8Di"/>
+                                    <constraint firstItem="oK4-mC-dyN" firstAttribute="leading" secondItem="bTB-f5-ft2" secondAttribute="leadingMargin" id="goH-f8-L6f"/>
+                                    <constraint firstItem="oK4-mC-dyN" firstAttribute="top" secondItem="bTB-f5-ft2" secondAttribute="topMargin" id="zob-AD-nMr"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="card" destination="oK4-mC-dyN" id="DuM-Tu-Y8d"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BEHeaderViewReuseIdentifier" id="ltu-xG-bSA" customClass="BEHeaderView" customModule="budget_expense" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MKh-nk-CR1">
+                                    <rect key="frame" x="8" y="8" width="359" height="60"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJR-Ra-WUn" userLabel="Day title">
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="41"/>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKw-Mh-TIR" userLabel="Month title">
+                                            <rect key="frame" x="0.0" y="41" width="359" height="19"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottomMargin" secondItem="MKh-nk-CR1" secondAttribute="bottom" id="7Ds-HB-PAQ"/>
+                                <constraint firstItem="MKh-nk-CR1" firstAttribute="top" secondItem="ltu-xG-bSA" secondAttribute="topMargin" id="Qo1-4x-gIT"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="MKh-nk-CR1" secondAttribute="trailing" id="Wfu-Rp-bab"/>
+                                <constraint firstItem="MKh-nk-CR1" firstAttribute="leading" secondItem="ltu-xG-bSA" secondAttribute="leadingMargin" id="tWA-hb-3Ly"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dateHeader" destination="JJR-Ra-WUn" id="xFU-sV-yfq"/>
+                                <outlet property="dateSubHeader" destination="vKw-Mh-TIR" id="w04-7o-1Il"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="ng1-Fb-rTZ" id="Hsg-B3-DmL"/>
+                            <outlet property="delegate" destination="ng1-Fb-rTZ" id="bLN-qG-YLl"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="HUf-mu-wNU">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="ePL-34-7Bk">
+                            <connections>
+                                <action selector="closeView:" destination="ng1-Fb-rTZ" id="Efk-tE-NEZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Stats" id="U58-Mp-Rnx"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="closeButton" destination="ePL-34-7Bk" id="aiW-Od-ckl"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mUR-Oh-TaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157.5999999999999" y="768.66566716641682"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1pD-iA-s4G">
+            <objects>
+                <navigationController storyboardIdentifier="TransactionsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="F1s-uP-Ely" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qXd-6U-DQY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ng1-Fb-rTZ" kind="relationship" relationship="rootViewController" id="6S7-Sk-mgV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpx-87-JsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="224.80000000000001" y="768.66566716641682"/>
+        </scene>
+    </scenes>
+</document>

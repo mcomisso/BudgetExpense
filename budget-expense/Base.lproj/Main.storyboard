@@ -117,106 +117,33 @@
             </objects>
             <point key="canvasLocation" x="88.799999999999997" y="14.842578710644679"/>
         </scene>
-        <!--Transactions History Collection View Controller-->
-        <scene sceneID="qPr-ka-igL">
+        <!--Table View Controller-->
+        <scene sceneID="8KD-u5-076">
             <objects>
-                <collectionViewController id="0oz-Zo-LP8" customClass="BETransactionsHistoryCollectionViewController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="AbI-Bh-vXL">
+                <tableViewController id="VAd-qf-fd4" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yXh-5j-muY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oXw-a9-OXZ">
-                            <size key="itemSize" width="375" height="128"/>
-                            <size key="headerReferenceSize" width="50" height="76"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="overviewCellIdentifier" id="tij-tt-o7G" customClass="BECollectionViewCell" customModule="budget_expense" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="76" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eTE-GV-BHA">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTE-GV-BHA" id="pGl-xw-fkT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybw-M9-ot6" customClass="Card" customModule="Material">
-                                            <rect key="frame" x="8" y="8" width="359" height="112"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="15"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="zPosition">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Ybw-M9-ot6" secondAttribute="bottom" id="K8g-pi-GvA"/>
-                                    <constraint firstItem="Ybw-M9-ot6" firstAttribute="leading" secondItem="tij-tt-o7G" secondAttribute="leadingMargin" id="eHU-Qx-iCu"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Ybw-M9-ot6" secondAttribute="trailing" id="lzP-OY-iT0"/>
-                                    <constraint firstItem="Ybw-M9-ot6" firstAttribute="top" secondItem="tij-tt-o7G" secondAttribute="topMargin" id="wzC-2a-yUL"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="card" destination="Ybw-M9-ot6" id="4XN-A3-y38"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BEHeaderViewReuseIdentifier" id="rcM-GA-Djw" customClass="BEHeaderView" customModule="budget_expense" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cEE-qr-aLA">
-                                    <rect key="frame" x="8" y="8" width="359" height="60"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJg-Zl-BRq" userLabel="Day title">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="38.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxx-SY-lwo" userLabel="Month title">
-                                            <rect key="frame" x="0.0" y="38.5" width="359" height="21.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailingMargin" secondItem="cEE-qr-aLA" secondAttribute="trailing" id="FNq-cN-fgu"/>
-                                <constraint firstItem="cEE-qr-aLA" firstAttribute="leading" secondItem="rcM-GA-Djw" secondAttribute="leadingMargin" id="YAU-CN-tGm"/>
-                                <constraint firstAttribute="bottomMargin" secondItem="cEE-qr-aLA" secondAttribute="bottom" id="lKI-qU-CcV"/>
-                                <constraint firstItem="cEE-qr-aLA" firstAttribute="top" secondItem="rcM-GA-Djw" secondAttribute="topMargin" id="o9X-LX-mpJ"/>
-                            </constraints>
-                            <connections>
-                                <outlet property="dateHeader" destination="kJg-Zl-BRq" id="GLL-VH-f8P"/>
-                                <outlet property="dateSubHeader" destination="Sxx-SY-lwo" id="AZj-3n-GhW"/>
-                            </connections>
-                        </collectionReusableView>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="0oz-Zo-LP8" id="TsW-j2-Ytn"/>
-                            <outlet property="delegate" destination="0oz-Zo-LP8" id="gWm-U4-zlb"/>
+                            <outlet property="dataSource" destination="VAd-qf-fd4" id="cxj-cS-qc1"/>
+                            <outlet property="delegate" destination="VAd-qf-fd4" id="AHk-JR-QTH"/>
                         </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="xDi-j8-OLN">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="9qz-Uw-iFu">
-                            <connections>
-                                <action selector="closeView:" destination="0oz-Zo-LP8" id="dgB-iH-uve"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="closeButton" destination="9qz-Uw-iFu" id="7Kz-rV-dnv"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EOk-Dx-l1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B1j-gd-fw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.5999999999999" y="768.66566716641682"/>
+            <point key="canvasLocation" x="2148" y="723"/>
         </scene>
         <!--Add Data View Controller-->
         <scene sceneID="I91-C0-gds">
@@ -554,24 +481,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfw-G5-ZuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1780" y="-18"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uf4-V5-EcY">
-            <objects>
-                <navigationController storyboardIdentifier="TransactionsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="AZJ-zn-2K2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ErX-sq-Yy2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="0oz-Zo-LP8" kind="relationship" relationship="rootViewController" id="00S-2P-ALT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o07-Ub-ESv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="224.80000000000001" y="768.66566716641682"/>
         </scene>
     </scenes>
 </document>
