@@ -21,8 +21,33 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 0 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
+    /// Resource file `beep_short_off.aif`.
+    static let beep_short_offAif = Rswift.FileResource(bundle: R.hostingBundle, name: "beep_short_off", pathExtension: "aif")
+    /// Resource file `beep_short_on.aif`.
+    static let beep_short_onAif = Rswift.FileResource(bundle: R.hostingBundle, name: "beep_short_on", pathExtension: "aif")
+    /// Resource file `click.aif`.
+    static let clickAif = Rswift.FileResource(bundle: R.hostingBundle, name: "click", pathExtension: "aif")
+    
+    /// `bundle.url(forResource: "beep_short_off", withExtension: "aif")`
+    static func beep_short_offAif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.beep_short_offAif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "beep_short_on", withExtension: "aif")`
+    static func beep_short_onAif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.beep_short_onAif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "click", withExtension: "aif")`
+    static func clickAif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.clickAif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   
@@ -33,19 +58,19 @@ struct R: Rswift.Validatable {
   
   /// This `R.image` struct is generated, and contains static references to 2 images.
   struct image {
-    /// Image `first`.
-    static let first = Rswift.ImageResource(bundle: R.hostingBundle, name: "first")
-    /// Image `second`.
-    static let second = Rswift.ImageResource(bundle: R.hostingBundle, name: "second")
+    /// Image `location`.
+    static let location = Rswift.ImageResource(bundle: R.hostingBundle, name: "location")
+    /// Image `sync`.
+    static let sync = Rswift.ImageResource(bundle: R.hostingBundle, name: "sync")
     
-    /// `UIImage(named: "first", bundle: ..., traitCollection: ...)`
-    static func first(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.first, compatibleWith: traitCollection)
+    /// `UIImage(named: "location", bundle: ..., traitCollection: ...)`
+    static func location(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.location, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "second", bundle: ..., traitCollection: ...)`
-    static func second(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.second, compatibleWith: traitCollection)
+    /// `UIImage(named: "sync", bundle: ..., traitCollection: ...)`
+    static func sync(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sync, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
