@@ -17,13 +17,23 @@ struct BEUtils {
         return dateFormatter
     }()
 
-    static func formatNumberToCurrency(number: NSNumber) -> String {
+    let longDateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .long
+        df.timeStyle = .none
+        return df
+    }()
+}
+
+extension NSNumber {
+
+    func toCurrency() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .currency
         numberFormatter.allowsFloats = true
         numberFormatter.usesGroupingSeparator = true
         numberFormatter.locale = Locale.current
-        return numberFormatter.string(from: number) ?? ""
+        return numberFormatter.string(from: self) ?? ""
     }
 
 }

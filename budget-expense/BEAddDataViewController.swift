@@ -13,71 +13,10 @@ enum BEAddDataType {
     case expense, income
 }
 
-class Stack<T: CustomStringConvertible> {
-    private var basemem = [T]()
-
-    func addElement(element: T) {
-        self.basemem.append(element)
-    }
-
-    func removeElement() {
-        if self.basemem.isEmpty == false {
-            self.basemem.removeLast()
-        }
-    }
-
-    func toDecimal() -> Double {
-        if basemem.isEmpty {
-            return 0.00
-        }
-        guard let retVal = Double(basemem.map{ $0.description }.joined()) else { fatalError() }
-        return retVal / 100.0
-    }
-}
-
-
-struct NumericMem {
-
-    var numberStack = Stack<String>()
-
-    func toNumber() -> NSNumber {
-        return NSNumber(value: self.toDouble())
-    }
-
-    func toDouble() -> Double {
-        return self.numberStack.toDecimal()
-    }
-
-    mutating func addDigit(digit: String) {
-        let characters = digit.characters.map { String($0) }
-
-        for char in characters {
-            self.numberStack.addElement(element: char)
-        }
-    }
-
-    mutating func removeDigit() {
-        self.numberStack.removeElement()
-    }
-}
-
-
-
 class BEAddDataViewController: UIViewController {
 
     // Public
     public var type: BEAddDataType = .expense
-
-    fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
-        guard let `self` = self else { fatalError() }
-        return BETransitioningDismissingAnimator(direction: self.type == .expense ? .down : .up)
-    }()
-
-    fileprivate var numericMem = NumericMem() {
-        didSet {
-            self.currentDigits.text = BEUtils.formatNumberToCurrency(number: self.numericMem.toNumber())
-        }
-    }
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
     @IBOutlet weak var currentDigits: UILabel!
@@ -87,13 +26,32 @@ class BEAddDataViewController: UIViewController {
 
     @IBOutlet weak var notesTextField: TextField!
 
+
+    fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
+        guard let `self` = self else { fatalError() }
+        return BETransitioningDismissingAnimator(direction: self.type == .expense ? .down : .up)
+        }()
+
+    fileprivate var numericMem = NumericMem() {
+        didSet {
+            self.currentDigits.text = self.numericMem.toNumber().toCurrency()
+        }
+    }
+
+    //MARK: VIEW LIFECYCLE
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Delegate method to set the textField
         self.notesTextField.textColor = BETheme.Colors.textIcons
         self.notesTextField.delegate = self
 
+        self.notesTextField.dividerActiveColor = .white
+        self.notesTextField.detailColor = .white
+        self.notesTextField.placeholderActiveColor = .white
+
         self.dateLabel.textColor = BETheme.Colors.textIcons
+        self.dateLabel.text = BEUtils().longDateFormatter.string(from: Date())
 
         self.setCurrentType()
         self.setupButtons()
@@ -104,6 +62,8 @@ class BEAddDataViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    //MARK:-
 
     func setCurrentType() {
         switch self.type {
@@ -152,7 +112,7 @@ class BEAddDataViewController: UIViewController {
     @IBAction func saveAmount(_ sender: AnyObject) {
         let amount = self.numericMem.toDouble()
 
-        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+//        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
         BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
 
         self.transitioningDelegate = self
