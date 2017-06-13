@@ -47,13 +47,15 @@ class BEHomeViewController: UIViewController {
     lazy var onboarding: AlertOnboarding = { [weak self] in
         guard let `self` = self else { fatalError() }
 
-        let images = ["first"]
-        let titles = ["Title"]
-        let descriptions = ["Description"]
+        let images = ["location", "sync"]
+        let titles = ["Allow location access?", "Use iCloud Sync?"]
+        let locationDescription = "If you travel, BUDGET EXPENSE can retrieve your location and automatically switch to the visiting country currency.\nRegister all your expenses with ease, the foreign value gets converted to match your currency preference."
+        let icloudDescription = "Use iCloud Sync to have a copy of all your data inside each device you own. Real time syncing is on its way"
+        let descriptions = [locationDescription, icloudDescription]
 
         let ao = AlertOnboarding(arrayOfImage: images, arrayOfTitle: titles, arrayOfDescription: descriptions)
         ao.delegate = self
-        ao.titleSkipButton = "SKIP"
+        ao.titleSkipButton = "Next"
         ao.titleGotItButton = "im done"
         return ao
     }()
@@ -118,12 +120,15 @@ class BEHomeViewController: UIViewController {
 
         self.view.transform = CGAffineTransform.identity
 
-        self.amountDisplay.text = BEUtils.formatNumberToCurrency(number: BERealmManager.shared.getAmount())
+        self.amountDisplay.text =  BERealmManager.shared.getAmount().toCurrency()
 
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+
+        self.presentOnboarding()
 
         if UserDefaults.standard.bool(forKey: "onboarded") == false {
             self.presentOnboarding()
