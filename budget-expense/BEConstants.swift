@@ -9,6 +9,10 @@
 import Foundation
 
 struct BEConstants {
+    struct Features {
+        static let CLOUD_KIT_ENABLED = false
+    }
+
     struct Values {
         static let transitionDuration = 0.6
     }
