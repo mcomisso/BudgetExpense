@@ -10,7 +10,13 @@ import UIKit
 import RealmSwift
 import Material
 
+protocol BECategoriesCollectionViewControllerDelegate: class {
+    func didSelectAddCategory()
+}
+
 class BECategoriesCollectionView: UICollectionViewController {
+
+    weak var delegate: BECategoriesCollectionViewControllerDelegate?
 
     var dataSource: Results<CategoryModel>? = nil
 
@@ -20,7 +26,25 @@ class BECategoriesCollectionView: UICollectionViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .clear
 
+        let addCategoryButton = Button()
+        addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
+        addCategoryButton.setImage(Icon.addCircleOutline?.tint(with: .white), for: .normal)
+        addCategoryButton.setTitle("Add Category", for: .normal)
+        addCategoryButton.addTarget(self, action: #selector(self.didPressAddCategory), for: .touchUpInside)
+
+        self.view.addSubview(addCategoryButton)
+
+        NSLayoutConstraint.activate([addCategoryButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                                     addCategoryButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)])
+
+
         self.dataSource = BERealmManager.shared.getCategories()
+    }
+
+    func didPressAddCategory() {
+        print("Add category!")
+
+        self.delegate?.didSelectAddCategory()
     }
 
     override func viewWillAppear(_ animated: Bool) {
