@@ -6,6 +6,7 @@ PODS:
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
+  - Presentr (1.2.3)
   - Realm (2.8.0):
     - Realm/Headers (= 2.8.0)
   - Realm/Headers (2.8.0)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - AlertOnboarding
   - Crashlytics
   - Material (~> 2.0)
+  - Presentr
   - RealmSwift
   - SQFeedbackGenerator
   - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
@@ -38,12 +40,13 @@ SPEC CHECKSUMS:
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
+  Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
   Realm: 929243ad2b618b3232e70658bedc61110e7563f1
   RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
   SQFeedbackGenerator: 007356526d4a45da5251505c91687a3743b58a00
   SwiftCharts: 84f84c2a94a3f51f055eeaacd9b8dc3ada3380eb
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
 
-PODFILE CHECKSUM: 16f083c6d63b2cc89c74dacc848fcc66f615f6b7
+PODFILE CHECKSUM: 2433d1e5fc72c26c59e48247c6e6d9d75cfc2e50
 
 COCOAPODS: 1.2.1

@@ -14,6 +14,8 @@ target 'budget-expense' do
   pod "Crashlytics"
   pod "SQFeedbackGenerator"
   pod "AlertOnboarding"
+  pod "Presentr"
+
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing
