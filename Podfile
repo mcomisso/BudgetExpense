@@ -16,6 +16,8 @@ target 'budget-expense' do
   pod "AlertOnboarding"
   pod "Presentr"
 
+  pod "R.swift"
+
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing
