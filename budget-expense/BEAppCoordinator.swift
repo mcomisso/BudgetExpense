@@ -42,7 +42,9 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
 
 
     func didSelectListScreen(_ homeViewController: BEHomeViewController) {
-        homeViewController.performSegue(withIdentifier: "BEViewTransactionsSegue", sender: nil)
+        if let transactionListVC = self.storyboard.instantiateViewController(withIdentifier: "TransactionsNavigationController") as? UINavigationController {
+            homeViewController.present(transactionListVC, animated: true, completion: nil)
+        }
     }
 
     func didSelectIncomeScreen(_ homeViewController: BEHomeViewController) {
