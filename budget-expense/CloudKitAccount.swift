@@ -52,10 +52,11 @@ final class CloudKitAccount: BEAccount {
         }
     }
 
-    init(account: BEAccount) {
+    init(name: String, currency: String) {
         self.record = CKRecord(recordType: CloudKitAccount.RecordType)
-        self.currency = account.currency
-        self.name = account.name
+
+        self.name = name
+        self.currency = currency
     }
 
     init(record: CKRecord) {
