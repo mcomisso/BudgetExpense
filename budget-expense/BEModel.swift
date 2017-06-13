@@ -84,6 +84,7 @@ class BERealmManager {
         amountObject.date = date
         amountObject.notes = notes
         amountObject.amount = amount
+
         switch type {
         case .expense:
             amountObject.isExpense = true
@@ -96,8 +97,8 @@ class BERealmManager {
                 self.realm.add(amountObject)
             }
         }
-        catch _ {
-            fatalError("Something gone wrong")
+        catch {
+            fatalError("Something gone wrong: \(error)")
         }
     }
 }
