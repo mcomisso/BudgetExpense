@@ -13,9 +13,13 @@
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
 		B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D71EEF47020075B118 /* BEAppCoordinator.swift */; };
 		B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95356B81DB352820024C6D5 /* BEExtensions.swift */; };
+		B96298B31EEFFDE300ED9555 /* BENumericMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */; };
+		B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298B71EF020BC00ED9555 /* BETransationCell.swift */; };
+		B96298BA1EF020E100ED9555 /* BEHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298B91EF020E100ED9555 /* BEHeaderView.swift */; };
+		B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298BC1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
-		B98A85541DB4341A00EEF953 /* BESettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */; };
+		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
 		B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */; };
 		B99958021DA217DF007274BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958011DA217DF007274BB /* AppDelegate.swift */; };
 		B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99958031DA217DF007274BB /* BEAddDataViewController.swift */; };
@@ -57,9 +61,13 @@
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
 		B91378D71EEF47020075B118 /* BEAppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEAppCoordinator.swift; sourceTree = "<group>"; };
 		B95356B81DB352820024C6D5 /* BEExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEExtensions.swift; sourceTree = "<group>"; };
+		B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BENumericMemory.swift; sourceTree = "<group>"; };
+		B96298B71EF020BC00ED9555 /* BETransationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransationCell.swift; sourceTree = "<group>"; };
+		B96298B91EF020E100ED9555 /* BEHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEHeaderView.swift; sourceTree = "<group>"; };
+		B96298BC1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
-		B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESettingsTableViewController.swift; sourceTree = "<group>"; };
+		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
 		B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BECategoriesCollectionView.swift; path = Views/BECategoriesCollectionView.swift; sourceTree = "<group>"; };
 		B99957FE1DA217DF007274BB /* budget-expense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budget-expense.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99958011DA217DF007274BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,9 +133,10 @@
 		B91378D51EEF40CF0075B118 /* ViewControllers  */ = {
 			isa = PBXGroup;
 			children = (
-				B98A85531DB4341A00EEF953 /* BESettingsTableViewController.swift */,
+				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
+				B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */,
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
-				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+				B96298B41EEFFE0300ED9555 /* Add */,
 			);
 			name = "ViewControllers ";
 			sourceTree = "<group>";
@@ -135,9 +144,28 @@
 		B91378D61EEF40DD0075B118 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
+				B96298BB1EF0210A00ED9555 /* Cells */,
+				B96298B91EF020E100ED9555 /* BEHeaderView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B96298B41EEFFE0300ED9555 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */,
+				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
+		B96298BB1EF0210A00ED9555 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B96298B71EF020BC00ED9555 /* BETransationCell.swift */,
+				B96298BC1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		B9635F9A1E01241600AC6652 /* Constants */ = {
@@ -326,6 +354,9 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -479,13 +510,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */,
+				B96298B31EEFFDE300ED9555 /* BENumericMemory.swift in Sources */,
 				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
+				B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */,
+				B96298BA1EF020E100ED9555 /* BEHeaderView.swift in Sources */,
 				B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */,
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
 				B9B848021EEDDC2800DF7C39 /* CloudKitAmount.swift in Sources */,
 				B9A7F51C1DA8B5930051090F /* BEStartViewController.swift in Sources */,
 				B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */,
-				B98A85541DB4341A00EEF953 /* BESettingsTableViewController.swift in Sources */,
+				B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */,
 				B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */,
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
 				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
@@ -499,6 +533,7 @@
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
 				B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
+				B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,7 +673,7 @@
 			baseConfigurationReference = BEA38E3437E3FD4DC459FD4C /* Pods-budget-expense.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = DollarIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
@@ -661,7 +696,7 @@
 			baseConfigurationReference = 12686B0907EC993B43F52F90 /* Pods-budget-expense.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = DollarIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
 				DEVELOPMENT_TEAM = B82WJF6RBY;
