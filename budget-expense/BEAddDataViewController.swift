@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import Material
+import SQFeedbackGenerator
+import Presentr
 
 enum BEAddDataType {
     case expense, income
@@ -19,12 +21,23 @@ class BEAddDataViewController: UIViewController {
     public var type: BEAddDataType = .expense
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
+
     @IBOutlet weak var currentDigits: UILabel!
+
     @IBOutlet weak var deleteButton: UIButton! // Delete digit button
 
     @IBOutlet weak var dateLabel: UILabel!
 
     @IBOutlet weak var notesTextField: TextField!
+
+    @IBOutlet weak var actionsStackView: UIStackView!
+
+
+    // Small view controller that contains all the categories
+    var categoriesVC: BECategoriesCollectionView!
+
+    let presentr = Presentr(presentationType: .bottomHalf)
+
 
 
     fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
@@ -55,6 +68,7 @@ class BEAddDataViewController: UIViewController {
 
         self.setCurrentType()
         self.setupButtons()
+        self.setupActionButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,6 +90,37 @@ class BEAddDataViewController: UIViewController {
         }
     }
 
+    func setupActionButtons() {
+
+        let locationButton = IconButton(image: Icon.place)
+        let pictureButton = IconButton(image: Icon.photoCamera)
+        locationButton.tintColor = .white
+        pictureButton.tintColor = .white
+
+        self.actionsStackView.addArrangedSubview(locationButton)
+        self.actionsStackView.addArrangedSubview(pictureButton)
+
+        locationButton.addTarget(self, action: #selector(self.didPressLocation), for: .touchUpInside)
+        pictureButton.addTarget(self, action: #selector(self.didPressPicture), for: .touchUpInside)
+    }
+
+    func didPressLocation() {
+        // ASK LOCATION MANAGER TO FETCH
+    }
+
+    func didPressPicture() {
+        let actionSheet = UIAlertController(title: "Choose a source", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (action) in
+            // Select from gallery
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+            // Select from Camera
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+
     func setupButtons() {
         for button in self.buttons {
             button.setTitleColor(BETheme.Colors.textIcons, for: .normal)
@@ -88,14 +133,12 @@ class BEAddDataViewController: UIViewController {
     }
 
     func didPressDigit(sender: Button) {
-        var feedbackGenerator: UISelectionFeedbackGenerator? = UISelectionFeedbackGenerator()
-        feedbackGenerator?.prepare()
-
         if self.buttons.contains(sender) {
-            feedbackGenerator?.selectionChanged()
             self.numericMem.addDigit(digit: (sender.titleLabel?.text)!)
+
+            SQFeedbackGenerator().generateFeedback(type: .notification)
+            BESoundPlayer.play(sound: .click)
         }
-        feedbackGenerator = nil
     }
 
     @IBAction func deleteLastDigit(_ sender: AnyObject) {
@@ -129,6 +172,25 @@ extension BEAddDataViewController: UITextFieldDelegate {
 
 }
 
+extension BEAddDataViewController: BECategoriesCollectionViewControllerDelegate {
+
+    func didSelectAddCategory() {
+
+        // Category CreationVC
+
+        let categorySelector = R.storyboard.categories().instantiateInitialViewController() as! BECategorySelectorViewController
+
+        self.customPresentViewController(self.presentr, viewController: categorySelector, animated: true, completion: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == R.segue.bEAddDataViewController.embeddedCategoriesSegue.identifier {
+            self.categoriesVC = segue.destination as! BECategoriesCollectionView
+            self.categoriesVC.delegate = self
+        }
+    }
+
+}
 
 extension BEAddDataViewController {
 
