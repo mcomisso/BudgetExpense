@@ -8,7 +8,7 @@
 
 import UIKit
 import CloudKit
-import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,10 +28,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = self.coordinator?.rootViewController
         window?.makeKeyAndVisible()
 
+
         // Location to fetch
         self.locationManager.requestAuthorization()
 
+        self.registerForNotifications(application: application)
+
         return true
+    }
+
+}
+
+extension AppDelegate {
+
+    func registerForNotifications(application: UIApplication) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .carPlay]) { (success, error) in
+            if success {
+                // Continue
+                application.registerForRemoteNotifications()
+            } else if let e = error {
+                print(e.localizedDescription)
+            }
+        }
     }
 
 }
