@@ -8,14 +8,29 @@
 
 import UIKit
 
-class BEHeaderView: UITableViewHeaderFooterView {
+class BEHeaderView: UICollectionReusableView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var dateHeader: UILabel!
+    @IBOutlet weak var dateSubHeader: UILabel!
+
+    static let reuseIdentifier = "BEHeaderViewReuseIdentifier"
+
+    var day: Date? {
+        didSet {
+            guard let day = self.day else { return }
+            self.dateHeader.text = BEUtils().longDateFormatter.string(from: day)
+            self.dateSubHeader.text = BEUtils().dateFormatter.string(from: day)
+        }
     }
-    */
 
+    func setDay(date: Date) {
+        self.day = date
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.day = nil
+        self.dateHeader.text = nil
+        self.dateSubHeader.text = nil
+    }
 }
