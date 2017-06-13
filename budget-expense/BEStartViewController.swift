@@ -67,10 +67,10 @@ class BEHomeViewController: UIViewController {
         self.amountDisplay.textColor = BETheme.Colors.textIcons
         self.view.backgroundColor = Color.teal.lighten5
 
-        self.arrowUp.tintColor = Color.grey.lighten5
-        self.arrowDown.tintColor = Color.grey.lighten5
-        self.incomeLabel.textColor = Color.grey.lighten5
-        self.expenseLabel.textColor = Color.grey.lighten5
+        self.arrowUp.tintColor = Color.grey.lighten2
+        self.arrowDown.tintColor = Color.grey.lighten2
+        self.incomeLabel.textColor = Color.grey.lighten2
+        self.expenseLabel.textColor = Color.grey.lighten2
 
         self.arrowUp.contentMode = .scaleAspectFit
         self.arrowUp.image = Icon.cm.arrowDownward
@@ -78,7 +78,7 @@ class BEHomeViewController: UIViewController {
         self.arrowDown.image = Icon.cm.arrowDownward
         self.arrowDown.contentMode = .scaleAspectFit
 
-        self.view.backgroundColor = BETheme.Colors.divider
+        self.view.backgroundColor = .white
         self.amountDisplay.textColor = BETheme.Colors.primaryText
 
         let chartConfig = ChartConfigXY(xAxisConfig: ChartAxisConfig(from: 0, to: 7, by: 1), yAxisConfig: ChartAxisConfig(from: -10, to: 10, by: 2))
