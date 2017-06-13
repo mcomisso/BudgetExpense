@@ -24,6 +24,8 @@
 		B96298C91EF07E6C00ED9555 /* beep_short_on.aif in Resources */ = {isa = PBXBuildFile; fileRef = B96298C71EF07E6C00ED9555 /* beep_short_on.aif */; };
 		B96298CB1EF07E9D00ED9555 /* BESoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298CA1EF07E9D00ED9555 /* BESoundPlayer.swift */; };
 		B96298CD1EF0828000ED9555 /* BEOptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */; };
+		B96298D11EF0931400ED9555 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B96298D01EF0931400ED9555 /* Categories.storyboard */; };
+		B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298D21EF0940A00ED9555 /* BECategorySelector.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
 		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
@@ -79,6 +81,8 @@
 		B96298C71EF07E6C00ED9555 /* beep_short_on.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_short_on.aif; sourceTree = "<group>"; };
 		B96298CA1EF07E9D00ED9555 /* BESoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESoundPlayer.swift; sourceTree = "<group>"; };
 		B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEOptionsManager.swift; sourceTree = "<group>"; };
+		B96298D01EF0931400ED9555 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
+		B96298D21EF0940A00ED9555 /* BECategorySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategorySelector.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
 		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */,
 				B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */,
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
+				B96298D21EF0940A00ED9555 /* BECategorySelector.swift */,
 				B96298B41EEFFE0300ED9555 /* Add */,
 			);
 			name = "ViewControllers ";
@@ -258,6 +263,7 @@
 				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
 				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
+				B96298D01EF0931400ED9555 /* Categories.storyboard */,
 				B96298BE1EF0688700ED9555 /* Transactions.storyboard */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
 				B999580C1DA217DF007274BB /* LaunchScreen.storyboard */,
@@ -428,6 +434,7 @@
 			files = (
 				B96298C91EF07E6C00ED9555 /* beep_short_on.aif in Resources */,
 				B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */,
+				B96298D11EF0931400ED9555 /* Categories.storyboard in Resources */,
 				B999580B1DA217DF007274BB /* Assets.xcassets in Resources */,
 				B9A7F51F1DA8B87D0051090F /* Main.storyboard in Resources */,
 				B96298C81EF07E6C00ED9555 /* beep_short_off.aif in Resources */,
@@ -581,6 +588,7 @@
 				B96298C21EF069FD00ED9555 /* R.generated.swift in Sources */,
 				B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
+				B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
 				B95356B91DB352820024C6D5 /* BEExtensions.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,

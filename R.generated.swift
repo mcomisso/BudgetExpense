@@ -81,10 +81,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `BEHeaderViewReuseIdentifier`.
     static let bEHeaderViewReuseIdentifier: Rswift.ReuseIdentifier<BEHeaderView> = Rswift.ReuseIdentifier(identifier: "BEHeaderViewReuseIdentifier")
+    /// Reuse identifier `ColorReuseIdentifier`.
+    static let colorReuseIdentifier: Rswift.ReuseIdentifier<BEColorCell> = Rswift.ReuseIdentifier(identifier: "ColorReuseIdentifier")
+    /// Reuse identifier `GliphReuseIdentifier`.
+    static let gliphReuseIdentifier: Rswift.ReuseIdentifier<BEGliphCell> = Rswift.ReuseIdentifier(identifier: "GliphReuseIdentifier")
     /// Reuse identifier `categoriesCellIdentifier`.
     static let categoriesCellIdentifier: Rswift.ReuseIdentifier<BECategoryCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "categoriesCellIdentifier")
     /// Reuse identifier `overviewCellIdentifier`.
@@ -93,19 +97,41 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 0 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
   struct segue {
+    /// This struct is generated for `BEAddDataViewController`, and contains static references to 1 segues.
+    struct bEAddDataViewController {
+      /// Segue identifier `EmbeddedCategoriesSegue`.
+      static let embeddedCategoriesSegue: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, BEAddDataViewController, BECategoriesCollectionView> = Rswift.StoryboardSegueIdentifier(identifier: "EmbeddedCategoriesSegue")
+      
+      /// Optionally returns a typed version of segue `EmbeddedCategoriesSegue`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func embeddedCategoriesSegue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, BEAddDataViewController, BECategoriesCollectionView>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.bEAddDataViewController.embeddedCategoriesSegue, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
+    /// Storyboard `Categories`.
+    static let categories = _R.storyboard.categories()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
     /// Storyboard `Transactions`.
     static let transactions = _R.storyboard.transactions()
+    
+    /// `UIStoryboard(name: "Categories", bundle: ...)`
+    static func categories(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.categories)
+    }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
@@ -156,6 +182,15 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try main.validate()
       try transactions.validate()
+    }
+    
+    struct categories: Rswift.StoryboardResourceWithInitialControllerType {
+      typealias InitialController = BECategorySelectorViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Categories"
+      
+      fileprivate init() {}
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType {
