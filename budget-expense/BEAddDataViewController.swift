@@ -152,15 +152,16 @@ class BEAddDataViewController: UIViewController {
     @IBAction func saveAmount(_ sender: AnyObject) {
         let amount = self.numericMem.toDouble()
 
-        BECloudKitManager().save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
 
-//        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!)
         self.transitioningDelegate = self
         self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension BEAddDataViewController: UITextFieldDelegate {
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
@@ -170,6 +171,7 @@ extension BEAddDataViewController: UITextFieldDelegate {
 
 
 extension BEAddDataViewController {
+
     override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.dismissAnimator
     }

@@ -55,7 +55,8 @@ class BECloudKitHelper {
 
             case .noAccount:
                 // The user’s iCloud account is not available because no account information has been provided for this device.
-                
+
+                // Present error
                 fatalError()
                 
             case .restricted:

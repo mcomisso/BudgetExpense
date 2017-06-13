@@ -7,3 +7,29 @@
 //
 
 import Foundation
+import CloudKit
+
+enum BECloudKitOperationType {
+    case save, delete, edit
+}
+
+final class BECloudKitErrorManager {
+
+    let operationQueue: OperationQueue
+
+    let manager = BECloudKitManager.shared
+
+    init() {
+        self.operationQueue = OperationQueue()
+        self.operationQueue.name = "com.mcomisso.CloudKitErrorManager"
+    }
+
+    func addRetryOperation(operationType: BECloudKitOperationType, record: CKRecord) {
+//        self.operationQueue.addOperation { [weak self] in
+//            switch operationType {
+//            case .delete:
+//                fatalError()
+//            }
+//        }
+    }
+}

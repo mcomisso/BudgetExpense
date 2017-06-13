@@ -119,6 +119,15 @@ class BEHomeViewController: UIViewController {
         self.view.transform = CGAffineTransform.identity
 
         self.amountDisplay.text = BEUtils.formatNumberToCurrency(number: BERealmManager.shared.getAmount())
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if UserDefaults.standard.bool(forKey: "onboarded") == false {
+            self.presentOnboarding()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -9,14 +9,16 @@
 import Foundation
 import CloudKit
 
-final class BECloudKitManager: BEManager {
+final class BECloudKitManager: BEManagerAmount {
 
     let container = CKContainer.default()
 
     let privateDB: CKDatabase
     let publicDB: CKDatabase
 
-    init() {
+    static let shared = BECloudKitManager()
+
+    private init() {
         self.privateDB = self.container.privateCloudDatabase
         self.publicDB = self.container.publicCloudDatabase
     }
@@ -38,6 +40,23 @@ final class BECloudKitManager: BEManager {
         return NSNumber(value: 0)
     }
 
+    func save(record: CKRecord) {
+
+    }
+
+    func save(amount: Amount) throws {
+        let ckAmount = CloudKitAmount(amount: amount.amount, isExpense: amount.isExpense, notes: amount.notes, date: amount.date)
+
+        self.privateDB.save(ckAmount.record) { (record, error) in
+            if let ckError = error as? CKError {
+                // Handle errors
+                print(ckError.localizedDescription)
+            } else {
+                print("Saved record: \(record.debugDescription)")
+            }
+        }
+    }
+
     func save(amount: Double, type: BEAddDataType, notes: String, date: Date) {
         let ckAmount = CloudKitAmount(amount: amount, isExpense: type == .expense ? true : false, notes: notes, date: date)
 
@@ -49,5 +68,19 @@ final class BECloudKitManager: BEManager {
             }
         }
     }
+}
 
+extension BECloudKitManager: BEManagerAccount {
+
+    func createAccount(name: String, currency: String) {
+        let account = CloudKitAccount(name: name, currency: currency)
+
+        self.privateDB.save(account.record) { (record, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print(record.debugDescription)
+            }
+        }
+    }
 }
