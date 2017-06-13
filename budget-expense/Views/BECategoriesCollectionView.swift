@@ -10,18 +10,6 @@ import UIKit
 import RealmSwift
 import Material
 
-class BECategoryCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var title: UILabel!
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.title.text = ""
-        self.icon.image = nil
-    }
-}
-
 class BECategoriesCollectionView: UICollectionViewController {
 
     var dataSource: Results<CategoryModel>? = nil

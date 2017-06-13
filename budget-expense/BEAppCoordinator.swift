@@ -13,12 +13,16 @@ import SQFeedbackGenerator
 
 class BEAppCoordinator: BEHomeViewControllerDelegate {
 
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    // Storyboards
+
+    let mainStoryboard = R.storyboard.main()
+    let transactionsStoryboard = R.storyboard.transactions()
+
 
     var rootViewController: UIViewController?
 
     init() {
-        self.rootViewController = storyboard.instantiateInitialViewController()
+        self.rootViewController = self.mainStoryboard.instantiateInitialViewController()
 
         if let rootVC = self.rootViewController as? BEHomeViewController {
             rootVC.delegate = self
@@ -29,7 +33,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
     func didSelectExpenseScreen(_ homeViewController: BEHomeViewController) {
         // Expense screen loading
 
-        guard let addDataVC = self.storyboard.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else { return }
+        guard let addDataVC = R.storyboard.main.addDataViewController() else { return }
 
         addDataVC.type = .expense
         homeViewController.presentAnimator = BETransitioningPresentingAnimator(direction: .up)
@@ -42,13 +46,13 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
 
 
     func didSelectListScreen(_ homeViewController: BEHomeViewController) {
-        if let transactionListVC = self.storyboard.instantiateViewController(withIdentifier: "TransactionsNavigationController") as? UINavigationController {
+        if let transactionListVC = R.storyboard.transactions.transactionsNavigationController() {
             homeViewController.present(transactionListVC, animated: true, completion: nil)
         }
     }
 
     func didSelectIncomeScreen(_ homeViewController: BEHomeViewController) {
-        guard let addDataVC = self.storyboard.instantiateViewController(withIdentifier: BEConstants.Identifiers.addDataViewController) as? BEAddDataViewController else { return }
+        guard let addDataVC = R.storyboard.main.addDataViewController() else { return }
 
         addDataVC.type = .income
         homeViewController.presentAnimator = BETransitioningPresentingAnimator(direction: .down)

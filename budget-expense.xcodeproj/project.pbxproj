@@ -17,6 +17,8 @@
 		B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298B71EF020BC00ED9555 /* BETransationCell.swift */; };
 		B96298BA1EF020E100ED9555 /* BEHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298B91EF020E100ED9555 /* BEHeaderView.swift */; };
 		B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298BC1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift */; };
+		B96298BF1EF0688700ED9555 /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B96298BE1EF0688700ED9555 /* Transactions.storyboard */; };
+		B96298C21EF069FD00ED9555 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298C11EF069FD00ED9555 /* R.generated.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
 		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
@@ -65,6 +67,8 @@
 		B96298B71EF020BC00ED9555 /* BETransationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransationCell.swift; sourceTree = "<group>"; };
 		B96298B91EF020E100ED9555 /* BEHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEHeaderView.swift; sourceTree = "<group>"; };
 		B96298BC1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		B96298BE1EF0688700ED9555 /* Transactions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
+		B96298C11EF069FD00ED9555 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
 		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 		B99957F51DA217DF007274BB = {
 			isa = PBXGroup;
 			children = (
+				B96298C11EF069FD00ED9555 /* R.generated.swift */,
 				B99958001DA217DF007274BB /* budget-expense */,
 				B99958171DA217DF007274BB /* budget-expenseTests */,
 				B99957FF1DA217DF007274BB /* Products */,
@@ -231,6 +236,7 @@
 				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
 				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
+				B96298BE1EF0688700ED9555 /* Transactions.storyboard */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
 				B999580C1DA217DF007274BB /* LaunchScreen.storyboard */,
 				B999580F1DA217DF007274BB /* Info.plist */,
@@ -303,6 +309,7 @@
 			buildConfigurationList = B999581D1DA217DF007274BB /* Build configuration list for PBXNativeTarget "budget-expense" */;
 			buildPhases = (
 				28D9D72D6A3B4EB7D8B6203A /* [CP] Check Pods Manifest.lock */,
+				B96298C01EF069AA00ED9555 /* R swift */,
 				B99957FA1DA217DF007274BB /* Sources */,
 				B99957FB1DA217DF007274BB /* Frameworks */,
 				B99957FC1DA217DF007274BB /* Resources */,
@@ -399,6 +406,7 @@
 				B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */,
 				B999580B1DA217DF007274BB /* Assets.xcassets in Resources */,
 				B9A7F51F1DA8B87D0051090F /* Main.storyboard in Resources */,
+				B96298BF1EF0688700ED9555 /* Transactions.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +449,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B96298C01EF069AA00ED9555 /* R swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "R swift";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
 		D16D8630677F1CB26854C9D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -528,6 +550,7 @@
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
 				B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */,
+				B96298C21EF069FD00ED9555 /* R.generated.swift in Sources */,
 				B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,

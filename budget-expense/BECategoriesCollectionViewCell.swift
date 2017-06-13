@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import UIKit
+
+class BECategoryCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.title.text = ""
+        self.icon.image = nil
+    }
+}
