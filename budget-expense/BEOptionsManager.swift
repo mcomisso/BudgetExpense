@@ -26,11 +26,3 @@ final class BESettingsManager {
     }
 
 }
-
-extension UserDefaults {
-    func safeSet(_ value: Bool, forKey: String) {
-        if self.object(forKey: forKey) == nil {
-            self.set(value, forKey: forKey)
-        }
-    }
-}

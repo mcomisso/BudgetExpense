@@ -24,16 +24,3 @@ struct BEUtils {
         return df
     }()
 }
-
-extension NSNumber {
-
-    func toCurrency() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        numberFormatter.allowsFloats = true
-        numberFormatter.usesGroupingSeparator = true
-        numberFormatter.locale = Locale.current
-        return numberFormatter.string(from: self) ?? ""
-    }
-
-}
