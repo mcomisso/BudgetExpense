@@ -62,7 +62,6 @@ final class BECategorySelectorViewController: UIViewController {
             self.gliphList.append(image)
         }
 
-
         self.collectionView.tag = CategoryCollectionViewType.gliph.rawValue
 
         self.collectionViewColors.tag = CategoryCollectionViewType.color.rawValue

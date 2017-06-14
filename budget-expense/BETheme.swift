@@ -23,6 +23,7 @@ struct BETheme {
         static let income = Color.teal.base
         static let expense = Color.red.base
     }
+
 }
 
 

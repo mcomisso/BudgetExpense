@@ -11,15 +11,24 @@ import RealmSwift
 import Material
 import PKHUD
 
+
+fileprivate struct BETransactions {
+    let date: Date
+    let amounts: [Amount]
+
+    init(date: Date) {
+        self.date = date
+        self.amounts = BERealmManager.shared.getDataForDay(day: self.date)
+    }
+}
+
 class BETransactionsHistoryCollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
 
-    var transactions: [Amount] {
-        get {
-            return Array(BERealmManager.shared.getWeekDataForTableView())
-        }
-    }
+    fileprivate var transactionsData: [BETransactions] = {
+        return BERealmManager.shared.getAvailableDays().map { BETransactions(date: $0) }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,17 +63,17 @@ extension BETransactionsHistoryCollectionViewController {
 
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return self.transactionsData.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.transactions.count
+        return self.transactionsData[section].amounts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath) as! BETransactionCollectionViewCell
 
-        let amountObject = self.transactions[indexPath.row]
+        let amountObject = self.transactionsData[indexPath.section].amounts[indexPath.row]
 
         cell.prepareCard(amount: amountObject)
         cell.delegate = self
@@ -74,7 +83,7 @@ extension BETransactionsHistoryCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BEHeaderView.reuseIdentifier, for: indexPath) as! BEHeaderView
 
-        reusableView.setDay(date: Date())
+        reusableView.setDay(date: self.transactionsData[indexPath.section].date, transactions: self.transactionsData[indexPath.section].amounts)
 
         return reusableView
     }

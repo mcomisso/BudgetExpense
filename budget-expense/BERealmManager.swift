@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftDate
 
 final class BERealmManager {
     static let shared = BERealmManager()
@@ -47,6 +48,9 @@ extension BERealmAmountMethods {
         return NSNumber(value: amount)
     }
 
+    func getAvailableDays() -> [Date] {
+        return Array(Set(Array(self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: true)).map { $0.date.startOfDay }))
+    }
 
     /// Get Amount data for a tableView representation
     ///
@@ -55,8 +59,8 @@ extension BERealmAmountMethods {
         return self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false)
     }
 
-    func getDataForDay(day: Date) -> Results<Amount> {
-        return self.realm.objects(Amount.self).filter("date == %@", day)
+    func getDataForDay(day: Date) -> [Amount] {
+        return Array(self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]))
     }
 
 
@@ -143,4 +147,14 @@ extension BERealmManager {
         return Array(realm.objects(BECategory.self))
     }
 
+}
+
+//MARK: UTILS
+extension BERealmManager {
+
+    var isEmpty: Bool {
+        get {
+            return self.realm.isEmpty
+        }
+    }
 }

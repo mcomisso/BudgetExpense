@@ -11,6 +11,7 @@ import Material
 import SwiftCharts
 import AlertOnboarding
 import SQFeedbackGenerator
+import KDCircularProgress
 
 protocol BEHomeViewControllerDelegate: class {
 
@@ -44,6 +45,8 @@ class BEHomeViewController: UIViewController {
     @IBOutlet weak var expenseLabel: UILabel!
     @IBOutlet weak var arrowUp: UIImageView!
 
+    @IBOutlet weak var circularProgress: KDCircularProgress!
+
     @IBOutlet weak var amountDisplay: UILabel!
 
     let onboarding: AlertOnboarding = {
@@ -61,8 +64,6 @@ class BEHomeViewController: UIViewController {
 
     var presentAnimator: BETransitioningPresentingAnimator? = nil
 
-    fileprivate var chart: Chart?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,8 +72,6 @@ class BEHomeViewController: UIViewController {
         self.onboarding.delegate = self
 
         self.addGestureRecognizers()
-
-        self.loadHomeData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +89,8 @@ class BEHomeViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "onboarded") == false {
             self.presentOnboarding()
         }
+
+        self.loadHomeData()
     }
 
 }
@@ -97,23 +98,14 @@ class BEHomeViewController: UIViewController {
 extension BEHomeViewController {
 
     func loadHomeData() {
-        let values = BERealmManager.shared.getWeekData()
 
-        let chartConfig = ChartConfigXY(xAxisConfig: ChartAxisConfig(from: 0, to: 7, by: 1), yAxisConfig: ChartAxisConfig(from: -10, to: 10, by: 2))
+        let amount = BERealmManager.shared.getAmount() as! Double
+        let weeklyBudget = 100.0
 
-        var arr = [(Double, Double)]()
-        for (index, value) in values.enumerated() {
-            arr.append((Double(index), value))
-        }
-
-        let chartLine = (chartPoints: arr, color: UIColor.red)
-
-        let chart = LineChart(frame: self.chartView.frame, chartConfig: chartConfig, xTitle: "", yTitle: "", line: chartLine)
-
-        self.chart = chart
+        let angle = 360.0 * amount / weeklyBudget
+        self.circularProgress.animate(toAngle: angle > 0 ? angle : 0, duration: 2, completion: nil)
 
     }
-
     func addGestureRecognizers() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(transactionsDetails(recognizer:)))
         self.amountDisplay.addGestureRecognizer(tapGestureRecognizer)
@@ -138,24 +130,21 @@ extension BEHomeViewController {
         self.prepareIncomeArrow()
         self.prepareExpenseArrow()
 
-        self.incomeLabel.textColor = BETheme.Colors.income
-        self.incomeLabel.opacity = 0.5
-        self.expenseLabel.textColor = BETheme.Colors.expense
-        self.expenseLabel.opacity = 0.5
-
+        self.incomeLabel.textColor = BETheme.Colors.income.withAlphaComponent(0.6)
+        self.expenseLabel.textColor = BETheme.Colors.expense.withAlphaComponent(0.6)
 
         self.amountDisplay.textColor = BETheme.Colors.primaryText
     }
 
     func prepareExpenseArrow() {
-        self.arrowUp.tintColor = BETheme.Colors.expense
+        self.arrowUp.tintColor = BETheme.Colors.expense.withAlphaComponent(0.6)
         self.arrowUp.contentMode = .scaleAspectFit
         self.arrowUp.image = Icon.cm.arrowDownward
         self.arrowUp.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
 
     func prepareIncomeArrow() {
-        self.arrowDown.tintColor = BETheme.Colors.income
+        self.arrowDown.tintColor = BETheme.Colors.income.withAlphaComponent(0.6)
         self.arrowDown.image = Icon.cm.arrowDownward
         self.arrowDown.contentMode = .scaleAspectFit
     }

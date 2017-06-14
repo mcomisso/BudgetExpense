@@ -34,7 +34,7 @@
 		B96298E21EF1722500ED9555 /* NSNumber+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E11EF1722500ED9555 /* NSNumber+extension.swift */; };
 		B96298E41EF1724000ED9555 /* UserDefaults+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E31EF1724000ED9555 /* UserDefaults+extension.swift */; };
 		B96298E61EF18EED00ED9555 /* BEColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E51EF18EED00ED9555 /* BEColors.swift */; };
-		B96298E91EF1C57800ED9555 /* BEDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */; };
+		B96298E91EF1C57800ED9555 /* BEInitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E81EF1C57800ED9555 /* BEInitialData.swift */; };
 		B96298EC1EF1C5E000ED9555 /* BEAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298EB1EF1C5E000ED9555 /* BEAmount.swift */; };
 		B96298EE1EF1C5F700ED9555 /* BEWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298ED1EF1C5F700ED9555 /* BEWallet.swift */; };
 		B96298F01EF1C60400ED9555 /* BEBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298EF1EF1C60400ED9555 /* BEBudget.swift */; };
@@ -61,6 +61,7 @@
 		B9C884241DB321C600D7A9BC /* BERealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884231DB321C600D7A9BC /* BERealmManager.swift */; };
 		B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884251DB34A2E00D7A9BC /* BETheme.swift */; };
 		B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */; };
+		B9E35E5B1EF1D8E6003DAC07 /* BECategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E35E5A1EF1D8E6003DAC07 /* BECategory+extension.swift */; };
 		FF0244CB86400A005D0060DB /* Pods_budget_expenseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8146CDF1E43F05A9A64E4 /* Pods_budget_expenseTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,7 +106,7 @@
 		B96298E11EF1722500ED9555 /* NSNumber+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+extension.swift"; sourceTree = "<group>"; };
 		B96298E31EF1724000ED9555 /* UserDefaults+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extension.swift"; sourceTree = "<group>"; };
 		B96298E51EF18EED00ED9555 /* BEColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEColors.swift; sourceTree = "<group>"; };
-		B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEDefaultsModel.swift; sourceTree = "<group>"; };
+		B96298E81EF1C57800ED9555 /* BEInitialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEInitialData.swift; sourceTree = "<group>"; };
 		B96298EB1EF1C5E000ED9555 /* BEAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEAmount.swift; sourceTree = "<group>"; };
 		B96298ED1EF1C5F700ED9555 /* BEWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEWallet.swift; sourceTree = "<group>"; };
 		B96298EF1EF1C60400ED9555 /* BEBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEBudget.swift; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		B9C884251DB34A2E00D7A9BC /* BETheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETheme.swift; sourceTree = "<group>"; };
 		B9D680DF1DA76E9700DA83B4 /* budget-expense-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "budget-expense-Bridging-Header.h"; sourceTree = "<group>"; };
 		B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEKeyPad.swift; sourceTree = "<group>"; };
+		B9E35E5A1EF1D8E6003DAC07 /* BECategory+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BECategory+extension.swift"; sourceTree = "<group>"; };
 		BEA38E3437E3FD4DC459FD4C /* Pods-budget-expense.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expense.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expense/Pods-budget-expense.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C8146CDF1E43F05A9A64E4 /* Pods_budget_expenseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budget_expenseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -273,6 +275,7 @@
 				B96298ED1EF1C5F700ED9555 /* BEWallet.swift */,
 				B96298EF1EF1C60400ED9555 /* BEBudget.swift */,
 				B96298F11EF1C61E00ED9555 /* BECategory.swift */,
+				B9E35E5A1EF1D8E6003DAC07 /* BECategory+extension.swift */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -302,7 +305,7 @@
 				B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */,
 				B91378D01EEF0B960075B118 /* CloudKit */,
 				B96298EA1EF1C5CE00ED9555 /* Realm */,
-				B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */,
+				B96298E81EF1C57800ED9555 /* BEInitialData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -682,13 +685,14 @@
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */,
 				B96298E21EF1722500ED9555 /* NSNumber+extension.swift in Sources */,
-				B96298E91EF1C57800ED9555 /* BEDefaultsModel.swift in Sources */,
+				B96298E91EF1C57800ED9555 /* BEInitialData.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
 				B95356B91DB352820024C6D5 /* UIColor+extensions.swift in Sources */,
 				B96298EC1EF1C5E000ED9555 /* BEAmount.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
 				B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */,
 				B96298E41EF1724000ED9555 /* UserDefaults+extension.swift in Sources */,
+				B9E35E5B1EF1D8E6003DAC07 /* BECategory+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

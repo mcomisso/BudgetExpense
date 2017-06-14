@@ -40,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             // Location to fetch
             self.locationManager.requestAuthorization()
+
+            // Load initial data
+
+            if BERealmManager.shared.isEmpty {
+                BEInitialData.loadIntoRealm()
+            }
         }
 
         self.registerForNotifications(application: application)

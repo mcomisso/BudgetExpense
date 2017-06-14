@@ -17,6 +17,7 @@ target 'budget-expense' do
   pod "Presentr"
   pod 'Iconic', :git => 'https://github.com/dzenbot/Iconic.git', :tag => '1.3'
   pod 'PKHUD', '~> 4.0'
+  pod 'KDCircularProgress'
 
   pod "R.swift"
 

@@ -28,6 +28,8 @@ protocol BECategoryProtocol {
     var name: String { get }
     var icon: String { get }
     var color: UIColor { get }
+
+    func generateImageFromIcon() -> UIImage
 }
 
 //MARK: ACCOUNT Protocol

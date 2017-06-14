@@ -83,11 +83,11 @@ class BEAddDataViewController: UIViewController {
     func setCurrentType() {
         switch self.type {
         case .income:
-            _ = self.view.gradientFromColor(BETheme.Colors.primary)
+            self.view.gradientFromColor(BETheme.Colors.primary)
             self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.teal.accent3
         case .expense:
-            _ = self.view.gradientFromColor(BETheme.Colors.accent)
+            self.view.gradientFromColor(BETheme.Colors.accent)
             self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.red.accent3
         }
@@ -100,7 +100,6 @@ class BEAddDataViewController: UIViewController {
         } else {
             self.saveButton.titleColor = BETheme.Colors.income
         }
-
 
         let locationButton = IconButton(image: Icon.place)
         let pictureButton = IconButton(image: Icon.photoCamera)

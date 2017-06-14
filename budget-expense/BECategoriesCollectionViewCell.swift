@@ -12,11 +12,26 @@ import UIKit
 class BECategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var title: UILabel!
+
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.contentView.clipsToBounds = true
+        self.clipsToBounds = true
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.layer.cornerRadius = self.frame.width / 2.0
+    }
+
+    func setModelCategory(_ category: BECategoryProtocol) {
+        self.icon.image = category.generateImageFromIcon()
+        self.contentView.gradientFromColor(category.color)
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.title.text = ""
         self.icon.image = nil
     }
 }

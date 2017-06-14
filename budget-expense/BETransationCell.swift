@@ -40,6 +40,15 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
     var gradiendLayer: CAGradientLayer? = nil
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.clipsToBounds = false
+        self.card.depth = Depth(offset: Offset.init(horizontal: 0, vertical: 4), opacity: 0.2, radius: 10)
+
+        //DepthPresetToValue(preset: .depth3)
+    }
+
     func prepareCard(amount: Amount) {
 
         self.amount = amount
@@ -58,7 +67,7 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
         let toolbar = Toolbar(leftViews: [UIImageView.init(image: Iconic.standardDimension(icon: .planeIcon, size: CGSize.init(width: 15, height: 15), color: .white))])
 //        Toolbar(rightViews: [verticalIconButton])
-//        toolbar.detail = actualAmount.isExpense ? "Expense" : "Income"
+        toolbar.detail = actualAmount.isExpense ? "Expense" : "Income"
 //        toolbar.detailLabel.textAlignment = .left
 //        toolbar.title = actualAmount.category?.name ?? "Test"
 //        toolbar.titleLabel.textAlignment = .left
@@ -91,7 +100,7 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
         card.toolbar?.backgroundColor = .clear
         card.contentView?.backgroundColor = .clear
-        card.bottomBar?.backgroundColor = .clear
+        card.bottomBar?.backgroundColor = .white
     }
 
     func didSelectButton(_ sender: Any) {
@@ -113,6 +122,7 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.gradiendLayer?.removeFromSuperlayer()
         self.gradiendLayer = nil
         self.amountLabel.text = nil
         self.amount = nil

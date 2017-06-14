@@ -20,7 +20,10 @@ class BECategory: BEBaseModel, BECategoryProtocol {
 
     var color: UIColor {
         get {
-            return NSKeyedUnarchiver.unarchiveObject(with: self.colorData) as! UIColor
+            guard let color = NSKeyedUnarchiver.unarchiveObject(with: self.colorData) as? UIColor else {
+                return .white
+            }
+            return color
         }
 
         set {
@@ -28,12 +31,12 @@ class BECategory: BEBaseModel, BECategoryProtocol {
         }
     }
 
-
-
     convenience init(gliph: String, color: UIColor) {
         self.init()
         self.icon = gliph
         self.color = color
     }
+
+    override class func ignoredProperties() -> [String] { return ["color"] }
 
 }

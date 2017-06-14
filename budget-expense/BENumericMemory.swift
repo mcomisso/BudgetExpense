@@ -25,7 +25,7 @@ class Stack<T: CustomStringConvertible> {
         if basemem.isEmpty {
             return 0.00
         }
-        guard let retVal = Double(basemem.map{ $0.description }.joined()) else { fatalError() }
+        guard let retVal = Double(basemem.map{ $0.description }.joined()) else { fatalError("Cannot convert string to double") }
         return retVal / 100.0
     }
 }
