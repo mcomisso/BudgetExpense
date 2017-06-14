@@ -44,9 +44,7 @@ class BEHomeViewController: UIViewController {
 
     @IBOutlet weak var amountDisplay: UILabel!
 
-    lazy var onboarding: AlertOnboarding = { [weak self] in
-        guard let `self` = self else { fatalError() }
-
+    let onboarding: AlertOnboarding = {
         let images = ["location", "sync"]
         let titles = ["Allow location access?", "Use iCloud Sync?"]
         let locationDescription = "If you travel, BUDGET EXPENSE can retrieve your location and automatically switch to the visiting country currency.\nRegister all your expenses with ease, the foreign value gets converted to match your currency preference."
@@ -54,7 +52,6 @@ class BEHomeViewController: UIViewController {
         let descriptions = [locationDescription, icloudDescription]
 
         let ao = AlertOnboarding(arrayOfImage: images, arrayOfTitle: titles, arrayOfDescription: descriptions)
-        ao.delegate = self
         ao.titleSkipButton = "Next"
         ao.titleGotItButton = "im done"
         return ao
@@ -68,6 +65,8 @@ class BEHomeViewController: UIViewController {
         super.viewDidLoad()
         self.amountDisplay.textColor = BETheme.Colors.textIcons
         self.view.backgroundColor = Color.teal.lighten5
+
+        self.onboarding.delegate = self
 
         self.arrowUp.tintColor = Color.grey.lighten2
         self.arrowDown.tintColor = Color.grey.lighten2
@@ -126,9 +125,6 @@ class BEHomeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-
-        self.presentOnboarding()
 
         if UserDefaults.standard.bool(forKey: "onboarded") == false {
             self.presentOnboarding()
