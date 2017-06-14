@@ -127,7 +127,7 @@ struct R: Rswift.Validatable {
     /// Reuse identifier `categoriesCellIdentifier`.
     static let categoriesCellIdentifier: Rswift.ReuseIdentifier<BECategoryCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "categoriesCellIdentifier")
     /// Reuse identifier `overviewCellIdentifier`.
-    static let overviewCellIdentifier: Rswift.ReuseIdentifier<BECollectionViewCell> = Rswift.ReuseIdentifier(identifier: "overviewCellIdentifier")
+    static let overviewCellIdentifier: Rswift.ReuseIdentifier<BETransactionCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "overviewCellIdentifier")
     
     fileprivate init() {}
   }
