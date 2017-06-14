@@ -80,7 +80,7 @@
                                     <constraint firstAttribute="trailing" secondItem="OyL-cB-hw8" secondAttribute="trailing" id="x7y-lD-CdY"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12342,21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="get-WC-uPU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12342,21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="get-WC-uPU">
                                 <rect key="frame" x="8" y="279" width="359" height="109.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="80"/>
                                 <nil key="textColor"/>
@@ -311,7 +311,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvF-QA-WP2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvF-QA-WP2" customClass="RaisedButton" customModule="Material">
                                                 <rect key="frame" x="0.0" y="167" width="114.5" height="55.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
                                                 <state key="normal" title="Save">
@@ -349,7 +349,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="yes" returnKeyType="done"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Notes"/>
                                 </userDefinedRuntimeAttributes>
@@ -408,8 +408,8 @@
                         <outlet property="actionsStackView" destination="fek-JT-RDx" id="DYg-ym-pW6"/>
                         <outlet property="currentDigits" destination="KeK-pY-88K" id="ZiS-e4-d3x"/>
                         <outlet property="dateLabel" destination="7gJ-aJ-KYm" id="onv-fc-N11"/>
-                        <outlet property="deleteButton" destination="ZvF-QA-WP2" id="8Mj-L1-rKr"/>
                         <outlet property="notesTextField" destination="ceH-Im-BC2" id="Vcm-q5-zAk"/>
+                        <outlet property="saveButton" destination="ZvF-QA-WP2" id="2Yz-eu-Bap"/>
                         <outlet property="sideDeleteButton" destination="1j1-8P-p1Y" id="bNV-TP-CJn"/>
                         <outletCollection property="buttons" destination="KSi-LI-iSB" collectionClass="NSMutableArray" id="lbO-jq-Kue"/>
                         <outletCollection property="buttons" destination="v73-Mz-U9n" collectionClass="NSMutableArray" id="PEO-MN-IqX"/>
@@ -432,7 +432,7 @@
         <scene sceneID="YKx-gH-V8F">
             <objects>
                 <collectionViewController id="nTj-fN-6vp" customClass="BECategoriesCollectionView" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZM0-Oo-huH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZM0-Oo-huH">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="132"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
