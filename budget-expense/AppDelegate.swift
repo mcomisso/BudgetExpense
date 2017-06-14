@@ -9,6 +9,8 @@
 import UIKit
 import CloudKit
 import UserNotifications
+import Iconic
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,8 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
 
-        // Location to fetch
-        self.locationManager.requestAuthorization()
+        DispatchQueue.global(qos: .background).async {
+            // Iconic register
+            FontAwesomeIcon.register()
+
+            // initialize standard settings
+            BESettingsManager.initializeDefaults()
+
+            // Location to fetch
+            self.locationManager.requestAuthorization()
+        }
 
         self.registerForNotifications(application: application)
 
