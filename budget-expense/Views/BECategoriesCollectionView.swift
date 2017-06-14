@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import Material
 
 protocol BECategoriesCollectionViewControllerDelegate: class {
@@ -18,7 +17,7 @@ class BECategoriesCollectionView: UICollectionViewController {
 
     weak var delegate: BECategoriesCollectionViewControllerDelegate?
 
-    var dataSource: Results<CategoryModel>? = nil
+    var dataSource: [BECategoryProtocol] = []
 
     var type: BEAddDataType = .expense
 
@@ -48,7 +47,7 @@ class BECategoriesCollectionView: UICollectionViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if self.dataSource?.count == 0 {
+        if self.dataSource.count == 0 {
             self.collectionView?.isHidden = true
         }
     }
@@ -58,10 +57,7 @@ class BECategoriesCollectionView: UICollectionViewController {
 // MARK:- DataSource
 extension BECategoriesCollectionView {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let ds = self.dataSource {
-            return ds.count
-        }
-        return 0
+        return self.dataSource.count
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

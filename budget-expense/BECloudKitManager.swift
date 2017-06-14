@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-final class BECloudKitManager: BEManagerAmount {
+final class BECloudKitManager: BEManagerAmountProtocol {
 
     let container = CKContainer.default()
 
@@ -23,7 +23,9 @@ final class BECloudKitManager: BEManagerAmount {
         self.publicDB = self.container.publicCloudDatabase
     }
 
-    func getCategories() -> [BECategory]? {
+
+
+    func getCategories() -> [BECategoryProtocol]? {
         return nil
     }
 
@@ -31,7 +33,7 @@ final class BECloudKitManager: BEManagerAmount {
         return []
     }
 
-    func getWeekDataForTableView() -> [BEAmount] {
+    func getWeekDataForTableView() -> [BEAmountProtocol] {
         return []
     }
 
@@ -70,10 +72,10 @@ final class BECloudKitManager: BEManagerAmount {
     }
 }
 
-extension BECloudKitManager: BEManagerAccount {
+extension BECloudKitManager: BEManagerAccountProtocol {
 
     func createAccount(name: String, currency: String) {
-        let account = CloudKitAccount(name: name, currency: currency)
+        let account = CloudKitWallet(name: name, currency: currency)
 
         self.privateDB.save(account.record) { (record, error) in
             if let error = error {

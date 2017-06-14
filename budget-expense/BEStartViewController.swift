@@ -19,7 +19,6 @@ protocol BEHomeViewControllerDelegate: class {
     /// - Parameter homeViewController: the source of the event
     func didSelectExpenseScreen(_ homeViewController: BEHomeViewController)
 
-
     /// Income screen
     ///
     /// - Parameter homeViewController: the source of the event
@@ -31,6 +30,9 @@ protocol BEHomeViewControllerDelegate: class {
     func didSelectListScreen(_ homeViewController: BEHomeViewController)
 }
 
+
+
+/// The starter ViewController
 class BEHomeViewController: UIViewController {
 
     weak var delegate: BEHomeViewControllerDelegate?
@@ -63,55 +65,14 @@ class BEHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.amountDisplay.textColor = BETheme.Colors.textIcons
-        self.view.backgroundColor = Color.teal.lighten5
+
+        self.prepareViews()
 
         self.onboarding.delegate = self
 
-        self.arrowUp.tintColor = Color.grey.lighten2
-        self.arrowDown.tintColor = Color.grey.lighten2
-        self.incomeLabel.textColor = Color.grey.lighten2
-        self.expenseLabel.textColor = Color.grey.lighten2
+        self.addGestureRecognizers()
 
-        self.arrowUp.contentMode = .scaleAspectFit
-        self.arrowUp.image = Icon.cm.arrowDownward
-        self.arrowUp.transform = CGAffineTransform(scaleX: 1, y: -1)
-        self.arrowDown.image = Icon.cm.arrowDownward
-        self.arrowDown.contentMode = .scaleAspectFit
-
-        self.view.backgroundColor = .white
-        self.amountDisplay.textColor = BETheme.Colors.primaryText
-
-        let chartConfig = ChartConfigXY(xAxisConfig: ChartAxisConfig(from: 0, to: 7, by: 1), yAxisConfig: ChartAxisConfig(from: -10, to: 10, by: 2))
-
-        let values = BERealmManager.shared.getWeekData()
-
-        var arr = [(Double, Double)]()
-        for (index, value) in values.enumerated() {
-            arr.append((Double(index), value))
-        }
-
-        let chartLine = (chartPoints: arr, color: UIColor.red)
-
-        let chart = LineChart(frame: self.chartView.frame, chartConfig: chartConfig, xTitle: "", yTitle: "", line: chartLine)
-
-        self.chart = chart
-
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(transactionsDetails(recognizer:)))
-        self.amountDisplay.addGestureRecognizer(tapGestureRecognizer)
-        self.amountDisplay.isUserInteractionEnabled = true
-
-        let expenseGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
-        expenseGestureRecognizer.direction = .up
-        expenseGestureRecognizer.delegate = self
-
-        let incomeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
-        incomeGestureRecognizer.direction = .down
-        incomeGestureRecognizer.delegate = self
-
-        self.view.addGestureRecognizer(expenseGestureRecognizer)
-        self.view.addGestureRecognizer(incomeGestureRecognizer)
-
+        self.loadHomeData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -131,8 +92,72 @@ class BEHomeViewController: UIViewController {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Insert here preparation
+}
+
+extension BEHomeViewController {
+
+    func loadHomeData() {
+        let values = BERealmManager.shared.getWeekData()
+
+        let chartConfig = ChartConfigXY(xAxisConfig: ChartAxisConfig(from: 0, to: 7, by: 1), yAxisConfig: ChartAxisConfig(from: -10, to: 10, by: 2))
+
+        var arr = [(Double, Double)]()
+        for (index, value) in values.enumerated() {
+            arr.append((Double(index), value))
+        }
+
+        let chartLine = (chartPoints: arr, color: UIColor.red)
+
+        let chart = LineChart(frame: self.chartView.frame, chartConfig: chartConfig, xTitle: "", yTitle: "", line: chartLine)
+
+        self.chart = chart
+
+    }
+
+    func addGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(transactionsDetails(recognizer:)))
+        self.amountDisplay.addGestureRecognizer(tapGestureRecognizer)
+        self.amountDisplay.isUserInteractionEnabled = true
+
+        let expenseGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
+        expenseGestureRecognizer.direction = .up
+        expenseGestureRecognizer.delegate = self
+
+        let incomeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(inputData(recognizer:)))
+        incomeGestureRecognizer.direction = .down
+        incomeGestureRecognizer.delegate = self
+
+        self.view.addGestureRecognizer(expenseGestureRecognizer)
+        self.view.addGestureRecognizer(incomeGestureRecognizer)
+    }
+
+    func prepareViews() {
+
+        self.view.backgroundColor = .white
+
+        self.prepareIncomeArrow()
+        self.prepareExpenseArrow()
+
+        self.incomeLabel.textColor = BETheme.Colors.income
+        self.incomeLabel.opacity = 0.5
+        self.expenseLabel.textColor = BETheme.Colors.expense
+        self.expenseLabel.opacity = 0.5
+
+
+        self.amountDisplay.textColor = BETheme.Colors.primaryText
+    }
+
+    func prepareExpenseArrow() {
+        self.arrowUp.tintColor = BETheme.Colors.expense
+        self.arrowUp.contentMode = .scaleAspectFit
+        self.arrowUp.image = Icon.cm.arrowDownward
+        self.arrowUp.transform = CGAffineTransform(scaleX: 1, y: -1)
+    }
+
+    func prepareIncomeArrow() {
+        self.arrowDown.tintColor = BETheme.Colors.income
+        self.arrowDown.image = Icon.cm.arrowDownward
+        self.arrowDown.contentMode = .scaleAspectFit
     }
 }
 

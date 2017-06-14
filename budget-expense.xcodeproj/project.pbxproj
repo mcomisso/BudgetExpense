@@ -34,6 +34,12 @@
 		B96298E21EF1722500ED9555 /* NSNumber+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E11EF1722500ED9555 /* NSNumber+extension.swift */; };
 		B96298E41EF1724000ED9555 /* UserDefaults+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E31EF1724000ED9555 /* UserDefaults+extension.swift */; };
 		B96298E61EF18EED00ED9555 /* BEColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E51EF18EED00ED9555 /* BEColors.swift */; };
+		B96298E91EF1C57800ED9555 /* BEDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */; };
+		B96298EC1EF1C5E000ED9555 /* BEAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298EB1EF1C5E000ED9555 /* BEAmount.swift */; };
+		B96298EE1EF1C5F700ED9555 /* BEWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298ED1EF1C5F700ED9555 /* BEWallet.swift */; };
+		B96298F01EF1C60400ED9555 /* BEBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298EF1EF1C60400ED9555 /* BEBudget.swift */; };
+		B96298F21EF1C61E00ED9555 /* BECategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298F11EF1C61E00ED9555 /* BECategory.swift */; };
+		B96298F41EF1C6E800ED9555 /* BEBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298F31EF1C6E700ED9555 /* BEBaseModel.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
 		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
@@ -52,7 +58,7 @@
 		B9B848021EEDDC2800DF7C39 /* CloudKitAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */; };
 		B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */; };
 		B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884211DB3197400D7A9BC /* BEConstants.swift */; };
-		B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884231DB321C600D7A9BC /* BEModel.swift */; };
+		B9C884241DB321C600D7A9BC /* BERealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884231DB321C600D7A9BC /* BERealmManager.swift */; };
 		B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C884251DB34A2E00D7A9BC /* BETheme.swift */; };
 		B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */; };
 		FF0244CB86400A005D0060DB /* Pods_budget_expenseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C8146CDF1E43F05A9A64E4 /* Pods_budget_expenseTests.framework */; };
@@ -99,6 +105,12 @@
 		B96298E11EF1722500ED9555 /* NSNumber+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+extension.swift"; sourceTree = "<group>"; };
 		B96298E31EF1724000ED9555 /* UserDefaults+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extension.swift"; sourceTree = "<group>"; };
 		B96298E51EF18EED00ED9555 /* BEColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEColors.swift; sourceTree = "<group>"; };
+		B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEDefaultsModel.swift; sourceTree = "<group>"; };
+		B96298EB1EF1C5E000ED9555 /* BEAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEAmount.swift; sourceTree = "<group>"; };
+		B96298ED1EF1C5F700ED9555 /* BEWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEWallet.swift; sourceTree = "<group>"; };
+		B96298EF1EF1C60400ED9555 /* BEBudget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEBudget.swift; sourceTree = "<group>"; };
+		B96298F11EF1C61E00ED9555 /* BECategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategory.swift; sourceTree = "<group>"; };
+		B96298F31EF1C6E700ED9555 /* BEBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEBaseModel.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
 		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +135,7 @@
 		B9B848011EEDDC2800DF7C39 /* CloudKitAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitAmount.swift; sourceTree = "<group>"; };
 		B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEModelProtocols.swift; sourceTree = "<group>"; };
 		B9C884211DB3197400D7A9BC /* BEConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEConstants.swift; sourceTree = "<group>"; };
-		B9C884231DB321C600D7A9BC /* BEModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEModel.swift; sourceTree = "<group>"; };
+		B9C884231DB321C600D7A9BC /* BERealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BERealmManager.swift; sourceTree = "<group>"; };
 		B9C884251DB34A2E00D7A9BC /* BETheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETheme.swift; sourceTree = "<group>"; };
 		B9D680DF1DA76E9700DA83B4 /* budget-expense-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "budget-expense-Bridging-Header.h"; sourceTree = "<group>"; };
 		B9DAEF4C1DA4BE850019C9F6 /* BEKeyPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEKeyPad.swift; sourceTree = "<group>"; };
@@ -236,6 +248,35 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		B96298E71EF1BAAF00ED9555 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				B9635F981E01180600AC6652 /* BETransitionMananger.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
+		B96298EA1EF1C5CE00ED9555 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				B9C884231DB321C600D7A9BC /* BERealmManager.swift */,
+				B96298F51EF1C75900ED9555 /* Base classes */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
+		B96298F51EF1C75900ED9555 /* Base classes */ = {
+			isa = PBXGroup;
+			children = (
+				B96298F31EF1C6E700ED9555 /* BEBaseModel.swift */,
+				B96298EB1EF1C5E000ED9555 /* BEAmount.swift */,
+				B96298ED1EF1C5F700ED9555 /* BEWallet.swift */,
+				B96298EF1EF1C60400ED9555 /* BEBudget.swift */,
+				B96298F11EF1C61E00ED9555 /* BECategory.swift */,
+			);
+			name = "Base classes";
+			sourceTree = "<group>";
+		};
 		B9635F9A1E01241600AC6652 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +288,7 @@
 		B9635F9B1E01244700AC6652 /* UI Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				B9635F981E01180600AC6652 /* BETransitionMananger.swift */,
+				B96298E71EF1BAAF00ED9555 /* Transitions */,
 				B96298E51EF18EED00ED9555 /* BEColors.swift */,
 				B96298CA1EF07E9D00ED9555 /* BESoundPlayer.swift */,
 			);
@@ -257,10 +298,11 @@
 		B9635F9C1E01336300AC6652 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */,
 				B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */,
 				B91378D01EEF0B960075B118 /* CloudKit */,
-				B9C884231DB321C600D7A9BC /* BEModel.swift */,
-				B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */,
+				B96298EA1EF1C5CE00ED9555 /* Realm */,
+				B96298E81EF1C57800ED9555 /* BEDefaultsModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -610,21 +652,25 @@
 				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
 				B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */,
 				B96298D71EF1377A00ED9555 /* BEInitialSetupViewController.swift in Sources */,
+				B96298F01EF1C60400ED9555 /* BEBudget.swift in Sources */,
 				B96298BA1EF020E100ED9555 /* BEHeaderView.swift in Sources */,
 				B96298CB1EF07E9D00ED9555 /* BESoundPlayer.swift in Sources */,
 				B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */,
 				B99958241DA21BD0007274BB /* BEViewController.swift in Sources */,
+				B96298F21EF1C61E00ED9555 /* BECategory.swift in Sources */,
 				B9B848021EEDDC2800DF7C39 /* CloudKitAmount.swift in Sources */,
 				B9A7F51C1DA8B5930051090F /* BEStartViewController.swift in Sources */,
+				B96298EE1EF1C5F700ED9555 /* BEWallet.swift in Sources */,
 				B9C884261DB34A2E00D7A9BC /* BETheme.swift in Sources */,
 				B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */,
 				B96298DD1EF171B500ED9555 /* BECategoryGliphCell.swift in Sources */,
-				B9C884241DB321C600D7A9BC /* BEModel.swift in Sources */,
+				B9C884241DB321C600D7A9BC /* BERealmManager.swift in Sources */,
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
 				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
 				B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */,
 				B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */,
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
+				B96298F41EF1C6E800ED9555 /* BEBaseModel.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
 				B96298CD1EF0828000ED9555 /* BEOptionsManager.swift in Sources */,
 				B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */,
@@ -636,8 +682,10 @@
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */,
 				B96298E21EF1722500ED9555 /* NSNumber+extension.swift in Sources */,
+				B96298E91EF1C57800ED9555 /* BEDefaultsModel.swift in Sources */,
 				B99958041DA217DF007274BB /* BEAddDataViewController.swift in Sources */,
 				B95356B91DB352820024C6D5 /* UIColor+extensions.swift in Sources */,
+				B96298EC1EF1C5E000ED9555 /* BEAmount.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
 				B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */,
 				B96298E41EF1724000ED9555 /* UserDefaults+extension.swift in Sources */,

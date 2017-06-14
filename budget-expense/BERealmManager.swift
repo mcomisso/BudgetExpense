@@ -9,47 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Account: Object {
-    dynamic var id = 0
-    dynamic var name = ""
-    let amounts = List<Amount>()
-}
-
-class Amount: Object {
-    dynamic var id = UUID.init().uuidString
-
-    dynamic var date: Date = Date()
-    dynamic var amount = 0.0
-    dynamic var isExpense = true
-    dynamic var notes = ""
-
-    dynamic var category: CategoryModel?
-
-
-    override class func primaryKey() -> String? { return "id" }
-
-    func day() -> Date {
-        let components = Calendar(identifier: .gregorian).dateComponents([.day, .month, .year], from: self.date)
-        return components.date!
-    }
-
-    override var description: String {
-
-        let expense = self.isExpense ? "expense" : "income"
-
-        return "New \(expense) - Date: \(self.date.description) Amount: \(self.amount) Notes: \(self.notes)"
-    }
-}
-
-
-class CategoryModel: Object {
-    dynamic var id = 0
-    dynamic var name = ""
-    dynamic var icon = NSData()
-    dynamic var color = ""
-}
-
-class BERealmManager {
+final class BERealmManager {
     static let shared = BERealmManager()
 
     fileprivate let realmConfiguration: Realm.Configuration = {
@@ -73,6 +33,12 @@ class BERealmManager {
         }
     }
 
+}
+
+
+//MARK:- AMOUNTS
+fileprivate typealias BERealmAmountMethods = BERealmManager
+extension BERealmAmountMethods {
     /// Get the current amount
     ///
     /// - returns: A string representing the current amount
@@ -104,16 +70,6 @@ class BERealmManager {
         return amounts.map { $0.amount }
     }
 
-
-    /// Get the list of categories
-    ///
-    /// - returns: Return a Results list of categories
-    func getCategories() -> Results<CategoryModel>? {
-        return realm.objects(CategoryModel.self)
-    }
-
-
-
     func delete(amount: Amount, completion: @escaping ((Bool)-> Void)) {
         var success: Bool = false
         defer {
@@ -131,9 +87,6 @@ class BERealmManager {
         } catch {
             success = false
         }
-
-
-
     }
 
     /// Save an amount
@@ -166,4 +119,28 @@ class BERealmManager {
             fatalError("Something gone wrong: \(error)")
         }
     }
+}
+
+extension BERealmManager {
+
+    func saveCategory(_ category: BECategory) {
+
+        let realm = self.realm
+
+        do {
+            try realm.write {
+                realm.add(category)
+            }
+        } catch {
+            fatalError("Something wrong when saving category. \(error.localizedDescription)")
+        }
+    }
+
+    /// Get the list of categories
+    ///
+    /// - returns: Return a Results list of categories
+    func getCategories() -> [BECategoryProtocol] {
+        return Array(realm.objects(BECategory.self))
+    }
+
 }

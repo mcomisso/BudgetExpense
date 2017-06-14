@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-final class CloudKitAccount: BEAccount {
+final class CloudKitWallet: BEWalletProtocol {
 
     static let RecordType = "Account"
 
@@ -53,7 +53,7 @@ final class CloudKitAccount: BEAccount {
     }
 
     init(name: String, currency: String) {
-        self.record = CKRecord(recordType: CloudKitAccount.RecordType)
+        self.record = CKRecord(recordType: CloudKitWallet.RecordType)
 
         self.name = name
         self.currency = currency

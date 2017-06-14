@@ -14,7 +14,7 @@
         <scene sceneID="50T-t0-dQ3">
             <objects>
                 <collectionViewController id="ng1-Fb-rTZ" customClass="BETransactionsHistoryCollectionViewController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6sj-CG-7lc">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="6sj-CG-7lc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,13 +65,13 @@
                                     <rect key="frame" x="8" y="8" width="359" height="60"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJR-Ra-WUn" userLabel="Day title">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="38.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKw-Mh-TIR" userLabel="Month title">
-                                            <rect key="frame" x="0.0" y="41" width="359" height="19"/>
+                                            <rect key="frame" x="0.0" y="38.5" width="359" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TransactionsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="F1s-uP-Ely" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qXd-6U-DQY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qXd-6U-DQY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

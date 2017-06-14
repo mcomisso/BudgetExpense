@@ -9,7 +9,7 @@
 import Foundation
 import CloudKit
 
-final class CloudKitAmount: BEAmount {
+final class CloudKitAmount: BEAmountProtocol {
 
     // Record type
 

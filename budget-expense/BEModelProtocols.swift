@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: AMOUNT protocol
 
-protocol BEAmount {
+protocol BEAmountProtocol {
     var id: String { get }
     var amount: Double { get }
     var isExpense: Bool { get }
@@ -22,16 +23,16 @@ protocol BEAmount {
 
 // MARK: CATEGORY
 
-protocol BECategory {
+protocol BECategoryProtocol {
 
     var name: String { get }
-    var icon: Data { get }
-    var color: String { get }
+    var icon: String { get }
+    var color: UIColor { get }
 }
 
 //MARK: ACCOUNT Protocol
 
-protocol BEAccount {
+protocol BEWalletProtocol {
     var id: String { get }
     var name: String { get }
     var currency: String { get }
@@ -43,14 +44,14 @@ protocol BEAccount {
 
 // MARK: MANAGER Protocol
 
-protocol BEManagerAccount {
+protocol BEManagerAccountProtocol {
     func createAccount(name: String, currency: String)
 //    func deleteAccount()
 //    func editAccountName()
 //    func editAccountCurrency()
 }
 
-protocol BEManagerAmount {
+protocol BEManagerAmountProtocol {
 
     /// Get the current amount
     ///
@@ -60,7 +61,7 @@ protocol BEManagerAmount {
     /// Get Amount data for a tableView representation
     ///
     /// - returns: Returns a Realm results with amount
-    func getWeekDataForTableView() -> [BEAmount]
+    func getWeekDataForTableView() -> [BEAmountProtocol]
 
 
     /// Gets the weekly data. The set date is the most recent.
@@ -73,7 +74,7 @@ protocol BEManagerAmount {
     /// Get the list of categories
     ///
     /// - returns: Return a Results list of categories
-    func getCategories() -> [BECategory]?
+    func getCategories() -> [BECategoryProtocol]?
 
 
     /// Save an amount
