@@ -26,6 +26,8 @@
 		B96298CD1EF0828000ED9555 /* BEOptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */; };
 		B96298D11EF0931400ED9555 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B96298D01EF0931400ED9555 /* Categories.storyboard */; };
 		B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298D21EF0940A00ED9555 /* BECategorySelector.swift */; };
+		B96298D51EF135A100ED9555 /* InitialStartup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B96298D41EF135A100ED9555 /* InitialStartup.storyboard */; };
+		B96298D71EF1377A00ED9555 /* BEInitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
 		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
@@ -83,6 +85,8 @@
 		B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEOptionsManager.swift; sourceTree = "<group>"; };
 		B96298D01EF0931400ED9555 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		B96298D21EF0940A00ED9555 /* BECategorySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategorySelector.swift; sourceTree = "<group>"; };
+		B96298D41EF135A100ED9555 /* InitialStartup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InitialStartup.storyboard; sourceTree = "<group>"; };
+		B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEInitialSetupViewController.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
 		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		B96298D81EF1393900ED9555 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
+				B96298D41EF135A100ED9555 /* InitialStartup.storyboard */,
+				B96298D01EF0931400ED9555 /* Categories.storyboard */,
+				B96298BE1EF0688700ED9555 /* Transactions.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		B9635F9A1E01241600AC6652 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,10 +276,9 @@
 				B9869D0E1DB496600087CBB7 /* BEUtils.swift */,
 				B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */,
 				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
+				B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
-				B9A7F51D1DA8B87D0051090F /* Main.storyboard */,
-				B96298D01EF0931400ED9555 /* Categories.storyboard */,
-				B96298BE1EF0688700ED9555 /* Transactions.storyboard */,
+				B96298D81EF1393900ED9555 /* Storyboards */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
 				B999580C1DA217DF007274BB /* LaunchScreen.storyboard */,
 				B999580F1DA217DF007274BB /* Info.plist */,
@@ -433,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B96298C91EF07E6C00ED9555 /* beep_short_on.aif in Resources */,
+				B96298D51EF135A100ED9555 /* InitialStartup.storyboard in Resources */,
 				B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */,
 				B96298D11EF0931400ED9555 /* Categories.storyboard in Resources */,
 				B999580B1DA217DF007274BB /* Assets.xcassets in Resources */,
@@ -568,6 +583,7 @@
 				B96298B31EEFFDE300ED9555 /* BENumericMemory.swift in Sources */,
 				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
 				B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */,
+				B96298D71EF1377A00ED9555 /* BEInitialSetupViewController.swift in Sources */,
 				B96298BA1EF020E100ED9555 /* BEHeaderView.swift in Sources */,
 				B96298CB1EF07E9D00ED9555 /* BESoundPlayer.swift in Sources */,
 				B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */,

@@ -15,6 +15,7 @@ target 'budget-expense' do
   pod "SQFeedbackGenerator"
   pod "AlertOnboarding"
   pod "Presentr"
+  pod 'Iconic', :git => 'https://github.com/dzenbot/Iconic.git', :tag => '1.3'
 
   pod "R.swift"
 
