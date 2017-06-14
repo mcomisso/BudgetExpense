@@ -17,7 +17,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
 
     let mainStoryboard = R.storyboard.main()
     let transactionsStoryboard = R.storyboard.transactions()
-
+    let initialStoryboard = R.storyboard.initialStartup()
 
     var rootViewController: UIViewController?
 
