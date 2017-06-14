@@ -56,16 +56,51 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 7 images.
   struct image {
+    /// Image `add`.
+    static let add = Rswift.ImageResource(bundle: R.hostingBundle, name: "add")
+    /// Image `cloud`.
+    static let cloud = Rswift.ImageResource(bundle: R.hostingBundle, name: "cloud")
+    /// Image `delete`.
+    static let delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "delete")
+    /// Image `key`.
+    static let key = Rswift.ImageResource(bundle: R.hostingBundle, name: "key")
     /// Image `location`.
     static let location = Rswift.ImageResource(bundle: R.hostingBundle, name: "location")
+    /// Image `stats`.
+    static let stats = Rswift.ImageResource(bundle: R.hostingBundle, name: "stats")
     /// Image `sync`.
     static let sync = Rswift.ImageResource(bundle: R.hostingBundle, name: "sync")
+    
+    /// `UIImage(named: "add", bundle: ..., traitCollection: ...)`
+    static func add(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.add, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cloud", bundle: ..., traitCollection: ...)`
+    static func cloud(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cloud, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "delete", bundle: ..., traitCollection: ...)`
+    static func delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.delete, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "key", bundle: ..., traitCollection: ...)`
+    static func key(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.key, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "location", bundle: ..., traitCollection: ...)`
     static func location(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.location, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "stats", bundle: ..., traitCollection: ...)`
+    static func stats(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.stats, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "sync", bundle: ..., traitCollection: ...)`
@@ -117,10 +152,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `Categories`.
     static let categories = _R.storyboard.categories()
+    /// Storyboard `InitialStartup`.
+    static let initialStartup = _R.storyboard.initialStartup()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
@@ -131,6 +168,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Categories", bundle: ...)`
     static func categories(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.categories)
+    }
+    
+    /// `UIStoryboard(name: "InitialStartup", bundle: ...)`
+    static func initialStartup(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.initialStartup)
     }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -180,6 +222,7 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      try initialStartup.validate()
       try main.validate()
       try transactions.validate()
     }
@@ -189,6 +232,24 @@ struct _R: Rswift.Validatable {
       
       let bundle = R.hostingBundle
       let name = "Categories"
+      
+      fileprivate init() {}
+    }
+    
+    struct initialStartup: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = BEInitialSetupNavigationController
+      
+      let bundle = R.hostingBundle
+      let name = "InitialStartup"
+      let requestController = StoryboardViewControllerResource<BEInitialSetupViewController>(identifier: "requestController")
+      
+      func requestController(_: Void = ()) -> BEInitialSetupViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: requestController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.initialStartup().requestController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'requestController' could not be loaded from storyboard 'InitialStartup' as 'BEInitialSetupViewController'.") }
+      }
       
       fileprivate init() {}
     }
