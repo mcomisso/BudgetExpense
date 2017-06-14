@@ -18,8 +18,8 @@ class BEHeaderView: UICollectionReusableView {
     var day: Date? {
         didSet {
             guard let day = self.day else { return }
-            self.dateHeader.text = BEUtils().longDateFormatter.string(from: day)
-            self.dateSubHeader.text = BEUtils().dateFormatter.string(from: day)
+            self.dateHeader.text    = BEUtils.longDateFormatter.string(from: day)
+            self.dateSubHeader.text = BEUtils.dateFormatter.string(from: day)
         }
     }
 
