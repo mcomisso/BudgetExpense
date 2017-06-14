@@ -19,7 +19,7 @@ struct BEInitialData {
         static let appStore = BECategory(gliph: FontAwesomeIcon.appleIcon.name, color: Color.blue)
     }
 
-    func loadIntoRealm() {
+    static func loadIntoRealm() {
 
         let categories: [BECategory] = [Categories.travel,
                                         Categories.business,
