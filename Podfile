@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'budget-expense' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -16,6 +16,7 @@ target 'budget-expense' do
   pod "AlertOnboarding"
   pod "Presentr"
   pod 'Iconic', :git => 'https://github.com/dzenbot/Iconic.git', :tag => '1.3'
+  pod 'PKHUD', '~> 4.0'
 
   pod "R.swift"
 
@@ -31,6 +32,7 @@ post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '3.0' # or '3.0'
+	    config.build_settings['ENABLE_BITCODE'] = 'YES'
         end
     end
 end
