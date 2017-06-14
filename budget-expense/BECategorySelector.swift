@@ -8,31 +8,8 @@
 
 import UIKit
 import Material
+import Iconic
 
-final class BEColorCell: UICollectionViewCell {
-    func setColor(_ color: UIColor) {
-        self.contentView.backgroundColor = color
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.contentView.backgroundColor = .clear
-    }
-}
-
-final class BEGliphCell: UICollectionViewCell {
-
-    @IBOutlet weak var imageView: UIImageView!
-
-    func setImage(image: UIImage?) {
-        self.imageView.image = image
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.imageView.image = nil
-    }
-}
 
 enum CategoryCollectionViewType: Int {
     case color = 1000
@@ -41,19 +18,50 @@ enum CategoryCollectionViewType: Int {
 
 final class BECategorySelectorViewController: UIViewController {
 
+    class GeneratedCategory {
+        private var gliph: UIImage?
+        private var color: UIColor = .lightGray
+
+        func setColor(color: UIColor) {
+            self.color = color
+        }
+
+        func setImage(image: UIImage) {
+            self.gliph = image
+        }
+
+        func validate() -> Bool {
+            if gliph == nil {
+                return false
+            }
+            return true
+        }
+
+        func imageRepresentation() -> UIImage? {
+            return self.gliph?.tint(with: self.color)
+        }
+    }
+
+    var newCategory: GeneratedCategory = GeneratedCategory()
+
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var collectionViewColors: UICollectionView!
 
-
     let colorList: [UIColor] = [.white, .red, .green, .blue, .yellow, .purple, .cyan, .black, .orange]
 
-    let gliphList: [UIImage?] = [Icon.add, Icon.addCircle, Icon.addCircleOutline, Icon.arrowBack, Icon.arrowDownward]
+    var gliphList: [UIImage] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        for index in 0..<FontAwesomeIcon.count {
+            let image = Iconic.standardDimension(icon: FontAwesomeIcon.init(rawValue: index)!)
+            self.gliphList.append(image)
+        }
+
 
         self.collectionView.tag = CategoryCollectionViewType.gliph.rawValue
 
@@ -61,6 +69,16 @@ final class BECategorySelectorViewController: UIViewController {
 
     }
 
+
+    @IBAction func saveAction(_ sender: Any) {
+
+        // Save currently selected into.. realm?
+
+    }
+
+    @IBAction func cancelAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension BECategorySelectorViewController: UICollectionViewDataSource {
@@ -107,4 +125,27 @@ extension BECategorySelectorViewController: UICollectionViewDataSource {
         fatalError()
     }
 
+}
+
+extension BECategorySelectorViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if let colorType = CategoryCollectionViewType.init(rawValue: collectionView.tag) {
+            switch colorType {
+            case .color:
+                // Selected color
+                self.newCategory.setColor(color: self.colorList[indexPath.row])
+
+            case .gliph:
+                // Selected gliph
+                self.newCategory.setImage(image: self.gliphList[indexPath.row])
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        cell?.contentView.backgroundColor = .clear
+    }
 }

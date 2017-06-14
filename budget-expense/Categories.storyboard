@@ -24,13 +24,10 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rvt-Qx-SLE">
                                 <rect key="frame" x="8" y="0.0" width="359" height="333"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qac-72-p0u">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="100"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qac-72-p0u">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="141.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="JXH-ff-xf4"/>
-                                        </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YKo-Qj-t3G">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="YKo-Qj-t3G">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -62,10 +59,11 @@
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="cwe-Gw-UMc" id="ADU-gr-XAC"/>
+                                            <outlet property="delegate" destination="cwe-Gw-UMc" id="ypj-Kj-zCK"/>
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="252" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="enY-UG-Q9k">
-                                        <rect key="frame" x="0.0" y="100" width="359" height="100"/>
+                                        <rect key="frame" x="0.0" y="141.5" width="359" height="141.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pwp-fw-g4P">
                                             <size key="itemSize" width="50" height="50"/>
@@ -85,21 +83,31 @@
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="cwe-Gw-UMc" id="eJp-Ix-JEQ"/>
+                                            <outlet property="delegate" destination="cwe-Gw-UMc" id="pq2-KP-1Uu"/>
                                         </connections>
                                     </collectionView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8O6-WR-pwg" customClass="TextField" customModule="Material">
-                                        <rect key="frame" x="0.0" y="200" width="359" height="103"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Category name"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMQ-WT-sWO">
-                                        <rect key="frame" x="0.0" y="303" width="359" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-h9-64u">
+                                        <rect key="frame" x="0.0" y="283" width="359" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HB5-nH-fdZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="179.5" height="50"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelAction:" destination="cwe-Gw-UMc" eventType="touchUpInside" id="JWX-sQ-PTi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMQ-WT-sWO">
+                                                <rect key="frame" x="179.5" y="0.0" width="179.5" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="ycL-bS-j49"/>
+                                                </constraints>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveAction:" destination="cwe-Gw-UMc" eventType="touchUpInside" id="AFj-0D-qsM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="enY-UG-Q9k" firstAttribute="height" secondItem="Qac-72-p0u" secondAttribute="height" id="zZ4-5v-RcG"/>
