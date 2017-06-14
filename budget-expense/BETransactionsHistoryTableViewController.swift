@@ -9,10 +9,17 @@
 import UIKit
 import RealmSwift
 import Material
+import PKHUD
 
 class BETransactionsHistoryCollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
+
+    var transactions: [Amount] {
+        get {
+            return Array(BERealmManager.shared.getWeekDataForTableView())
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +35,8 @@ class BETransactionsHistoryCollectionViewController: UICollectionViewController 
             collectionLayout.headerReferenceSize = CGSize(width: self.view.frame.size.width, height: 76)
             collectionLayout.sectionHeadersPinToVisibleBounds = true
         }
+
+        self.collectionView?.isPrefetchingEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,16 +58,16 @@ extension BETransactionsHistoryCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return BERealmManager.shared.getWeekDataForTableView().count
+        return self.transactions.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath) as! BECollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath) as! BETransactionCollectionViewCell
 
-        let amountObject = BERealmManager.shared.getWeekDataForTableView()[indexPath.row]
+        let amountObject = self.transactions[indexPath.row]
 
         cell.prepareCard(amount: amountObject)
-
+        cell.delegate = self
         return cell
     }
 
@@ -69,4 +78,41 @@ extension BETransactionsHistoryCollectionViewController {
 
         return reusableView
     }
+}
+
+extension BETransactionsHistoryCollectionViewController: BETransactionCellDelegate {
+
+    func didPressOption(cell: BETransactionCollectionViewCell, amount: Amount?) {
+        // Options to manage
+
+        let alertSheet = UIAlertController(title: "What to do?", message: nil, preferredStyle: .actionSheet)
+        alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] (alert) in
+            // Delete from realm
+            guard let amount = amount else { return }
+            BERealmManager.shared.delete(amount: amount, completion: { (success) in
+                if success {
+                    BESoundPlayer.play(sound: .beepOff)
+                    self?.collectionView?.reloadData()
+                    self?.collectionView?.collectionViewLayout.invalidateLayout()
+
+                } else {
+                    // Display error
+                    HUD.flash(.error)
+                }
+            })
+
+        }))
+
+        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(alertSheet, animated: true, completion: nil)
+    }
+
+    func didPressShare(cell: BETransactionCollectionViewCell, amount: Amount?) {
+        // Options to share cell content
+
+
+
+    }
+    
 }
