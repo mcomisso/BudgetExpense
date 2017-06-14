@@ -20,7 +20,28 @@ class budget_expenseTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
+    func testNumericMemory() {
+
+        var numericMemory = NumericMem(numberStack: Stack<String>())
+
+        numericMemory.addDigit(digit: "5")
+
+        print(numericMemory.toDouble())
+        print(numericMemory.toNumber())
+
+        XCTAssert(numericMemory.toDouble() == 0.05)
+
+        XCTAssert(numericMemory.toNumber().isEqual(to: NSNumber.init(value: 0.05)))
+
+        numericMemory.removeDigit()
+        numericMemory.addDigit(digit: "55")
+
+        numericMemory.addDigit(digit: "asd")
+        print(numericMemory.toDouble())
+
+    }
+
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
