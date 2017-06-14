@@ -15,10 +15,13 @@ struct BETheme {
         static let primary = Color.teal.base
         static let lightPrimary = Color.teal.lighten1
         static let textIcons = Color.grey.lighten5
-        static let accent = Color.red.accent1
+        static let accent = Color.red.base
         static let primaryText = Color.darkText.primary
         static let secondaryText = Color.darkText.secondary
         static let divider = Color.grey.lighten1
+
+        static let income = Color.teal.base
+        static let expense = Color.red.base
     }
 }
 
