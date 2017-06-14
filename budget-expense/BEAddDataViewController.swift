@@ -24,7 +24,8 @@ class BEAddDataViewController: UIViewController {
 
     @IBOutlet weak var currentDigits: UILabel!
 
-    @IBOutlet weak var deleteButton: UIButton! // Delete digit button
+    @IBOutlet weak var sideDeleteButton: UIButton!
+    @IBOutlet weak var saveButton: RaisedButton! // Delete digit button
 
     @IBOutlet weak var dateLabel: UILabel!
 
@@ -38,7 +39,7 @@ class BEAddDataViewController: UIViewController {
 
     let presentr = Presentr(presentationType: .bottomHalf)
 
-
+    let feedbackGenerator = SQFeedbackGenerator()
 
     fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
         guard let `self` = self else { fatalError() }
@@ -64,7 +65,7 @@ class BEAddDataViewController: UIViewController {
         self.notesTextField.placeholderActiveColor = .white
 
         self.dateLabel.textColor = BETheme.Colors.textIcons
-        self.dateLabel.text = BEUtils().longDateFormatter.string(from: Date())
+        self.dateLabel.text = BEUtils.longDateFormatter.string(from: Date())
 
         self.setCurrentType()
         self.setupButtons()
@@ -82,15 +83,24 @@ class BEAddDataViewController: UIViewController {
     func setCurrentType() {
         switch self.type {
         case .income:
-            self.view.backgroundColor = BETheme.Colors.primary
+            _ = self.view.gradientFromColor(BETheme.Colors.primary)
+            self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.teal.accent3
         case .expense:
-            self.view.backgroundColor = BETheme.Colors.accent
+            _ = self.view.gradientFromColor(BETheme.Colors.accent)
+            self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.red.accent3
         }
     }
 
     func setupActionButtons() {
+
+        if self.type == .expense {
+            self.saveButton.titleColor = BETheme.Colors.expense
+        } else {
+            self.saveButton.titleColor = BETheme.Colors.income
+        }
+
 
         let locationButton = IconButton(image: Icon.place)
         let pictureButton = IconButton(image: Icon.photoCamera)
@@ -122,9 +132,16 @@ class BEAddDataViewController: UIViewController {
     }
 
     func setupButtons() {
+
+        self.sideDeleteButton.setTitle("", for: .normal)
+        self.sideDeleteButton.setImage(#imageLiteral(resourceName: "delete").tint(with: .white), for: .normal)
+        self.sideDeleteButton.addTarget(self, action: #selector(self.deleteLastDigit(_:)), for: .touchUpInside)
+        self.sideDeleteButton.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
+
         for button in self.buttons {
             button.setTitleColor(BETheme.Colors.textIcons, for: .normal)
             button.addTarget(self, action: #selector(didPressDigit(sender:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
 
             let attributedString = NSMutableAttributedString(string: (button.titleLabel?.text)!)
             attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.characters.count))
@@ -132,12 +149,15 @@ class BEAddDataViewController: UIViewController {
         }
     }
 
+
+    func feedbackForPressDigit(sender: Button) {
+        self.feedbackGenerator.generateFeedback(type: .notification)
+        BESoundPlayer.play(sound: .click)
+    }
+
     func didPressDigit(sender: Button) {
         if self.buttons.contains(sender) {
             self.numericMem.addDigit(digit: (sender.titleLabel?.text)!)
-
-            SQFeedbackGenerator().generateFeedback(type: .notification)
-            BESoundPlayer.play(sound: .click)
         }
     }
 
@@ -159,7 +179,12 @@ class BEAddDataViewController: UIViewController {
         BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
 
         self.transitioningDelegate = self
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) { 
+            // Display success
+            self.feedbackGenerator.generateFeedback(type: .success, completion: { 
+                BESoundPlayer.play(sound: .beepOn)
+            })
+        }
     }
 }
 
