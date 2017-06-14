@@ -16,12 +16,29 @@ class Account: Object {
 }
 
 class Amount: Object {
+    dynamic var id = UUID.init().uuidString
+
     dynamic var date: Date = Date()
     dynamic var amount = 0.0
     dynamic var isExpense = true
     dynamic var notes = ""
 
     dynamic var category: CategoryModel?
+
+
+    override class func primaryKey() -> String? { return "id" }
+
+    func day() -> Date {
+        let components = Calendar(identifier: .gregorian).dateComponents([.day, .month, .year], from: self.date)
+        return components.date!
+    }
+
+    override var description: String {
+
+        let expense = self.isExpense ? "expense" : "income"
+
+        return "New \(expense) - Date: \(self.date.description) Amount: \(self.amount) Notes: \(self.notes)"
+    }
 }
 
 
@@ -35,7 +52,26 @@ class CategoryModel: Object {
 class BERealmManager {
     static let shared = BERealmManager()
 
-    fileprivate let realm = try! Realm()
+    fileprivate let realmConfiguration: Realm.Configuration = {
+        let conf = Realm.Configuration(inMemoryIdentifier: nil, syncConfiguration: nil, encryptionKey: nil, readOnly: false, schemaVersion: 1, migrationBlock: { (migration, version) in
+            // Deal with migration
+        }, deleteRealmIfMigrationNeeded: false, shouldCompactOnLaunch: { (a, b) -> Bool in
+            return true
+        })
+
+        return conf
+    }()
+
+    var realm: Realm {
+        get {
+            do {
+                return try Realm.init(configuration: self.realmConfiguration)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+
+        }
+    }
 
     /// Get the current amount
     ///
@@ -50,7 +86,11 @@ class BERealmManager {
     ///
     /// - returns: Returns a Realm results with amount
     func getWeekDataForTableView() -> Results<Amount> {
-        return self.realm.objects(Amount.self)
+        return self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false)
+    }
+
+    func getDataForDay(day: Date) -> Results<Amount> {
+        return self.realm.objects(Amount.self).filter("date == %@", day)
     }
 
 
@@ -73,6 +113,29 @@ class BERealmManager {
     }
 
 
+
+    func delete(amount: Amount, completion: @escaping ((Bool)-> Void)) {
+        var success: Bool = false
+        defer {
+            DispatchQueue.main.async {
+                completion(success)
+            }
+        }
+
+        let realm = self.realm
+        do {
+            try realm.write {
+                realm.delete(amount)
+                success = true
+            }
+        } catch {
+            success = false
+        }
+
+
+
+    }
+
     /// Save an amount
     ///
     /// - parameter amount: Value of the amount
@@ -92,9 +155,11 @@ class BERealmManager {
             amountObject.isExpense = false
         }
 
+        let realm = self.realm
+
         do {
-            try self.realm.write {
-                self.realm.add(amountObject)
+            try realm.write {
+                realm.add(amountObject)
             }
         }
         catch {
