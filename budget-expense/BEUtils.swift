@@ -10,14 +10,14 @@ import Foundation
 
 struct BEUtils {
 
-    let dateFormatter: DateFormatter = {
+    static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .medium
         return dateFormatter
     }()
 
-    let longDateFormatter: DateFormatter = {
+    static let longDateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateStyle = .long
         df.timeStyle = .none
