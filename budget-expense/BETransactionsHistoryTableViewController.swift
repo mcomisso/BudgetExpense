@@ -22,18 +22,51 @@ fileprivate struct BETransactions {
     }
 }
 
-class BETransactionsHistoryCollectionViewController: UICollectionViewController {
+final class BETransactionsHistoryCollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
 
-    fileprivate var transactionsData: [BETransactions] = {
-        return BERealmManager.shared.getAvailableDays().map { BETransactions(date: $0) }
+    lazy var skeleton: UIStackView = {
+
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "add").tint(with: Color.grey.lighten2))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "No data available!\nYou can add data by swiping up or down in the previous screen."
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        let stack = UIStackView(arrangedSubviews: [imageView, label])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillProportionally
+        stack.axis = .vertical
+
+        return stack
     }()
+
+    fileprivate var transactionsData: [BETransactions] = [] {
+        didSet {
+            if transactionsData.count == 0 {
+                // Display "No data available" message
+                self.skeleton.isHidden = false
+            } else {
+                self.skeleton.isHidden = true
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Transactions"
+
+        self.view.addSubview(self.skeleton)
+        NSLayoutConstraint.activate([self.skeleton.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+                                     self.skeleton.heightAnchor.constraint(equalTo: self.skeleton.widthAnchor),
+                                     self.skeleton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                                     self.skeleton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)])
 
         self.closeButton.title = ""
         self.closeButton.image = Icon.close
@@ -46,6 +79,8 @@ class BETransactionsHistoryCollectionViewController: UICollectionViewController 
         }
 
         self.collectionView?.isPrefetchingEnabled = false
+
+        self.reloadTransactions(shouldReloadCollectionView: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +90,13 @@ class BETransactionsHistoryCollectionViewController: UICollectionViewController 
 
     @IBAction func closeView(_ sender: AnyObject) {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+    fileprivate func reloadTransactions(shouldReloadCollectionView: Bool = false) {
+        self.transactionsData = BERealmManager.shared.getAvailableDays().map { BETransactions(date: $0) }
+        if shouldReloadCollectionView {
+            self.collectionView?.reloadData()
+        }
     }
 
 }
@@ -101,8 +143,31 @@ extension BETransactionsHistoryCollectionViewController: BETransactionCellDelega
             BERealmManager.shared.delete(amount: amount, completion: { (success) in
                 if success {
                     BESoundPlayer.play(sound: .beepOff)
-                    self?.collectionView?.reloadData()
-                    self?.collectionView?.collectionViewLayout.invalidateLayout()
+//                    self?.collectionView?.collectionViewLayout.invalidateLayout()
+
+                    guard let `self` = self else { return }
+
+                    // Find cell and delete it
+                    if let indexPath = self.collectionView?.indexPath(for: cell) {
+
+                        let preCount = self.transactionsData.count
+                        self.reloadTransactions()
+
+                        // Delete section if the dataSource has less values
+                        if self.transactionsData.count < preCount {
+                            self.collectionView?.performBatchUpdates({ 
+                                self.collectionView?.deleteSections(IndexSet(integer: indexPath.section))
+                                self.collectionView?.deleteItems(at: [indexPath])
+                            }, completion: { (completed) in
+                                if completed {
+                                    HUD.flash(.success)
+                                }
+                            })
+
+                        } else {
+                            self.collectionView?.deleteItems(at: [indexPath])
+                        }
+                    }
 
                 } else {
                     // Display error
