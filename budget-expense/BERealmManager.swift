@@ -34,6 +34,12 @@ final class BERealmManager {
         }
     }
 
+    func addNotification(callback: @escaping NotificationBlock) -> NotificationToken {
+
+        let token = self.realm.addNotificationBlock(callback)
+        return token
+    }
+
 }
 
 
@@ -74,10 +80,11 @@ extension BERealmAmountMethods {
         return amounts.map { $0.amount }
     }
 
-    func delete(amount: Amount, completion: @escaping ((Bool)-> Void)) {
+    func delete(amount: Amount, completion: ((Bool)-> Void)? = nil) {
         var success: Bool = false
         defer {
             DispatchQueue.main.async {
+                guard let completion = completion else { return }
                 completion(success)
             }
         }
