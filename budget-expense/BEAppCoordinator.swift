@@ -18,16 +18,35 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
     let mainStoryboard = R.storyboard.main()
     let transactionsStoryboard = R.storyboard.transactions()
     let initialStoryboard = R.storyboard.initialStartup()
+    let categoriesStoryboard = R.storyboard.categories()
 
     var rootViewController: UIViewController?
 
-    init() {
-        self.rootViewController = self.mainStoryboard.instantiateInitialViewController()
+    var window: UIWindow?
 
-        if let rootVC = self.rootViewController as? BEHomeViewController {
-            rootVC.delegate = self
-        }
+    init(window: UIWindow?) {
+        self.window = window
     }
+
+    func start() {
+        if BESettings.needsFirstRun.boolValue == true {
+            self.rootViewController = self.initialStoryboard.instantiateInitialViewController()
+
+            if let rootVC = self.rootViewController as? BEInitialSetupNavigationController {
+                rootVC.setupDelegate = self
+            }
+
+        } else {
+            self.rootViewController = self.mainStoryboard.instantiateInitialViewController()
+
+            if let rootVC = self.rootViewController as? BEHomeViewController {
+                rootVC.delegate = self
+            }
+        }
+
+        self.window?.rootViewController = self.rootViewController
+    }
+
 
     //MARK:- HOMEVIEWCONTROLLER
     func didSelectExpenseScreen(_ homeViewController: BEHomeViewController) {
@@ -51,6 +70,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
         }
     }
 
+
     func didSelectIncomeScreen(_ homeViewController: BEHomeViewController) {
         guard let addDataVC = R.storyboard.main.addDataViewController() else { return }
 
@@ -61,6 +81,16 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
         homeViewController.present(addDataVC, animated: true) {
             SQFeedbackGenerator().generateFeedback(type: .notification)
         }
+    }
+
+}
+
+
+extension BEAppCoordinator: BEInitialSetupNavigationControllerDelegate {
+
+    func didDismissNavigationController(_ navigationController: BEInitialSetupNavigationController) {
+        BESettings.needsFirstRun.set(value: false)
+        self.start()
     }
 
 }
