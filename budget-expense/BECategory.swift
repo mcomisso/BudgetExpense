@@ -31,10 +31,11 @@ class BECategory: BEBaseModel, BECategoryProtocol {
         }
     }
 
-    convenience init(gliph: String, color: UIColor) {
+    convenience init(gliph: String, color: UIColor, name: String) {
         self.init()
         self.icon = gliph
         self.color = color
+        self.name = name
     }
 
     override class func ignoredProperties() -> [String] { return ["color"] }

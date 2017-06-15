@@ -11,7 +11,7 @@ import Iconic
 
 extension BECategory {
     func generateImageFromIcon() -> UIImage {
-        let icon = FontAwesomeIcon(named: self.name)
+        let icon = FontAwesomeIcon(named: self.icon)
         return Iconic.standardDimension(icon: icon, size: CGSize.init(width: 30, height: 30), color: .white)
 
     }

@@ -27,7 +27,7 @@ class BECategoryCollectionViewCell: UICollectionViewCell {
 
     func setModelCategory(_ category: BECategoryProtocol) {
         self.icon.image = category.generateImageFromIcon()
-        self.contentView.gradientFromColor(category.color)
+//        self.contentView.gradientFromColor(category.color)
     }
 
     override func prepareForReuse() {

@@ -32,7 +32,7 @@ final class BESoundPlayer {
 
     static func play(sound: BECustomSounds) {
 
-        guard BESettingsManager.readSettingForKey(key: .appSoundsEnabled) == true else { return }
+        guard BESettings.appSoundsEnabled.boolValue == true else { return }
 
         var mySound: SystemSoundID = 0
         AudioServicesCreateSystemSoundID(sound.toURL() as CFURL, &mySound)
