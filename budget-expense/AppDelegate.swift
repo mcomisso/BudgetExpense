@@ -24,19 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        self.coordinator = BEAppCoordinator()
+        // initialize standard settings
+        BESettingsManager.initializeDefaults()
 
         window = UIWindow()
-        window?.rootViewController = self.coordinator?.rootViewController
+        self.coordinator = BEAppCoordinator(window: window)
+        self.coordinator?.start()
+
         window?.makeKeyAndVisible()
 
 
         DispatchQueue.global(qos: .background).async {
             // Iconic register
             FontAwesomeIcon.register()
-
-            // initialize standard settings
-            BESettingsManager.initializeDefaults()
 
             // Location to fetch
             self.locationManager.requestAuthorization()
@@ -53,12 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+
 }
 
 extension AppDelegate {
 
     func registerForNotifications(application: UIApplication) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .carPlay]) { (success, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
             if success {
                 // Continue
                 application.registerForRemoteNotifications()
