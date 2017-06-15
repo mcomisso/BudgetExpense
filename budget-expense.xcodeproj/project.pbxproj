@@ -181,6 +181,7 @@
 		B91378D51EEF40CF0075B118 /* ViewControllers  */ = {
 			isa = PBXGroup;
 			children = (
+				B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */,
 				B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */,
 				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
@@ -347,7 +348,6 @@
 				B9869D0E1DB496600087CBB7 /* BEUtils.swift */,
 				B96298CC1EF0828000ED9555 /* BEOptionsManager.swift */,
 				B9B847FA1EED9C6100DF7C39 /* BELocationManager.swift */,
-				B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
 				B96298D81EF1393900ED9555 /* Storyboards */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
