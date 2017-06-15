@@ -87,7 +87,7 @@ class BEAddDataViewController: UIViewController {
             self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.teal.accent3
         case .expense:
-            self.view.gradientFromColor(BETheme.Colors.accent)
+            self.view.gradientFromColor(Color.deepOrange.base)
             self.view.backgroundColor = .clear
             self.notesTextField.detailColor = Color.red.accent3
         }
