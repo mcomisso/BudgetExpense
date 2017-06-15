@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import SQFeedbackGenerator
-
 
 class BEAppCoordinator: BEHomeViewControllerDelegate {
 
@@ -58,9 +56,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
         homeViewController.presentAnimator = BETransitioningPresentingAnimator(direction: .up)
         addDataVC.transitioningDelegate = homeViewController
 
-        homeViewController.present(addDataVC, animated: true) { 
-            SQFeedbackGenerator().generateFeedback(type: .notification)
-        }
+        homeViewController.present(addDataVC, animated: true, completion: nil)
     }
 
 
@@ -78,9 +74,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
         homeViewController.presentAnimator = BETransitioningPresentingAnimator(direction: .down)
         addDataVC.transitioningDelegate = homeViewController
 
-        homeViewController.present(addDataVC, animated: true) {
-            SQFeedbackGenerator().generateFeedback(type: .notification)
-        }
+        homeViewController.present(addDataVC, animated: true, completion: nil)
     }
 
 }
