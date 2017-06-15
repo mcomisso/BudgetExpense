@@ -79,17 +79,25 @@ extension BEHomeViewController {
 
     func loadHomeData() {
 
+        let maxAngle: Double = 360.0
+        let minAngle: Double = 0.0
+
         let amount = BERealmManager.shared.getAmount() as! Double
         let weeklyBudget = 100.0
 
-        let angle = 360.0 * amount / weeklyBudget
+        let angle = maxAngle * amount / weeklyBudget
 
-        if angle >= 0 && angle <= 360 {
+        //        Make animation different depending on delta
+        //        let currentAngle = self.circularProgress.angle
+        //
+        //        let diff = abs(currentAngle - angle)
+
+        if angle >= minAngle && angle <= maxAngle {
             self.circularProgress.animate(toAngle: angle, duration: 2, completion: nil)
-        } else if angle > 360 {
-            self.circularProgress.animate(toAngle: 360, duration: 2, completion: nil)
-        } else if angle < 0 {
-            self.circularProgress.animate(toAngle: 0, duration: 2, completion: nil)
+        } else if angle > maxAngle {
+            self.circularProgress.animate(toAngle: maxAngle, duration: 2, completion: nil)
+        } else if angle < minAngle {
+            self.circularProgress.animate(toAngle: minAngle, duration: 2, completion: nil)
         }
 
 
@@ -171,9 +179,9 @@ extension BEHomeViewController {
     override func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.presentAnimator
     }
-
+    
     override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
-
+        
     }
 }
