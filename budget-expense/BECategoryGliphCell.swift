@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BEGliphCellDelegate: class {
+    func didSelectGliph(cell: BEGliphCell)
+}
+
 final class BEGliphCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!

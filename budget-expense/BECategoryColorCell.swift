@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BEColorCellDelegate: class {
+    func didSelectColor(cell: BEColorCell)
+}
+
 final class BEColorCell: UICollectionViewCell {
 
     private var gradientLayer: CAGradientLayer? = nil
