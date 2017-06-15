@@ -32,13 +32,13 @@ final class BETransactionsHistoryCollectionViewController: UICollectionViewContr
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        let label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.text = "No data available!\nYou can add data by swiping up or down in the previous screen."
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let description = UILabel()
+        description.textAlignment = .center
+        description.numberOfLines = 0
+        description.text = "No data available!\nYou can add data by swiping up or down in the previous screen."
+        description.translatesAutoresizingMaskIntoConstraints = false
 
-        let stack = UIStackView(arrangedSubviews: [imageView, label])
+        let stack = UIStackView(arrangedSubviews: [imageView, description])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.distribution = .fillProportionally
         stack.axis = .vertical
