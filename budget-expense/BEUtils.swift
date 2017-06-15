@@ -23,4 +23,10 @@ struct BEUtils {
         df.timeStyle = .none
         return df
     }()
+
+    static let dayNameFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "EEEE"
+        return df
+    }()
 }

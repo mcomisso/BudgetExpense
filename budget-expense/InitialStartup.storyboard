@@ -25,19 +25,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eee-5t-ILr">
-                                <rect key="frame" x="77.5" y="72" width="219" height="222.5"/>
+                                <rect key="frame" x="77.5" y="28" width="219" height="222.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eee-5t-ILr" secondAttribute="height" multiplier="80:81" id="LFS-mC-HKf"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCy-qV-8u2">
-                                <rect key="frame" x="16" y="302.5" width="343" height="29"/>
+                                <rect key="frame" x="16" y="258.5" width="343" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6al-PN-uyZ">
-                                <rect key="frame" x="16" y="339.5" width="343" height="191.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6al-PN-uyZ">
+                                <rect key="frame" x="16" y="295.5" width="343" height="235.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASa-oF-RHR" customClass="Button" customModule="Material">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Next"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcZ-sa-8pk" customClass="FlatButton" customModule="Material">
                                         <rect key="frame" x="0.0" y="60" width="343" height="60"/>
@@ -94,9 +94,9 @@
         <!--setupNavigator-->
         <scene sceneID="B0e-3R-WzH">
             <objects>
-                <navigationController title="setupNavigator" automaticallyAdjustsScrollViewInsets="NO" id="fN9-iz-k5M" customClass="BEInitialSetupNavigationController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="setupNavigator" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fN9-iz-k5M" customClass="BEInitialSetupNavigationController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7XB-WK-qDC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7XB-WK-qDC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
