@@ -20,6 +20,7 @@ PODS:
   - SQFeedbackGenerator (0.1.1)
   - SwiftCharts (0.6)
   - SwiftDate (4.1.2)
+  - VTAcknowledgementsViewController (1.2.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - SQFeedbackGenerator
   - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
   - SwiftDate
+  - VTAcknowledgementsViewController
 
 EXTERNAL SOURCES:
   Iconic:
@@ -64,7 +66,8 @@ SPEC CHECKSUMS:
   SQFeedbackGenerator: 007356526d4a45da5251505c91687a3743b58a00
   SwiftCharts: 84f84c2a94a3f51f055eeaacd9b8dc3ada3380eb
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
+  VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
 
-PODFILE CHECKSUM: 9da991b7ac55a1c8004c5a2b1f1a64244afb4c28
+PODFILE CHECKSUM: d480087b2ea9aa93c0f397e0835d5447fe81ad0c
 
 COCOAPODS: 1.2.1
