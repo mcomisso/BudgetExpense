@@ -49,27 +49,12 @@ class BEHomeViewController: UIViewController {
 
     @IBOutlet weak var amountDisplay: UILabel!
 
-    let onboarding: AlertOnboarding = {
-        let images = ["location", "sync"]
-        let titles = ["Allow location access?", "Use iCloud Sync?"]
-        let locationDescription = "If you travel, BUDGET EXPENSE can retrieve your location and automatically switch to the visiting country currency.\nRegister all your expenses with ease, the foreign value gets converted to match your currency preference."
-        let icloudDescription = "Use iCloud Sync to have a copy of all your data inside each device you own. Real time syncing is on its way"
-        let descriptions = [locationDescription, icloudDescription]
-
-        let ao = AlertOnboarding(arrayOfImage: images, arrayOfTitle: titles, arrayOfDescription: descriptions)
-        ao.titleSkipButton = "Next"
-        ao.titleGotItButton = "im done"
-        return ao
-    }()
-
     var presentAnimator: BETransitioningPresentingAnimator? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.prepareViews()
-
-        self.onboarding.delegate = self
 
         self.addGestureRecognizers()
     }
@@ -85,10 +70,6 @@ class BEHomeViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if UserDefaults.standard.bool(forKey: "onboarded") == false {
-            self.presentOnboarding()
-        }
 
         self.loadHomeData()
     }
@@ -195,29 +176,5 @@ extension BEHomeViewController {
     override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
 
-    }
-}
-
-extension BEHomeViewController: AlertOnboardingDelegate {
-
-    func presentOnboarding() {
-        self.onboarding.show()
-    }
-
-    func setupOnboarding() {
-
-    }
-
-    func alertOnboardingSkipped(_ currentStep: Int, maxStep: Int) {
-        print("Skipped onboarding")
-    }
-
-    func alertOnboardingCompleted() {
-        print("Completed onboarding")
-        UserDefaults.standard.set(true, forKey:"onboarded")
-    }
-
-    func alertOnboardingNext(_ nextStep: Int) {
-        print("Next onboarding")
     }
 }
