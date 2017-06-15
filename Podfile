@@ -13,7 +13,6 @@ target 'budget-expense' do
   pod "Material", "~> 2.0"
   pod "Crashlytics"
   pod "SQFeedbackGenerator"
-  pod "AlertOnboarding"
   pod "Presentr"
   pod 'Iconic', :git => 'https://github.com/dzenbot/Iconic.git', :tag => '1.3'
   pod 'PKHUD', '~> 4.0'

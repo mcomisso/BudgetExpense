@@ -243,6 +243,7 @@
 		B96298E01EF1720C00ED9555 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B9E35E5A1EF1D8E6003DAC07 /* BECategory+extension.swift */,
 				B95356B81DB352820024C6D5 /* UIColor+extensions.swift */,
 				B96298DE1EF1720200ED9555 /* Iconic+extension.swift */,
 				B96298E11EF1722500ED9555 /* NSNumber+extension.swift */,
@@ -276,7 +277,6 @@
 				B96298ED1EF1C5F700ED9555 /* BEWallet.swift */,
 				B96298EF1EF1C60400ED9555 /* BEBudget.swift */,
 				B96298F11EF1C61E00ED9555 /* BECategory.swift */,
-				B9E35E5A1EF1D8E6003DAC07 /* BECategory+extension.swift */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -302,8 +302,8 @@
 		B9635F9C1E01336300AC6652 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */,
 				B96298B21EEFFDE300ED9555 /* BENumericMemory.swift */,
+				B9B848031EEDDE9800DF7C39 /* BEModelProtocols.swift */,
 				B91378D01EEF0B960075B118 /* CloudKit */,
 				B96298EA1EF1C5CE00ED9555 /* Realm */,
 				B96298E81EF1C57800ED9555 /* BEInitialData.swift */,
@@ -831,7 +831,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BEA38E3437E3FD4DC459FD4C /* Pods-budget-expense.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = DollarIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
@@ -854,7 +853,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 12686B0907EC993B43F52F90 /* Pods-budget-expense.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = DollarIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "budget-expense/budget-expense.entitlements";
