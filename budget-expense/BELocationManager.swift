@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import SQFeedbackGenerator
+import PKHUD
 
 class BELocationManager: NSObject {
 
@@ -32,10 +33,20 @@ extension BELocationManager: CLLocationManagerDelegate {
     func requestAuthorization() {
 
         if CLLocationManager.locationServicesEnabled() {
-            if CLLocationManager.authorizationStatus() == .notDetermined {
+
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
                 // Only needs "when in use"
                 self.locationManager.requestWhenInUseAuthorization()
-            } else if CLLocationManager.authorizationStatus() == .restricted {
+            case .authorizedAlways, .authorizedWhenInUse:
+                // OK
+                print("OK")
+                HUD.flash(.success, delay: 2)
+            case .restricted:
+                HUD.flash(.labeledError(title: "User did not allow location", subtitle: "Accessing location is needed for..."), delay: 2)
+                self.feedbackGenerator.generateFeedback(type: .error)
+            default:
+                HUD.flash(.error, delay: 2)
                 self.feedbackGenerator.generateFeedback(type: .error)
             }
         } else {
