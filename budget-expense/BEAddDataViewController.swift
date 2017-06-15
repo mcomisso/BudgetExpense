@@ -37,7 +37,7 @@ class BEAddDataViewController: UIViewController {
     // Small view controller that contains all the categories
     var categoriesVC: BECategoriesCollectionView!
 
-    let presentr = Presentr(presentationType: .bottomHalf)
+    let bottomHalfPresentr = Presentr(presentationType: .bottomHalf)
 
     let feedbackGenerator = SQFeedbackGenerator()
 
@@ -134,6 +134,7 @@ class BEAddDataViewController: UIViewController {
 
         self.sideDeleteButton.setTitle("", for: .normal)
         self.sideDeleteButton.setImage(#imageLiteral(resourceName: "delete").tint(with: .white), for: .normal)
+        self.sideDeleteButton.imageView?.contentMode = .scaleAspectFit
         self.sideDeleteButton.addTarget(self, action: #selector(self.deleteLastDigit(_:)), for: .touchUpInside)
         self.sideDeleteButton.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
 
@@ -204,7 +205,7 @@ extension BEAddDataViewController: BECategoriesCollectionViewControllerDelegate 
 
         let categorySelector = R.storyboard.categories().instantiateInitialViewController() as! BECategorySelectorViewController
 
-        self.customPresentViewController(self.presentr, viewController: categorySelector, animated: true, completion: nil)
+        self.customPresentViewController(self.bottomHalfPresentr, viewController: categorySelector, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
