@@ -103,7 +103,16 @@ extension BEHomeViewController {
         let weeklyBudget = 100.0
 
         let angle = 360.0 * amount / weeklyBudget
-        self.circularProgress.animate(toAngle: angle > 0 ? angle : 0, duration: 2, completion: nil)
+
+        if angle >= 0 && angle <= 360 {
+            self.circularProgress.animate(toAngle: angle, duration: 2, completion: nil)
+        } else if angle > 360 {
+            self.circularProgress.animate(toAngle: 360, duration: 2, completion: nil)
+        } else if angle < 0 {
+            self.circularProgress.animate(toAngle: 0, duration: 2, completion: nil)
+        }
+
+
 
     }
     func addGestureRecognizers() {
