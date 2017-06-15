@@ -64,6 +64,8 @@ final class BEInitialSetupNavigationController: UINavigationController {
 
                                                                 if accepted {
                                                                     // Ask location
+                                                                    let locationManager = BELocationManager()
+                                                                    locationManager.requestAuthorization()
                                                                 }
                                                                 
                                                                 self?.loadNext()
