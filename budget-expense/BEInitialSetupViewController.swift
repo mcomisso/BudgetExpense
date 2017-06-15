@@ -18,14 +18,21 @@ struct InitializerData {
     let completionAction: (Bool) -> Void
 }
 
+protocol BEInitialSetupNavigationControllerDelegate: class {
+    func didDismissNavigationController(_ navigationController: BEInitialSetupNavigationController)
+}
+
 final class BEInitialSetupNavigationController: UINavigationController {
 
     var setupViewControllers: [BEInitialSetupViewController] = []
 
     var index: Int = 0
 
-    lazy var dataSource: [InitializerData] = {
+    weak var setupDelegate: BEInitialSetupNavigationControllerDelegate?
 
+    var dataSource: [InitializerData] = []
+
+    func setupInitData() {
         let welcomePage: InitializerData = InitializerData(title: "Welcome to BUDGET EXPENSE",
                                                            description: "Thank you for purchasing Budget Expense!Thank you for purchasing Budget Expense!Thank you for purchasing Budget Expense!Thank you for purchasing Budget Expense!",
                                                            image: #imageLiteral(resourceName: "add"),
@@ -58,48 +65,54 @@ final class BEInitialSetupNavigationController: UINavigationController {
                                                                 if accepted {
                                                                     // Ask location
                                                                 }
-
+                                                                
                                                                 self?.loadNext()
         }
 
-        return [welcomePage, notificationControl, locationControl]
-    }()
+        self.dataSource = [welcomePage, notificationControl, locationControl]
+    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.setupInitData()
+
+        print(self.childViewControllers)
+
+        print(self.setupViewControllers)
+
+        print(self.viewControllers)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        (self.viewControllers.first as! BEInitialSetupViewController).setup(self.dataSource.first!)
+
+    }
 
     func loadNext() {
         guard let nextVC = R.storyboard.initialStartup.requestController() else { self.dismiss(animated: true, completion: nil); return }
 
         self.index += 1
 
-        nextVC.setup(self.dataSource[index])
-        self.pushViewController(nextVC, animated: true)
+        if self.index < self.dataSource.count {
+            nextVC.setup(self.dataSource[index])
+            self.pushViewController(nextVC, animated: true)
+        } else {
+            self.complete()
+        }
+    }
+
+    func complete() {
+        self.setupDelegate?.didDismissNavigationController(self)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }
 
-class BEInitialSetupViewController: UIViewController {
+final class BEInitialSetupViewController: UIViewController {
 
-    private var titleDescription: String? {
-        didSet {
-            self.titleLabel.text = titleDescription
-        }
-    }
-
-    private var descriptionString: String? {
-        didSet {
-            self.descriptionLabel.text = descriptionString
-        }
-    }
-    
-    private var image: UIImage? {
-        didSet {
-            self.imageView.image = image
-        }
-    }
-    
-    private var completion: ((Bool) -> Void)?
-    
-    private var data: InitializerData!
+    private var data: InitializerData?
     
     
     @IBOutlet weak var imageView: UIImageView!
@@ -116,22 +129,27 @@ class BEInitialSetupViewController: UIViewController {
         
         
         self.acceptButton.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
-        self.doNotAcceptButton.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
+        self.doNotAcceptButton.addTarget(self, action: #selector(loadNextPage), for: .touchUpInside)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let data = self.data else { return }
+        self.imageView.image = data.image
+        self.titleLabel.text = data.title
+        self.descriptionLabel.text = data.description
     }
     
     func setup(_ data: InitializerData) {
-        
-        self.image = data.image
-        self.titleDescription = data.title
-        self.descriptionString = data.description
-        self.completion = data.completionAction
+        self.data = data
     }
-    
+
     func continueAction(_ sender: UIButton) {
-        
+        self.data?.completionAction(true)
     }
     
     func loadNextPage() {
-        
+        self.data?.completionAction(false)
     }
 }
