@@ -11,11 +11,13 @@ import CoreLocation
 import SQFeedbackGenerator
 import PKHUD
 
-class BELocationManager: NSObject {
+final class BELocationManager: NSObject {
+
+    public static let shared = BELocationManager()
 
     let feedbackGenerator = SQFeedbackGenerator()
 
-    lazy var locationManager: CLLocationManager = { [weak self] in
+    fileprivate lazy var locationManager: CLLocationManager = { [weak self] in
         let l = CLLocationManager()
         l.desiredAccuracy = 2000
         l.allowsBackgroundLocationUpdates = false
@@ -30,27 +32,37 @@ class BELocationManager: NSObject {
 extension BELocationManager: CLLocationManagerDelegate {
 
 
-    func requestAuthorization() {
+    func requestAuthorization(successCallback: (()-> Void)? = nil) {
 
         if CLLocationManager.locationServicesEnabled() {
 
             switch CLLocationManager.authorizationStatus() {
+
             case .notDetermined:
                 // Only needs "when in use"
                 self.locationManager.requestWhenInUseAuthorization()
+
             case .authorizedAlways, .authorizedWhenInUse:
                 // OK
-                print("OK")
-                HUD.flash(.success, delay: 2)
+                print("Ok, location enabled")
+                guard let callback = successCallback else { return }
+                callback()
+
             case .restricted:
-                HUD.flash(.labeledError(title: "User did not allow location", subtitle: "Accessing location is needed for..."), delay: 2)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: "User did not allow location", subtitle: "Accessing location is needed for..."), delay: 2)
+                }
                 self.feedbackGenerator.generateFeedback(type: .error)
-            default:
-                HUD.flash(.error, delay: 2)
+
+            case .denied:
+                DispatchQueue.main.async {
+                    HUD.flash(.error, delay: 2)
+                }
                 self.feedbackGenerator.generateFeedback(type: .error)
             }
         } else {
-            // Present Error
+            // Present Error for Location Services disabled
+            HUD.show(HUDContentType.labeledError(title: "The location services are not enabled", subtitle: "Go to settings and enable it"))
             self.feedbackGenerator.generateFeedback(type: .error)
         }
     }
@@ -58,10 +70,12 @@ extension BELocationManager: CLLocationManagerDelegate {
 
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
         // Did pause location
+        print("Did pause location updates")
     }
 
     func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
         // Did resume location
+        print("Did resume location updates")
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -108,7 +122,12 @@ extension BELocationManager: CLLocationManagerDelegate {
                 print(error)
             }
         }
+    }
 
+    func requestLocation() {
+        self.requestAuthorization { 
+            self.locationManager.requestLocation()
+        }
     }
 
 
