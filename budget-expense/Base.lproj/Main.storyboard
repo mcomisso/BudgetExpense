@@ -481,36 +481,47 @@
         <scene sceneID="YKx-gH-V8F">
             <objects>
                 <collectionViewController id="nTj-fN-6vp" customClass="BECategoriesCollectionView" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZM0-Oo-huH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZM0-Oo-huH">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dmh-jc-qZZ">
-                            <size key="itemSize" width="64" height="64"/>
+                            <size key="itemSize" width="160" height="47"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoriesCellIdentifier" id="B0g-PR-4bh" customClass="BECategoryCollectionViewCell" customModule="budget_expense" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="47"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aAz-IF-de3">
-                                            <rect key="frame" x="7.5" y="8" width="48" height="48"/>
+                                            <rect key="frame" x="8" y="8" width="31" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="aAz-IF-de3" secondAttribute="height" multiplier="1:1" id="fCJ-hJ-SHe"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3g-8f-Rk6">
+                                            <rect key="frame" x="47" y="0.0" width="105" height="47"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="aAz-IF-de3" firstAttribute="leading" secondItem="B0g-PR-4bh" secondAttribute="leadingMargin" id="2Mj-lz-SYD"/>
+                                    <constraint firstItem="W3g-8f-Rk6" firstAttribute="leading" secondItem="aAz-IF-de3" secondAttribute="trailing" constant="8" id="2NB-FF-Wg5"/>
                                     <constraint firstItem="aAz-IF-de3" firstAttribute="centerY" secondItem="B0g-PR-4bh" secondAttribute="centerY" id="Eoh-tl-OOW"/>
+                                    <constraint firstAttribute="trailing" secondItem="W3g-8f-Rk6" secondAttribute="trailing" constant="8" id="WuT-7M-jP2"/>
+                                    <constraint firstItem="W3g-8f-Rk6" firstAttribute="top" secondItem="B0g-PR-4bh" secondAttribute="top" id="g8H-B9-h5W"/>
                                     <constraint firstItem="aAz-IF-de3" firstAttribute="top" secondItem="B0g-PR-4bh" secondAttribute="topMargin" id="pyA-hN-uyO"/>
-                                    <constraint firstItem="aAz-IF-de3" firstAttribute="centerX" secondItem="B0g-PR-4bh" secondAttribute="centerX" id="ttf-L5-QZF"/>
+                                    <constraint firstAttribute="bottom" secondItem="W3g-8f-Rk6" secondAttribute="bottom" id="r4G-iS-ahJ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="icon" destination="aAz-IF-de3" id="oGA-sA-Uqd"/>
