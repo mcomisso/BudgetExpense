@@ -8,7 +8,6 @@
 
 import UIKit
 import CloudKit
-import UserNotifications
 import Iconic
 
 
@@ -22,52 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let locationManager = BELocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
 
-        // initialize standard settings
+        // These settings must be initialized before instantiating the app coordinator
         BESettingsManager.initializeDefaults()
 
         window = UIWindow()
+
         self.coordinator = BEAppCoordinator(window: window)
         self.coordinator?.start()
 
         window?.makeKeyAndVisible()
 
 
+        // Dispatch low priority init on a background queue
         DispatchQueue.global(qos: .background).async {
+
             // Iconic register
             FontAwesomeIcon.register()
 
-            // Location to fetch
-            self.locationManager.requestAuthorization()
-
-            // Load initial data
-
+            // Load initial data if database is empty
             if BERealmManager.shared.isEmpty {
                 BEInitialData.loadIntoRealm()
             }
-        }
 
-        self.registerForNotifications(application: application)
+            BECurrencyWebService().fetchUpdatedRates()
+        }
 
         return true
     }
-
-
 }
-
-extension AppDelegate {
-
-    func registerForNotifications(application: UIApplication) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
-            if success {
-                // Continue
-                application.registerForRemoteNotifications()
-            } else if let e = error {
-                print(e.localizedDescription)
-            }
-        }
-    }
-
-}
-

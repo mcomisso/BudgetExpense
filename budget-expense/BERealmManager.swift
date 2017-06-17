@@ -43,6 +43,23 @@ final class BERealmManager {
 }
 
 
+//MARK:- CURRENCY
+
+extension BERealmManager {
+    func saveCurrencies(_ currencies: [BECurrency]) {
+        let realm = self.realm
+
+        do {
+            try realm.write {
+                realm.add(currencies, update: true)
+            }
+        } catch {
+            print("Error while saving currencies: \(error)")
+        }
+
+    }
+}
+
 //MARK:- AMOUNTS
 fileprivate typealias BERealmAmountMethods = BERealmManager
 extension BERealmAmountMethods {
