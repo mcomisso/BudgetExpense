@@ -19,7 +19,8 @@ target 'budget-expense' do
   pod 'KDCircularProgress'
   pod 'VTAcknowledgementsViewController'
   pod "R.swift"
-
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing
