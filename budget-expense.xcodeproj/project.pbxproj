@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */; };
+		B913188C1EF5366900FE1BDF /* BECurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188B1EF5366900FE1BDF /* BECurrency.swift */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
 		B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D71EEF47020075B118 /* BEAppCoordinator.swift */; };
+		B938A9861EF3E9C70058FE87 /* BECurrencyWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938A9851EF3E9C70058FE87 /* BECurrencyWebService.swift */; };
 		B943437F1EF2C2DD00A94391 /* BENumpadInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B943437E1EF2C2DD00A94391 /* BENumpadInputView.swift */; };
 		B94343811EF312A300A94391 /* BEUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94343801EF312A300A94391 /* BEUserNotificationManager.swift */; };
 		B94343831EF316AD00A94391 /* BENotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94343821EF316AD00A94391 /* BENotificationCenterManager.swift */; };
@@ -84,10 +86,12 @@
 		836F756D0A5B157CE5139909 /* Pods-budget-expenseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.release.xcconfig"; sourceTree = "<group>"; };
 		8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budget_expense.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B913188B1EF5366900FE1BDF /* BECurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECurrency.swift; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
 		B91378D71EEF47020075B118 /* BEAppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEAppCoordinator.swift; sourceTree = "<group>"; };
+		B938A9851EF3E9C70058FE87 /* BECurrencyWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECurrencyWebService.swift; sourceTree = "<group>"; };
 		B943437E1EF2C2DD00A94391 /* BENumpadInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BENumpadInputView.swift; sourceTree = "<group>"; };
 		B94343801EF312A300A94391 /* BEUserNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUserNotificationManager.swift; sourceTree = "<group>"; };
 		B94343821EF316AD00A94391 /* BENotificationCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BENotificationCenterManager.swift; sourceTree = "<group>"; };
@@ -208,6 +212,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		B938A9841EF3E9B00058FE87 /* WebServices */ = {
+			isa = PBXGroup;
+			children = (
+				B938A9851EF3E9C70058FE87 /* BECurrencyWebService.swift */,
+			);
+			name = WebServices;
+			sourceTree = "<group>";
+		};
 		B96298BB1EF0210A00ED9555 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +298,7 @@
 				B96298ED1EF1C5F700ED9555 /* BEWallet.swift */,
 				B96298EF1EF1C60400ED9555 /* BEBudget.swift */,
 				B96298F11EF1C61E00ED9555 /* BECategory.swift */,
+				B913188B1EF5366900FE1BDF /* BECurrency.swift */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -360,6 +373,7 @@
 				B94343801EF312A300A94391 /* BEUserNotificationManager.swift */,
 				B94343821EF316AD00A94391 /* BENotificationCenterManager.swift */,
 				B94343851EF31ED400A94391 /* BENetworkManager.swift */,
+				B938A9841EF3E9B00058FE87 /* WebServices */,
 				B9635F9B1E01244700AC6652 /* UI Helpers */,
 				B96298D81EF1393900ED9555 /* Storyboards */,
 				B999580A1DA217DF007274BB /* Assets.xcassets */,
@@ -682,8 +696,10 @@
 				B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */,
 				B96298DD1EF171B500ED9555 /* BECategoryGliphCell.swift in Sources */,
 				B9C884241DB321C600D7A9BC /* BERealmManager.swift in Sources */,
+				B913188C1EF5366900FE1BDF /* BECurrency.swift in Sources */,
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
 				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
+				B938A9861EF3E9C70058FE87 /* BECurrencyWebService.swift in Sources */,
 				B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */,
 				B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */,
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
