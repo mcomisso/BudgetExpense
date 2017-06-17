@@ -22,7 +22,18 @@ class BEAddDataViewController: UIViewController {
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
 
-    @IBOutlet weak var currentDigits: UILabel!
+    private lazy var currentDigits: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 80)
+        label.sizeToFit()
+        label.text = NSNumber.init(value: 0.00).toCurrency()
+
+        return label
+    }()
+
+    @IBOutlet weak var cardContainer: Card!
 
     @IBOutlet weak var sideDeleteButton: UIButton!
     @IBOutlet weak var saveButton: RaisedButton! // Delete digit button
@@ -70,6 +81,7 @@ class BEAddDataViewController: UIViewController {
         self.setCurrentType()
         self.setupButtons()
         self.setupActionButtons()
+        self.setupDigits()
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,17 +92,32 @@ class BEAddDataViewController: UIViewController {
 
     //MARK:-
 
-    func setCurrentType() {
-        switch self.type {
-        case .income:
-            self.view.gradientFromColor(BETheme.Colors.primary)
-            self.view.backgroundColor = .clear
-            self.notesTextField.detailColor = Color.teal.accent3
-        case .expense:
-            self.view.gradientFromColor(Color.deepOrange.base)
-            self.view.backgroundColor = .clear
-            self.notesTextField.detailColor = Color.red.accent3
+
+    func setupDigits() {
+        self.cardContainer.depth = Depth(offset: Offset.init(horizontal: 0, vertical: 4), opacity: 0.2, radius: 10)
+        self.cardContainer.contentView = self.currentDigits
+        self.cardContainer.cornerRadius = 15
+        if self.type == .expense {
+            self.cardContainer.container.gradientFromColor(BETheme.Colors.expense)
+        } else {
+            self.cardContainer.container.gradientFromColor(BETheme.Colors.income)
         }
+    }
+
+    func setCurrentType() {
+
+        self.view.backgroundColor = Color.blueGrey.lighten5
+
+//        switch self.type {
+//        case .income:
+//            self.view.gradientFromColor(BETheme.Colors.primary)
+//            self.view.backgroundColor = .clear
+//            self.notesTextField.detailColor = Color.teal.accent3
+//        case .expense:
+//            self.view.gradientFromColor(Color.deepOrange.base)
+//            self.view.backgroundColor = .clear
+//            self.notesTextField.detailColor = Color.red.accent3
+//        }
     }
 
     func setupActionButtons() {
