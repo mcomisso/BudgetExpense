@@ -13,6 +13,7 @@
 		B91318901EF67D9000FE1BDF /* BESettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */; };
 		B91318931EF6882E00FE1BDF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91318921EF6882E00FE1BDF /* Settings.storyboard */; };
 		B91318961EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */; };
+		B91318981EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
@@ -95,6 +96,7 @@
 		B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESettingsViewController.swift; sourceTree = "<group>"; };
 		B91318921EF6882E00FE1BDF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-budget-expense-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-budget-expense/Pods-budget-expense-acknowledgements.plist"; sourceTree = "<group>"; };
+		B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEDateSelectorViewController.swift; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */,
 				B943437E1EF2C2DD00A94391 /* BENumpadInputView.swift */,
 				B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */,
+				B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */,
 				B96298D91EF1717F00ED9555 /* Category */,
 			);
 			name = "ViewControllers ";
@@ -692,6 +695,7 @@
 			files = (
 				B91378D81EEF47020075B118 /* BEAppCoordinator.swift in Sources */,
 				B94343811EF312A300A94391 /* BEUserNotificationManager.swift in Sources */,
+				B91318981EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift in Sources */,
 				B96298B31EEFFDE300ED9555 /* BENumericMemory.swift in Sources */,
 				B9B848041EEDDE9800DF7C39 /* BEModelProtocols.swift in Sources */,
 				B96298B81EF020BC00ED9555 /* BETransationCell.swift in Sources */,

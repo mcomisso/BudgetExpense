@@ -469,7 +469,7 @@
         <scene sceneID="YKx-gH-V8F">
             <objects>
                 <collectionViewController id="nTj-fN-6vp" customClass="BECategoriesCollectionView" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZM0-Oo-huH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZM0-Oo-huH">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -547,11 +547,11 @@
                                     <action selector="didChangeDate:" destination="ys1-hO-3QV" eventType="valueChanged" id="mCP-vR-bVh"/>
                                 </connections>
                             </datePicker>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xvs-Jp-Lo2">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xvs-Jp-Lo2">
                                 <rect key="frame" x="16" y="20" width="343" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YtF-TA-IGu" customClass="Button" customModule="Material">
-                                        <rect key="frame" x="0.0" y="0.0" width="88.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="apD-ei-62p"/>
                                         </constraints>
@@ -561,13 +561,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-h1-1G8">
-                                        <rect key="frame" x="88.5" y="0.0" width="176.5" height="40"/>
+                                        <rect key="frame" x="114.5" y="0.0" width="114" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uua-yp-Ntu" customClass="Button" customModule="Material">
-                                        <rect key="frame" x="265" y="0.0" width="78" height="40"/>
+                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="40"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="saveDate:" destination="ys1-hO-3QV" eventType="touchUpInside" id="NDA-cM-GN7"/>
