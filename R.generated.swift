@@ -154,7 +154,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `Categories`.
     static let categories = _R.storyboard.categories()
@@ -164,6 +164,8 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `Settings`.
+    static let settings = _R.storyboard.settings()
     /// Storyboard `Transactions`.
     static let transactions = _R.storyboard.transactions()
     
@@ -185,6 +187,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    
+    /// `UIStoryboard(name: "Settings", bundle: ...)`
+    static func settings(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.settings)
     }
     
     /// `UIStoryboard(name: "Transactions", bundle: ...)`
@@ -285,6 +292,15 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if _R.storyboard.main().addDataViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addDataViewController' could not be loaded from storyboard 'Main' as 'BEAddDataViewController'.") }
       }
+      
+      fileprivate init() {}
+    }
+    
+    struct settings: Rswift.StoryboardResourceWithInitialControllerType {
+      typealias InitialController = BESettingsViewController
+      
+      let bundle = R.hostingBundle
+      let name = "Settings"
       
       fileprivate init() {}
     }
