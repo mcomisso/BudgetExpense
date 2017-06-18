@@ -10,6 +10,8 @@
 		28687D22AEFE4358458AA297 /* Pods_budget_expense.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC13CA8DEC3D760FC600103 /* Pods_budget_expense.framework */; };
 		B913188C1EF5366900FE1BDF /* BECurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188B1EF5366900FE1BDF /* BECurrency.swift */; };
 		B913188E1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */; };
+		B91318901EF67D9000FE1BDF /* BESettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */; };
+		B91318931EF6882E00FE1BDF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91318921EF6882E00FE1BDF /* Settings.storyboard */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
@@ -89,6 +91,8 @@
 		94CE10D2790F42FE561B9117 /* Pods-budget-expenseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-expenseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-budget-expenseTests/Pods-budget-expenseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B913188B1EF5366900FE1BDF /* BECurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECurrency.swift; sourceTree = "<group>"; };
 		B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECurrencySelectorViewController.swift; sourceTree = "<group>"; };
+		B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESettingsViewController.swift; sourceTree = "<group>"; };
+		B91318921EF6882E00FE1BDF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
 				B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */,
 				B943437E1EF2C2DD00A94391 /* BENumpadInputView.swift */,
+				B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */,
 				B96298D91EF1717F00ED9555 /* Category */,
 			);
 			name = "ViewControllers ";
@@ -251,6 +256,7 @@
 				B96298D41EF135A100ED9555 /* InitialStartup.storyboard */,
 				B96298D01EF0931400ED9555 /* Categories.storyboard */,
 				B96298BE1EF0688700ED9555 /* Transactions.storyboard */,
+				B91318921EF6882E00FE1BDF /* Settings.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				B96298C81EF07E6C00ED9555 /* beep_short_off.aif in Resources */,
 				B96298C51EF07E5D00ED9555 /* click.aif in Resources */,
 				B96298BF1EF0688700ED9555 /* Transactions.storyboard in Resources */,
+				B91318931EF6882E00FE1BDF /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +734,7 @@
 				B96298EC1EF1C5E000ED9555 /* BEAmount.swift in Sources */,
 				B9DAEF4D1DA4BE850019C9F6 /* BEKeyPad.swift in Sources */,
 				B96298BD1EF0211C00ED9555 /* BECategoriesCollectionViewCell.swift in Sources */,
+				B91318901EF67D9000FE1BDF /* BESettingsViewController.swift in Sources */,
 				B96298E41EF1724000ED9555 /* UserDefaults+extension.swift in Sources */,
 				B9E35E5B1EF1D8E6003DAC07 /* BECategory+extension.swift in Sources */,
 			);
