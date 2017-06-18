@@ -100,7 +100,7 @@ final class BEAddDataViewController: UIViewController {
             } else if date.isYesterday {
                 titleButton = "Yesterday"
             } else {
-                titleButton = BEUtils.isoDateFormatter.string(from: self.date)
+                titleButton = "\(self.date.day)/\(self.date.month)\n\(self.date.year)"
             }
             self.dateButton.setTitle(titleButton, for: .normal)
         }
@@ -123,6 +123,8 @@ final class BEAddDataViewController: UIViewController {
 
         self.dateButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.dateButton.titleLabel?.minimumScaleFactor = 0.5
+        self.dateButton.titleLabel?.numberOfLines = 2
+        self.dateButton.titleLabel?.textAlignment = .center
 
         self.setCurrentType()
 
@@ -331,6 +333,9 @@ extension BEAddDataViewController: BEDateSelectorViewControllerDelegate {
 
     func updateDates(date: Date) {
         self.date = date
+        let dateLabel = UILabel()
+        dateLabel.text = BEUtils.longDateFormatter.string(from: self.date)
+        self.cardContainer.bottomBar = Bar.init(centerViews: [dateLabel])
     }
 }
 
