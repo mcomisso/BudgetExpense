@@ -34,12 +34,16 @@ final class BESettingsViewController: FormViewController {
          */
 
         form +++ Section("General")
-            <<< SwitchRow() { row in
-                row.title = "iCloud Enabled"
-                row.value = BESettings.iCloudEnabled.boolValue
-                }.onChange({ row in
-                    BESettings.iCloudEnabled.set(value: row.value!)
-                })
+        if BEConstants.Features.CLOUD_KIT_ENABLED {
+            form.last!
+                <<< SwitchRow() { row in
+                    row.title = "iCloud Enabled"
+                    row.value = BESettings.iCloudEnabled.boolValue
+                    }.onChange({ row in
+                        BESettings.iCloudEnabled.set(value: row.value!)
+                    })
+        }
+        form.last!
             <<< PushRow<String>() {
                 $0.title = "Base Currency"
                 $0.value = BERealmManager.shared.getBaseCurrency()?.currency
