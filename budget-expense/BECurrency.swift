@@ -11,13 +11,15 @@ import RealmSwift
 
 class BECurrency: Object {
 
+    dynamic var isBaseCurrency: Bool = false
     dynamic var currency: String = ""
     dynamic var value: Double = 0.0
 
 
-    convenience init(currency: String, value: Double) {
+    convenience init(currency: String, value: Double, isBase: Bool = false) {
         self.init()
 
+        self.isBaseCurrency = isBase
         self.currency = currency
         self.value = value
     }
