@@ -206,7 +206,7 @@ final class BEAddDataViewController: UIViewController {
 
     func didPressLocation() {
         // ASK LOCATION MANAGER TO FETCH
-        BELocationManager.shared.requestLocation()
+        BELocationManager.shared.requestCurrentLocation()
     }
 
     func didPressPicture() {

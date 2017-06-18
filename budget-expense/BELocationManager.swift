@@ -32,7 +32,7 @@ final class BELocationManager: NSObject {
 extension BELocationManager: CLLocationManagerDelegate {
 
 
-    func requestAuthorization(successCallback: (()-> Void)? = nil) {
+    func requestAuthorization(successCallback: ((Bool)-> Void)? = nil) {
 
         if CLLocationManager.locationServicesEnabled() {
 
@@ -46,18 +46,23 @@ extension BELocationManager: CLLocationManagerDelegate {
                 // OK
                 print("Ok, location enabled")
                 guard let callback = successCallback else { return }
-                callback()
+                callback(true)
 
             case .restricted:
                 DispatchQueue.main.async {
                     HUD.flash(.labeledError(title: "User did not allow location", subtitle: "Accessing location is needed for..."), delay: 2)
                 }
+                guard let callback = successCallback else { return }
+                callback(false)
                 self.feedbackGenerator.generateFeedback(type: .error)
 
             case .denied:
+
                 DispatchQueue.main.async {
                     HUD.flash(.error, delay: 2)
                 }
+                guard let callback = successCallback else { return }
+                callback(false)
                 self.feedbackGenerator.generateFeedback(type: .error)
             }
         } else {
@@ -66,7 +71,6 @@ extension BELocationManager: CLLocationManagerDelegate {
             self.feedbackGenerator.generateFeedback(type: .error)
         }
     }
-
 
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
         // Did pause location
@@ -84,7 +88,7 @@ extension BELocationManager: CLLocationManagerDelegate {
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             // Always or when in use
-            self.locationManager.requestLocation()
+            self.locationManager.startMonitoringSignificantLocationChanges()
         case .denied:
             // The user explicitly denied the use of location services for this app or location services are currently disabled in Settings.
             print()
@@ -100,6 +104,10 @@ extension BELocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // Print out error
+        let err = error as NSError
+        print(err.code)
+        print(err.localizedDescription)
+        print(err.localizedFailureReason ?? "")
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -111,23 +119,43 @@ extension BELocationManager: CLLocationManagerDelegate {
                 return
             }
 
-            self.feedbackGenerator.generateFeedback(type: .success)
+            if let error = error {
+                print(error)
+                self.feedbackGenerator.generateFeedback(type: .error)
+            } else {
+                self.feedbackGenerator.generateFeedback(type: .success)
+            }
+
+
             if let country = placemark.country,
                 let isoCode = placemark.isoCountryCode {
                 print(country)
                 print(isoCode)
-            }
-
-            if let error = error {
-                print(error)
+                self.updateCurrencyFromLocation(countryCode: isoCode)
             }
         }
     }
 
-    func requestLocation() {
+
+    func requestCurrentLocation() {
         guard BESettings.automaticGeolocation.boolValue == true else { return }
-        self.requestAuthorization {
-            self.locationManager.requestLocation()
+        self.requestAuthorization { success in
+            if success {
+                self.locationManager.startMonitoringSignificantLocationChanges()
+            } else {
+                self.locationManager.stopMonitoringSignificantLocationChanges()
+            }
+        }
+    }
+
+    func updateCurrencyFromLocation(countryCode: String) {
+        let restCountriesWS = BERestCountriesWebService()
+        restCountriesWS.askForCurrencyFromCountryCode(countryCode) { (success, value) in
+            if success {
+                if let countryCode = value {
+                    BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: countryCode)
+                }
+            }
         }
     }
 
