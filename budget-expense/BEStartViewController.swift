@@ -28,6 +28,8 @@ protocol BEHomeViewControllerDelegate: class {
     ///
     /// - Parameter homeViewController: The source of the event
     func didSelectListScreen(_ homeViewController: BEHomeViewController)
+
+    func didSelectShowSettings(_ homeViewController: BEHomeViewController)
 }
 
 
@@ -54,6 +56,7 @@ class BEHomeViewController: UIViewController {
         super.viewDidLoad()
 
         self.prepareViews()
+        self.addSettingsButton()
 
         self.addGestureRecognizers()
     }
@@ -120,6 +123,16 @@ extension BEHomeViewController {
         self.view.addGestureRecognizer(incomeGestureRecognizer)
     }
 
+
+    func addSettingsButton() {
+        let fab = FABButton()
+        fab.image = Icon.settings
+        fab.addTarget(self, action: #selector(showSettingsViewController), for: .touchUpInside)
+        self.view.addSubview(fab)
+
+        self.view.layout(fab).size(CGSize(width: 55, height: 55)).bottom(24).left(24)
+    }
+
     func prepareViews() {
 
         self.view.backgroundColor = .white
@@ -148,6 +161,10 @@ extension BEHomeViewController {
 }
 
 extension BEHomeViewController: UIGestureRecognizerDelegate {
+
+    func showSettingsViewController() {
+        self.delegate?.didSelectShowSettings(self)
+    }
 
     func transactionsDetails(recognizer: UITapGestureRecognizer) {
         self.delegate?.didSelectListScreen(self)
