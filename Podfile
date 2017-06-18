@@ -21,6 +21,7 @@ target 'budget-expense' do
   pod "R.swift"
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Eureka'
   target 'budget-expenseTests' do
     inherit! :search_paths
     # Pods for testing
