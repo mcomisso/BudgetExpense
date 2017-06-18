@@ -13,6 +13,7 @@ enum BESettings: String {
     case hapticFeedbackEnabled
     case appSoundsEnabled
     case needsFirstRun
+    case iCloudEnabled
 
     var boolValue: Bool {
         return self.readSettingForKey(key: self)
@@ -35,6 +36,7 @@ final class BESettingsManager {
         UserDefaults.standard.safeSet(true, forKey: BESettings.hapticFeedbackEnabled.rawValue)
         UserDefaults.standard.safeSet(true, forKey: BESettings.appSoundsEnabled.rawValue)
         UserDefaults.standard.safeSet(true, forKey: BESettings.needsFirstRun.rawValue)
+        UserDefaults.standard.safeSet(false, forKey: BESettings.iCloudEnabled.rawValue)
     }
 
 }
