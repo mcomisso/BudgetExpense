@@ -50,8 +50,23 @@ final class BESettingsViewController: FormViewController {
                 $0.options = BERealmManager.shared.listCurrencies()
                 $0.selectorTitle = "Select currency" }.onChange({ (row) in
                     guard let currencyCode = row.value else { return }
-                    BERealmManager.shared.setActiveCurrency(currencyCode: currencyCode)
+                    // Set BASE currency (not active)
+                    BERealmManager.shared.setCurrency(forActiveCurrency: false, currencyCode: currencyCode)
                 })
+            <<< PushRow<String>() {
+                $0.title = "Active Currency"
+                $0.value = BERealmManager.shared.getActiveCurrency()?.currency
+                $0.options = BERealmManager.shared.listCurrencies()
+                $0.selectorTitle = "Select Active Currency"
+
+            }.onChange({ (row) in
+                guard let currencyCode = row.value else { return }
+
+                // Needs to set it to false, otherwise will overwrite again
+                BESettings.automaticGeolocation.set(value: false)
+
+                BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: currencyCode)
+            })
             <<< SwitchRow() { row in
                 row.title = "Automatic geolocation"
                 row.value = BESettings.automaticGeolocation.boolValue

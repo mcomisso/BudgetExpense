@@ -14,7 +14,7 @@ final class BERealmManager {
     static let shared = BERealmManager()
 
     fileprivate let realmConfiguration: Realm.Configuration = {
-        let conf = Realm.Configuration(inMemoryIdentifier: nil, syncConfiguration: nil, encryptionKey: nil, readOnly: false, schemaVersion: 1, migrationBlock: { (migration, version) in
+        let conf = Realm.Configuration(inMemoryIdentifier: nil, syncConfiguration: nil, encryptionKey: nil, readOnly: false, schemaVersion: 2, migrationBlock: { (migration, version) in
             // Deal with migration
         }, deleteRealmIfMigrationNeeded: false, shouldCompactOnLaunch: { (a, b) -> Bool in
             return true
@@ -53,27 +53,48 @@ extension BERealmCurrencyMethods {
         return realm.objects(BECurrency.self).sorted(byKeyPath: "currency").map { $0.currency }
     }
 
-    func setActiveCurrency(currencyCode: String) {
-        let currentBase = self.getBaseCurrency()
+    func setCurrency(forActiveCurrency: Bool, currencyCode: String) {
 
         let realm = self.realm
 
-        if let selectedCode = realm.objects(BECurrency.self).first(where: { (currency) -> Bool in
-            return currency.currency == currencyCode
-        }) {
+        // Get the currency for the requested currencyCode
+        guard let newCurrentCurrency = realm.object(ofType: BECurrency.self, forPrimaryKey: currencyCode) else { return }
 
-            try? realm.write {
-                if let current = currentBase {
-                    current.isBaseCurrency = false
-                }
+        // Get the currently active/base currency
+        var oldCurrency: BECurrency? = nil
 
-                selectedCode.isBaseCurrency = true
+        if forActiveCurrency {
+            // Set a new active currency
+            oldCurrency = self.getActiveCurrency()
+        } else {
+            oldCurrency = self.getBaseCurrency()
+        }
+
+        // Swap properties
+
+        try? realm.write {
+            if forActiveCurrency {
+                oldCurrency?.isActiveCurrency = false
+                newCurrentCurrency.isActiveCurrency = true
+            } else {
+                oldCurrency?.isBaseCurrency = false
+                newCurrentCurrency.isBaseCurrency = true
             }
         }
     }
 
+    func getCurrencyFromCode(_ code: String) -> BECurrency? {
+        let realm = self.realm
+
+        return realm.object(ofType: BECurrency.self, forPrimaryKey: code)
+    }
+
     func getBaseCurrency() -> BECurrency? {
         return self.realm.objects(BECurrency.self).filter("isBaseCurrency = true").first
+    }
+
+    func getActiveCurrency() -> BECurrency? {
+        return self.realm.objects(BECurrency.self).filter("isActiveCurrency = true").first
     }
 
     func saveCurrencies(_ currencies: [BECurrency]) {
