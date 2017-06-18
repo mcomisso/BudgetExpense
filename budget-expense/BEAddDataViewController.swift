@@ -125,6 +125,7 @@ final class BEAddDataViewController: UIViewController {
         self.dateButton.titleLabel?.minimumScaleFactor = 0.5
         self.dateButton.titleLabel?.numberOfLines = 2
         self.dateButton.titleLabel?.textAlignment = .center
+        self.dateButton.setTitleColor(.white, for: .normal)
 
         self.setCurrentType()
 
