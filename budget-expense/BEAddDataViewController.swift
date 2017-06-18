@@ -175,7 +175,13 @@ final class BEAddDataViewController: UIViewController {
 
     func setupActionButtons() {
         self.saveButton.setTitle("", for: .normal)
-        self.saveButton.setImage(Icon.cm.check, for: .normal)
+
+        if self.type == .expense {
+            self.saveButton.setImage(Icon.cm.check?.tint(with: BETheme.Colors.expense), for: .normal)
+        } else {
+            self.saveButton.setImage(Icon.cm.check?.tint(with: BETheme.Colors.income), for: .normal)
+        }
+
 
         var locationButton: IconButton? = nil
 
@@ -183,13 +189,6 @@ final class BEAddDataViewController: UIViewController {
             locationButton = IconButton(image: Icon.place)
             locationButton?.tintColor = .white
             locationButton?.addTarget(self, action: #selector(self.didPressLocation), for: .touchUpInside)
-        }
-
-
-        if self.type == .expense {
-            self.saveButton.titleColor = BETheme.Colors.expense
-        } else {
-            self.saveButton.titleColor = BETheme.Colors.income
         }
 
         let pictureButton = IconButton(image: Icon.photoCamera)
