@@ -125,7 +125,8 @@ extension BELocationManager: CLLocationManagerDelegate {
     }
 
     func requestLocation() {
-        self.requestAuthorization { 
+        guard BESettings.automaticGeolocation.boolValue == true else { return }
+        self.requestAuthorization {
             self.locationManager.requestLocation()
         }
     }

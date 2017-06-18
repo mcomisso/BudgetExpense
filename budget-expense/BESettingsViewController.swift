@@ -36,9 +36,9 @@ final class BESettingsViewController: FormViewController {
         form +++ Section("General")
             <<< SwitchRow() { row in
                 row.title = "iCloud Enabled"
-                row.value = BESettings.appSoundsEnabled.boolValue
-        }.onChange({ (switchRow) in
-            BESettings.iCloudEnabled.set(value: switchRow.value!)
+                row.value = BESettings.iCloudEnabled.boolValue
+        }.onChange({ row in
+            BESettings.iCloudEnabled.set(value: row.value!)
         })
             <<< PushRow<String>() {
                 $0.title = "Base Currency"
@@ -48,6 +48,12 @@ final class BESettingsViewController: FormViewController {
                     guard let currencyCode = row.value else { return }
                     BERealmManager.shared.setActiveCurrency(currencyCode: currencyCode)
                 })
+            <<< SwitchRow() { row in
+                row.title = "Automatic geolocation"
+                row.value = BESettings.automaticGeolocation.boolValue
+        }.onChange({ row in
+            BESettings.automaticGeolocation.set(value: row.value!)
+        })
 
 
         //MARK: REVIEW
