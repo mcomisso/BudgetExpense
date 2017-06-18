@@ -159,7 +159,7 @@ final class BEAddDataViewController: UIViewController {
     /// Set the current screen type (expense or income)
     func setCurrentType() {
 
-        self.view.backgroundColor = Color.blueGrey.lighten5
+        self.view.backgroundColor = Color.blueGrey.base
 
 //        switch self.type {
 //        case .income:
