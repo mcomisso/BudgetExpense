@@ -16,11 +16,14 @@ final class BECurrencyWebService {
 
     let currencyParser = BECurrencyParser()
 
-    func fetchUpdatedRates() {
+    func fetchUpdatedRates(completion: (()->Void)? = nil) {
         Alamofire.request(baseURL).responseJSON { (response) in
             print(response.result)
             if let json = response.result.value {
                 BERealmManager.shared.saveCurrencies(self.currencyParser.parse(json))
+                if let completion = completion {
+                    completion()
+                }
             } else {
                 print("Wrong json serialization?")
             }
