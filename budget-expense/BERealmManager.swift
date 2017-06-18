@@ -47,6 +47,12 @@ final class BERealmManager {
 fileprivate typealias BERealmCurrencyMethods = BERealmManager
 extension BERealmCurrencyMethods {
 
+    func listCurrencies() -> [String] {
+        let realm = self.realm
+
+        return realm.objects(BECurrency.self).sorted(byKeyPath: "currency").map { $0.currency }
+    }
+
     func setActiveCurrency(currencyCode: String) {
         let currentBase = self.getBaseCurrency()
 
@@ -199,6 +205,10 @@ extension BERealmManager {
 
 //MARK: UTILS
 extension BERealmManager {
+
+    func deleteAllData() {
+        self.realm.deleteAll()
+    }
 
     var isEmpty: Bool {
         get {
