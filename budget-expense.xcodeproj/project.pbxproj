@@ -12,6 +12,7 @@
 		B913188E1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */; };
 		B91318901EF67D9000FE1BDF /* BESettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */; };
 		B91318931EF6882E00FE1BDF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91318921EF6882E00FE1BDF /* Settings.storyboard */; };
+		B91318961EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
@@ -93,6 +94,7 @@
 		B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECurrencySelectorViewController.swift; sourceTree = "<group>"; };
 		B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BESettingsViewController.swift; sourceTree = "<group>"; };
 		B91318921EF6882E00FE1BDF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-budget-expense-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-budget-expense/Pods-budget-expense-acknowledgements.plist"; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		B96298C31EF07E4500ED9555 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */,
 				B96298C61EF07E6C00ED9555 /* beep_short_off.aif */,
 				B96298C71EF07E6C00ED9555 /* beep_short_on.aif */,
 				B96298C41EF07E5D00ED9555 /* click.aif */,
@@ -555,6 +558,7 @@
 				B96298C91EF07E6C00ED9555 /* beep_short_on.aif in Resources */,
 				B96298D51EF135A100ED9555 /* InitialStartup.storyboard in Resources */,
 				B999580E1DA217DF007274BB /* LaunchScreen.storyboard in Resources */,
+				B91318961EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist in Resources */,
 				B96298D11EF0931400ED9555 /* Categories.storyboard in Resources */,
 				B999580B1DA217DF007274BB /* Assets.xcassets in Resources */,
 				B9A7F51F1DA8B87D0051090F /* Main.storyboard in Resources */,
