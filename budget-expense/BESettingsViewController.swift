@@ -14,7 +14,7 @@ import AcknowList
 import MessageUI
 import Social
 import Crashlytics
-
+import PKHUD
 
 final class BESettingsViewController: FormViewController {
 
@@ -78,19 +78,22 @@ final class BESettingsViewController: FormViewController {
                 $0.title = "website"
                 $0.value = URL(string: "http://mcomisso.xyz")!
             }
-            <<< EmailRow() {
-                $0.title = "Support"
-                $0.value = "comisso.matteo89+currency@gmail.com"
-            }
             <<< TwitterRow() {
                 $0.title = "Twitter"
                 $0.value = "@teomatteo89"
-            }
+            }.onCellSelection({ (cell, row) in
+                let url = URL(string: "twitter://user?screen_name=teomatteo89")!
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }).cellUpdate({ (cell, row) in
+                cell.textField.isEnabled = false
+            })
             <<< ActionSheetRow<String>() {
 
                 let actions = ["Email", "Whatsapp", "Facebook", "Twitter"]
 
-                $0.title = "Share"
+                $0.title = "Share with email, facebook, twitter, etc.."
                 $0.selectorTitle = "Select your channel"
                 $0.options = actions
                 }.onChange({[weak self] (row) in
@@ -101,6 +104,15 @@ final class BESettingsViewController: FormViewController {
         //MARK: WARNING ZONE
 
         form +++ Section("Warning zone")
+            <<< ButtonRow() {
+                $0.title = "Refresh exchange rates"
+                }.onCellSelection({ (cell, row) in
+                    let currencyWebService = BECurrencyWebService()
+                    HUD.show(HUDContentType.labeledProgress(title: "Fetching rates...", subtitle: nil))
+                    currencyWebService.fetchUpdatedRates(completion: { 
+                        HUD.hide()
+                    })
+            })
             <<< ButtonRow() {
                 $0.title = "Reset all data"
                 }.onCellSelection({[weak self] (cell, row) in
