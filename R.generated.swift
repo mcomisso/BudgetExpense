@@ -116,7 +116,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 6 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `BEHeaderViewReuseIdentifier`.
     static let bEHeaderViewReuseIdentifier: Rswift.ReuseIdentifier<BEHeaderView> = Rswift.ReuseIdentifier(identifier: "BEHeaderViewReuseIdentifier")
@@ -126,6 +126,8 @@ struct R: Rswift.Validatable {
     static let gliphReuseIdentifier: Rswift.ReuseIdentifier<BEGliphCell> = Rswift.ReuseIdentifier(identifier: "GliphReuseIdentifier")
     /// Reuse identifier `categoriesCellIdentifier`.
     static let categoriesCellIdentifier: Rswift.ReuseIdentifier<BECategoryCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "categoriesCellIdentifier")
+    /// Reuse identifier `currencyCellReuseIdentifier`.
+    static let currencyCellReuseIdentifier: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "currencyCellReuseIdentifier")
     /// Reuse identifier `overviewCellIdentifier`.
     static let overviewCellIdentifier: Rswift.ReuseIdentifier<BETransactionCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "overviewCellIdentifier")
     
@@ -240,14 +242,20 @@ struct _R: Rswift.Validatable {
       typealias InitialController = BEInitialSetupNavigationController
       
       let bundle = R.hostingBundle
+      let currencySelectorViewController = StoryboardViewControllerResource<BECurrencySelectorViewController>(identifier: "currencySelectorViewController")
       let name = "InitialStartup"
       let requestController = StoryboardViewControllerResource<BEInitialSetupViewController>(identifier: "requestController")
+      
+      func currencySelectorViewController(_: Void = ()) -> BECurrencySelectorViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: currencySelectorViewController)
+      }
       
       func requestController(_: Void = ()) -> BEInitialSetupViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: requestController)
       }
       
       static func validate() throws {
+        if _R.storyboard.initialStartup().currencySelectorViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'currencySelectorViewController' could not be loaded from storyboard 'InitialStartup' as 'BECurrencySelectorViewController'.") }
         if _R.storyboard.initialStartup().requestController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'requestController' could not be loaded from storyboard 'InitialStartup' as 'BEInitialSetupViewController'.") }
       }
       
