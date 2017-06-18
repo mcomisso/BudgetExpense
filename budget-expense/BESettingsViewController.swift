@@ -34,16 +34,20 @@ final class BESettingsViewController: FormViewController {
          */
 
         form +++ Section("General")
-            <<< PhoneRow(){ row in
-                row.title = "Text Row"
-                row.placeholder = "Enter text here"
-            }
             <<< SwitchRow() { row in
                 row.title = "iCloud Enabled"
                 row.value = BESettings.appSoundsEnabled.boolValue
         }.onChange({ (switchRow) in
             BESettings.iCloudEnabled.set(value: switchRow.value!)
         })
+            <<< PushRow<String>() {
+                $0.title = "Base Currency"
+                $0.value = BERealmManager.shared.getBaseCurrency()?.currency
+                $0.options = BERealmManager.shared.listCurrencies()
+                $0.selectorTitle = "Select currency" }.onChange({ (row) in
+                    guard let currencyCode = row.value else { return }
+                    BERealmManager.shared.setActiveCurrency(currencyCode: currencyCode)
+                })
 
 
         //MARK: REVIEW
@@ -71,35 +75,6 @@ final class BESettingsViewController: FormViewController {
                 })
         }
 
-        //MARK: SUPPORT
-
-        form +++ Section("Support")
-            <<< URLRow() {
-                $0.title = "website"
-                $0.value = URL(string: "http://mcomisso.xyz")!
-            }
-            <<< TwitterRow() {
-                $0.title = "Twitter"
-                $0.value = "@teomatteo89"
-            }.onCellSelection({ (cell, row) in
-                let url = URL(string: "twitter://user?screen_name=teomatteo89")!
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }).cellUpdate({ (cell, row) in
-                cell.textField.isEnabled = false
-            })
-            <<< ActionSheetRow<String>() {
-
-                let actions = ["Email", "Whatsapp", "Facebook", "Twitter"]
-
-                $0.title = "Share with email, facebook, twitter, etc.."
-                $0.selectorTitle = "Select your channel"
-                $0.options = actions
-                }.onChange({[weak self] (row) in
-                    self?.performShareActionFor(string: row.value!)
-            })
-
 
         //MARK: WARNING ZONE
 
@@ -109,8 +84,13 @@ final class BESettingsViewController: FormViewController {
                 }.onCellSelection({ (cell, row) in
                     let currencyWebService = BECurrencyWebService()
                     HUD.show(HUDContentType.labeledProgress(title: "Fetching rates...", subtitle: nil))
-                    currencyWebService.fetchUpdatedRates(completion: { 
-                        HUD.hide()
+                    currencyWebService.fetchUpdatedRates(completion: { success in
+                        if success {
+                            HUD.hide()
+                        } else {
+                            HUD.flash(.error)
+                        }
+
                     })
             })
             <<< ButtonRow() {
@@ -126,14 +106,39 @@ final class BESettingsViewController: FormViewController {
                     cell.textLabel?.textColor = .red
                 })
 
+        //MARK: SUPPORT
+
+        form +++ Section("Support")
+            <<< URLRow() {
+                $0.title = "website"
+                $0.value = URL(string: "http://mcomisso.xyz")!
+            }
+            <<< TwitterRow() {
+                $0.title = "Twitter"
+                $0.value = "@teomatteo89"
+                }.onCellSelection({ (cell, row) in
+                    let url = URL(string: "twitter://user?screen_name=teomatteo89")!
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }).cellUpdate({ (cell, row) in
+                    cell.textField.isEnabled = false
+                })
+            <<< ActionSheetRow<String>() {
+
+                let actions = ["Email", "Whatsapp", "Facebook", "Twitter"]
+
+                $0.title = "Share with email, facebook, twitter, etc.."
+                $0.selectorTitle = "Select your channel"
+                $0.options = actions
+                }.onChange({[weak self] (row) in
+                    self?.performShareActionFor(string: row.value!)
+                })
+
 
         //MARK: CREDITS
 
         form +++ Section("Credits")
-            <<< PushRow<String>() {
-                $0.title = "Available currencies"
-                $0.options = BERealmManager.shared.listCurrencies()
-                $0.selectorTitle = "Select currency" }
             <<< ButtonRow() {
                 $0.title = "Acknowledgments"
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> AcknowListViewController in
