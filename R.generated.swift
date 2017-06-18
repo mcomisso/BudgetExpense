@@ -21,14 +21,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 3 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
+    /// Resource file `Pods-budget-expense-acknowledgements.plist`.
+    static let podsBudgetExpenseAcknowledgementsPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Pods-budget-expense-acknowledgements", pathExtension: "plist")
     /// Resource file `beep_short_off.aif`.
     static let beep_short_offAif = Rswift.FileResource(bundle: R.hostingBundle, name: "beep_short_off", pathExtension: "aif")
     /// Resource file `beep_short_on.aif`.
     static let beep_short_onAif = Rswift.FileResource(bundle: R.hostingBundle, name: "beep_short_on", pathExtension: "aif")
     /// Resource file `click.aif`.
     static let clickAif = Rswift.FileResource(bundle: R.hostingBundle, name: "click", pathExtension: "aif")
+    
+    /// `bundle.url(forResource: "Pods-budget-expense-acknowledgements", withExtension: "plist")`
+    static func podsBudgetExpenseAcknowledgementsPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.podsBudgetExpenseAcknowledgementsPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
     
     /// `bundle.url(forResource: "beep_short_off", withExtension: "aif")`
     static func beep_short_offAif(_: Void = ()) -> Foundation.URL? {
@@ -297,7 +305,7 @@ struct _R: Rswift.Validatable {
     }
     
     struct settings: Rswift.StoryboardResourceWithInitialControllerType {
-      typealias InitialController = BESettingsViewController
+      typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
       let name = "Settings"
