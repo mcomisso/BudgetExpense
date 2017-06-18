@@ -24,6 +24,12 @@ struct BEUtils {
         return df
     }()
 
+    static let isoDateFormatter: ISO8601DateFormatter = {
+        let df = ISO8601DateFormatter()
+        df.formatOptions = [.withFullDate, .withDashSeparatorInDate]
+        return df
+    }()
+
     static let dayNameFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "EEEE"
