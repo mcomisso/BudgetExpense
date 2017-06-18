@@ -91,6 +91,34 @@
             </objects>
             <point key="canvasLocation" x="964" y="142.57871064467767"/>
         </scene>
+        <!--Currency Selector View Controller-->
+        <scene sceneID="uXb-9k-YPS">
+            <objects>
+                <tableViewController storyboardIdentifier="currencySelectorViewController" id="j3R-bV-lul" customClass="BECurrencySelectorViewController" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gkV-lw-WKP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="currencyCellReuseIdentifier" id="5bN-iC-KLq">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bN-iC-KLq" id="Lyk-45-c4h">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="j3R-bV-lul" id="Ktm-KP-rk1"/>
+                            <outlet property="delegate" destination="j3R-bV-lul" id="opL-ze-Jda"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xue-wM-Rso" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2122" y="143"/>
+        </scene>
         <!--setupNavigator-->
         <scene sceneID="B0e-3R-WzH">
             <objects>
