@@ -36,7 +36,7 @@ final class BECurrencyParser {
 
         var retVal = [BECurrency]()
 
-        let baseCurrency = BECurrency.init(currency: parsedJSON["base"].stringValue, value: 1.0)
+        let baseCurrency = BECurrency.init(currency: parsedJSON["base"].stringValue, value: 1.0, isBase: true)
 
         let rates = parsedJSON["rates"].dictionaryValue
         for key in rates.keys {
