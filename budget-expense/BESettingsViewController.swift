@@ -37,9 +37,9 @@ final class BESettingsViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "iCloud Enabled"
                 row.value = BESettings.iCloudEnabled.boolValue
-        }.onChange({ row in
-            BESettings.iCloudEnabled.set(value: row.value!)
-        })
+                }.onChange({ row in
+                    BESettings.iCloudEnabled.set(value: row.value!)
+                })
             <<< PushRow<String>() {
                 $0.title = "Base Currency"
                 $0.value = BERealmManager.shared.getBaseCurrency()?.currency
@@ -51,9 +51,9 @@ final class BESettingsViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "Automatic geolocation"
                 row.value = BESettings.automaticGeolocation.boolValue
-        }.onChange({ row in
-            BESettings.automaticGeolocation.set(value: row.value!)
-        })
+                }.onChange({ row in
+                    BESettings.automaticGeolocation.set(value: row.value!)
+                })
 
 
         //MARK: REVIEW
@@ -67,18 +67,18 @@ final class BESettingsViewController: FormViewController {
                 })
         }
         if MFMailComposeViewController.canSendMail() {
-        form.last!
-            <<< ButtonRow() {
-                $0.title = "Send feedback"
-                }.onCellSelection({ [unowned self] (cell, row) in
-                    // Open
-                    let composer = MFMailComposeViewController()
-                    composer.mailComposeDelegate = self
-                    composer.setSubject("Feedback")
-                    let deviceDetails = "\n\n\nDevice Details:\n\(UIDevice.current.model)\n\(UIDevice.current.name)\n\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
-                    composer.setMessageBody(deviceDetails, isHTML: false)
-                    self.present(composer, animated: true, completion: nil)
-                })
+            form.last!
+                <<< ButtonRow() {
+                    $0.title = "Send feedback"
+                    }.onCellSelection({ [unowned self] (cell, row) in
+                        // Open
+                        let composer = MFMailComposeViewController()
+                        composer.mailComposeDelegate = self
+                        composer.setSubject("Feedback")
+                        let deviceDetails = "\n\n\nDevice Details:\n\(UIDevice.current.model)\n\(UIDevice.current.name)\n\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+                        composer.setMessageBody(deviceDetails, isHTML: false)
+                        self.present(composer, animated: true, completion: nil)
+                    })
         }
 
 
@@ -98,7 +98,7 @@ final class BESettingsViewController: FormViewController {
                         }
 
                     })
-            })
+                })
             <<< ButtonRow() {
                 $0.title = "Reset all data"
                 }.onCellSelection({[weak self] (cell, row) in
@@ -111,6 +111,22 @@ final class BESettingsViewController: FormViewController {
                 }).cellUpdate({ (cell, row) in
                     cell.textLabel?.textColor = .red
                 })
+
+
+        //MARK: IMPORT EXPORT
+
+        form +++ Section("Import/export")
+            <<< ButtonRow() {
+                $0.title = "Import"
+                }.onCellSelection({ (cell, row) in
+                    // Present the import flow
+                })
+            <<< ButtonRow() {
+                $0.title = "Export"
+                }.onCellSelection({ (cell, row) in
+                    // Present the export flow
+                })
+
 
         //MARK: SUPPORT
 
@@ -207,7 +223,7 @@ final class BESettingsViewController: FormViewController {
     @IBAction func closeAction(_ sender: Any) {
         self.closeViewController()
     }
-    
+
     func closeViewController() {
         self.dismiss(animated: true, completion: nil)
     }
