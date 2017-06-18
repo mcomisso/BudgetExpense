@@ -15,12 +15,32 @@ enum BEAddDataType {
     case expense, income
 }
 
-class BEAddDataViewController: UIViewController {
+protocol BEAddDataViewControllerPresenterDelegate: class {
+    func didPressDateSelection(_ addDataViewController: BEAddDataViewController)
+}
+
+final class BEAddDataViewController: UIViewController {
+
+    // DELEGATE
+    weak var delegate: BEAddDataViewControllerPresenterDelegate?
 
     // Public
     public var type: BEAddDataType = .expense
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
+
+    @IBOutlet weak var cardContainer: Card!
+
+    @IBOutlet weak var sideDeleteButton: UIButton!
+    @IBOutlet weak var saveButton: RaisedButton! // Delete digit button
+
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateButton: FlatButton!
+
+    @IBOutlet weak var notesTextField: TextField!
+
+    @IBOutlet weak var actionsStackView: UIStackView!
+
 
     private lazy var currentDigits: UILabel = {
         let label = UILabel()
@@ -33,22 +53,29 @@ class BEAddDataViewController: UIViewController {
         return label
     }()
 
-    @IBOutlet weak var cardContainer: Card!
-
-    @IBOutlet weak var sideDeleteButton: UIButton!
-    @IBOutlet weak var saveButton: RaisedButton! // Delete digit button
-
-    @IBOutlet weak var dateLabel: UILabel!
-
-    @IBOutlet weak var notesTextField: TextField!
-
-    @IBOutlet weak var actionsStackView: UIStackView!
 
 
     // Small view controller that contains all the categories
     var categoriesVC: BECategoriesCollectionView!
 
-    let bottomHalfPresentr = Presentr(presentationType: .bottomHalf)
+    var bottomHalfPresentr: Presentr {
+        let p = Presentr(presentationType: .bottomHalf)
+        p.blurBackground = true
+        p.blurStyle = .regular
+
+        return p
+    }
+
+
+    fileprivate lazy var oneThirdPresentr: Presentr = { [weak self] in
+        guard let strongSelf = self else { fatalError() }
+        let height = ModalSize.fluid(percentage: 1/3)
+
+        let p = Presentr(presentationType: .custom(width: ModalSize.full, height: height, center: .bottomCenter))
+        p.blurStyle = .regular
+        p.blurBackground = true
+        return p
+    }()
 
     let feedbackGenerator = SQFeedbackGenerator()
 
@@ -60,6 +87,22 @@ class BEAddDataViewController: UIViewController {
     fileprivate var numericMem = NumericMem() {
         didSet {
             self.currentDigits.text = self.numericMem.toNumber().toCurrency()
+        }
+    }
+
+    fileprivate var date: Date = Date() {
+        didSet {
+            BEUtils.longDateFormatter.string(from: self.date)
+
+            var titleButton = ""
+            if date.isToday {
+                titleButton = "Today"
+            } else if date.isYesterday {
+                titleButton = "Yesterday"
+            } else {
+                titleButton = BEUtils.isoDateFormatter.string(from: self.date)
+            }
+            self.dateButton.setTitle(titleButton, for: .normal)
         }
     }
 
@@ -76,11 +119,17 @@ class BEAddDataViewController: UIViewController {
         self.notesTextField.placeholderActiveColor = .white
 
         self.dateLabel.textColor = BETheme.Colors.textIcons
-        self.dateLabel.text = BEUtils.longDateFormatter.string(from: Date())
+        self.dateLabel.text = BEUtils.longDateFormatter.string(from: self.date)
+
+        self.dateButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.dateButton.titleLabel?.minimumScaleFactor = 0.5
 
         self.setCurrentType()
+
         self.setupButtons()
+
         self.setupActionButtons()
+
         self.setupDigits()
     }
 
@@ -91,7 +140,6 @@ class BEAddDataViewController: UIViewController {
 
 
     //MARK:-
-
 
     func setupDigits() {
         self.cardContainer.depth = Depth(offset: Offset.init(horizontal: 0, vertical: 4), opacity: 0.2, radius: 10)
@@ -104,6 +152,8 @@ class BEAddDataViewController: UIViewController {
         }
     }
 
+
+    /// Set the current screen type (expense or income)
     func setCurrentType() {
 
         self.view.backgroundColor = Color.blueGrey.lighten5
@@ -121,6 +171,17 @@ class BEAddDataViewController: UIViewController {
     }
 
     func setupActionButtons() {
+        self.saveButton.setTitle("", for: .normal)
+        self.saveButton.setImage(Icon.cm.check, for: .normal)
+
+        var locationButton: IconButton? = nil
+
+        if BESettings.automaticGeolocation.boolValue {
+            locationButton = IconButton(image: Icon.place)
+            locationButton?.tintColor = .white
+            locationButton?.addTarget(self, action: #selector(self.didPressLocation), for: .touchUpInside)
+        }
+
 
         if self.type == .expense {
             self.saveButton.titleColor = BETheme.Colors.expense
@@ -128,20 +189,22 @@ class BEAddDataViewController: UIViewController {
             self.saveButton.titleColor = BETheme.Colors.income
         }
 
-        let locationButton = IconButton(image: Icon.place)
         let pictureButton = IconButton(image: Icon.photoCamera)
-        locationButton.tintColor = .white
+
         pictureButton.tintColor = .white
 
-        self.actionsStackView.addArrangedSubview(locationButton)
+        if let location = locationButton {
+            self.actionsStackView.addArrangedSubview(location)
+        }
+
         self.actionsStackView.addArrangedSubview(pictureButton)
 
-        locationButton.addTarget(self, action: #selector(self.didPressLocation), for: .touchUpInside)
         pictureButton.addTarget(self, action: #selector(self.didPressPicture), for: .touchUpInside)
     }
 
     func didPressLocation() {
         // ASK LOCATION MANAGER TO FETCH
+        BELocationManager.shared.requestLocation()
     }
 
     func didPressPicture() {
@@ -203,7 +266,7 @@ class BEAddDataViewController: UIViewController {
         let amount = self.numericMem.toDouble()
 
 //        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
-        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: self.date)
 
         self.transitioningDelegate = self
         self.dismiss(animated: true) { 
@@ -213,6 +276,16 @@ class BEAddDataViewController: UIViewController {
             })
         }
     }
+
+    @IBAction func setDate(_ sender: Any) {
+
+        // ViewController with dateSelection
+        guard let datePicker = R.storyboard.main.datePickerViewController() else { return }
+        datePicker.delegate = self
+        datePicker.setDate(date: self.date)
+        self.customPresentViewController(self.oneThirdPresentr, viewController: datePicker, animated: true, completion: nil)
+    }
+
 }
 
 extension BEAddDataViewController: UITextFieldDelegate {
@@ -250,3 +323,14 @@ extension BEAddDataViewController {
         return self.dismissAnimator
     }
 }
+
+extension BEAddDataViewController: BEDateSelectorViewControllerDelegate {
+    func didSelectDate(_ dateSelectorViewController: BEDateSelectorViewController, date: Date) {
+        self.updateDates(date: date)
+    }
+
+    func updateDates(date: Date) {
+        self.date = date
+    }
+}
+
