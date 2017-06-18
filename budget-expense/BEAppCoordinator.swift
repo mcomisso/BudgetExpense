@@ -17,6 +17,7 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
     let transactionsStoryboard = R.storyboard.transactions()
     let initialStoryboard = R.storyboard.initialStartup()
     let categoriesStoryboard = R.storyboard.categories()
+    let settingsStoryboard = R.storyboard.settings()
 
     var rootViewController: UIViewController?
 
@@ -75,6 +76,11 @@ class BEAppCoordinator: BEHomeViewControllerDelegate {
         addDataVC.transitioningDelegate = homeViewController
 
         homeViewController.present(addDataVC, animated: true, completion: nil)
+    }
+
+    func didSelectShowSettings(_ homeViewController: BEHomeViewController) {
+        guard let settings = R.storyboard.settings.instantiateInitialViewController() else { return }
+        homeViewController.present(settings, animated: true, completion: nil)
     }
 
 }

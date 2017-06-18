@@ -123,10 +123,8 @@ final class BEInitialSetupNavigationController: UINavigationController {
     }
 
     func complete() {
-
-        self.dismiss(animated: true) { 
-            self.setupDelegate?.didDismissNavigationController(self)
-        }
+        self.setupDelegate?.didDismissNavigationController(self)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }
