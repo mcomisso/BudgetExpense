@@ -291,13 +291,19 @@ struct _R: Rswift.Validatable {
       
       let addDataViewController = StoryboardViewControllerResource<BEAddDataViewController>(identifier: "AddDataViewController")
       let bundle = R.hostingBundle
+      let datePickerViewController = StoryboardViewControllerResource<BEDateSelectorViewController>(identifier: "DatePickerViewController")
       let name = "Main"
       
       func addDataViewController(_: Void = ()) -> BEAddDataViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: addDataViewController)
       }
       
+      func datePickerViewController(_: Void = ()) -> BEDateSelectorViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: datePickerViewController)
+      }
+      
       static func validate() throws {
+        if _R.storyboard.main().datePickerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'datePickerViewController' could not be loaded from storyboard 'Main' as 'BEDateSelectorViewController'.") }
         if _R.storyboard.main().addDataViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addDataViewController' could not be loaded from storyboard 'Main' as 'BEAddDataViewController'.") }
       }
       
