@@ -102,7 +102,16 @@ extension BERealmAmountMethods {
     }
 
     func getAvailableDays() -> [Date] {
-        return Array(Set(Array(self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: true)).map { $0.date.startOfDay }))
+
+        let dateResults = Set(self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false).map { $0.date.startOfDay })
+
+        return Array(dateResults).sorted(by: { (lhs, rhs) -> Bool in
+            if lhs.compare(rhs) == ComparisonResult.orderedAscending {
+                return false
+            } else {
+                return true
+            }
+        })
     }
 
     /// Get Amount data for a tableView representation
