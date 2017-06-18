@@ -69,7 +69,7 @@ final class BEInitialSetupNavigationController: UINavigationController {
 
                                                                 if accepted {
                                                                     // Ask location
-                                                                    BELocationManager.shared.requestAuthorization(successCallback: { 
+                                                                    BELocationManager.shared.requestAuthorization(successCallback: { _ in
                                                                         self?.loadNext()
                                                                     })
                                                                 }
