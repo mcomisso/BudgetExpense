@@ -44,8 +44,32 @@ final class BERealmManager {
 
 
 //MARK:- CURRENCY
+fileprivate typealias BERealmCurrencyMethods = BERealmManager
+extension BERealmCurrencyMethods {
 
-extension BERealmManager {
+    func setActiveCurrency(currencyCode: String) {
+        let currentBase = self.getBaseCurrency()
+
+        let realm = self.realm
+
+        if let selectedCode = realm.objects(BECurrency.self).first(where: { (currency) -> Bool in
+            return currency.currency == currencyCode
+        }) {
+
+            try? realm.write {
+                if let current = currentBase {
+                    current.isBaseCurrency = false
+                }
+
+                selectedCode.isBaseCurrency = true
+            }
+        }
+    }
+
+    func getBaseCurrency() -> BECurrency? {
+        return self.realm.objects(BECurrency.self).filter("isBaseCurrency = true").first
+    }
+
     func saveCurrencies(_ currencies: [BECurrency]) {
         let realm = self.realm
 
