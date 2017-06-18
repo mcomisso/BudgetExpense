@@ -122,7 +122,7 @@ extension BERealmAmountMethods {
     }
 
     func getDataForDay(day: Date) -> [Amount] {
-        return Array(self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]))
+        return Array(self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]).sorted(byKeyPath: "date", ascending: false))
     }
 
 
