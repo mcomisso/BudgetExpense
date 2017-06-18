@@ -63,8 +63,9 @@ class BECategoriesCollectionView: UICollectionViewController {
 extension BECategoriesCollectionView {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        if section == 1 {
+        if section == 0 {
             return self.dataSource.count
+
         }
 
         return 1
@@ -79,12 +80,23 @@ extension BECategoriesCollectionView {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.categoriesCellIdentifier, for: indexPath) as! BECategoryCollectionViewCell
             cell.setModelCategory(self.dataSource[indexPath.row])
+            cell.setNeedsLayout()
+            cell.layoutSubviews()
             return cell
         } else {
 
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.categoriesCellIdentifier, for: indexPath) else { fatalError() }
             cell.setModelCategory(BECategory.init(gliph: "add", color: .white, name: "add"))
             return cell
+        }
+    }
+}
+
+extension BECategoriesCollectionView {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            // Add
+            self.delegate?.didSelectAddCategory()
         }
     }
 }
