@@ -49,7 +49,7 @@ extension BECurrencySelectorViewController {
 
             alert.addAction(UIAlertAction.init(title: "Yes", style: .default, handler: { [weak self] (alertaction) in
                 // Signal selection successful
-                BERealmManager.shared.setActiveCurrency(currencyCode: text)
+                BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: text)
                 self?.dismiss(animated: true, completion: nil)
             }))
 
