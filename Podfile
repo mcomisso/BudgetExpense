@@ -17,7 +17,7 @@ target 'budget-expense' do
   pod 'Iconic', :git => 'https://github.com/dzenbot/Iconic.git', :tag => '1.3'
   pod 'PKHUD', '~> 4.0'
   pod 'KDCircularProgress'
-  pod 'VTAcknowledgementsViewController'
+  pod 'AcknowList'
   pod "R.swift"
   pod 'Alamofire'
   pod 'SwiftyJSON'
