@@ -8,7 +8,7 @@
 
 import UIKit
 import Material
-
+import Presentr
 
 struct InitializerData {
     let title: String
@@ -29,6 +29,11 @@ final class BEInitialSetupNavigationController: UINavigationController {
     var index: Int = 0
 
     weak var setupDelegate: BEInitialSetupNavigationControllerDelegate?
+
+    private let presentr: Presentr = {
+        let p = Presentr(presentationType: .popup)
+        return p
+    }()
 
     var dataSource: [InitializerData] = []
 
@@ -64,12 +69,26 @@ final class BEInitialSetupNavigationController: UINavigationController {
 
                                                                 if accepted {
                                                                     // Ask location
-                                                                    BELocationManager.shared.requestAuthorization()
-                                                                    self?.loadNext()
+                                                                    BELocationManager.shared.requestAuthorization(successCallback: { 
+                                                                        self?.loadNext()
+                                                                    })
                                                                 }
         }
 
-        self.dataSource = [welcomePage, notificationControl, locationControl]
+        let currencySetup: InitializerData = InitializerData(title: "Select currency", description: "Your device is configured with \(String(describing: NSLocale.current.currencyCode)) currency. Is that correct?", image: UIImage(named: "stats")!, numberOfActions: 2) { [weak self] (currencyCorrect) in
+            if currencyCorrect {
+                // Just continue
+                self?.loadNext()
+            } else {
+                // Present the currency selector screen
+
+                guard let currencySelector = R.storyboard.initialStartup.currencySelectorViewController() else { return }
+
+                self?.customPresentViewController((self?.presentr)!, viewController: currencySelector, animated: true, completion: nil)
+            }
+        }
+
+        self.dataSource = [welcomePage, notificationControl, locationControl, currencySetup]
     }
 
     override func viewDidLoad() {
@@ -104,8 +123,10 @@ final class BEInitialSetupNavigationController: UINavigationController {
     }
 
     func complete() {
-        self.setupDelegate?.didDismissNavigationController(self)
-        self.dismiss(animated: true, completion: nil)
+
+        self.dismiss(animated: true) { 
+            self.setupDelegate?.didDismissNavigationController(self)
+        }
     }
 
 }
