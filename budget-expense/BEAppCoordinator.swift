@@ -94,3 +94,15 @@ extension BEAppCoordinator: BEInitialSetupNavigationControllerDelegate {
     }
 
 }
+
+//
+//extension BEAppCoordinator: BEAddDataViewControllerPresenterDelegate {
+//
+//    func didPressDateSelection(_ addDataViewController: BEAddDataViewController) {
+//        // Push a viewcontroller
+//        guard let controller = R.storyboard.main.datePickerViewController() else { return }
+//        controller.delegate = addDataViewController
+//        addDataViewController.customPresentViewController(addDataViewController.bottomHalfPresentr, viewController: controller, animated: true, completion: nil)
+//    }
+//
+//}
