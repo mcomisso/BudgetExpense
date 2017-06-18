@@ -37,7 +37,9 @@ final class BESettingsViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "iCloud Enabled"
                 row.value = BESettings.appSoundsEnabled.boolValue
-        }
+        }.onChange({ (switchRow) in
+            BESettings.iCloudEnabled.set(value: switchRow.value!)
+        })
 
 
         //MARK: REVIEW
