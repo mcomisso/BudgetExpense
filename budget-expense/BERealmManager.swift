@@ -183,11 +183,12 @@ extension BERealmAmountMethods {
     /// - parameter type:   Expense or Income
     /// - parameter notes:  Optional notes
     /// - parameter date:   Optional date
-    func save(amount: Double, type: BEAddDataType, notes: String = "", date: Date = Date()) {
+    func save(amount: Double, type: BEAddDataType, notes: String = "", date: Date = Date(), category: BECategory? = nil) {
         let amountObject = Amount()
         amountObject.date = date
         amountObject.notes = notes
         amountObject.amount = amount
+        amountObject.category = category
 
         switch type {
         case .expense:
