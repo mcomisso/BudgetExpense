@@ -180,6 +180,14 @@ extension BETransactionsHistoryCollectionViewController: BETransactionCellDelega
         // Options to manage
 
         let alertSheet = UIAlertController(title: "What to do?", message: nil, preferredStyle: .actionSheet)
+
+        alertSheet.addAction(UIAlertAction.init(title: "Edit", style: .default, handler: { (_) in
+            guard let amount = amount else { return }
+            // Open editing
+
+            // Just open again the addDataViewController
+        }))
+
         alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
             // Delete from realm
             guard let amount = amount else { return }

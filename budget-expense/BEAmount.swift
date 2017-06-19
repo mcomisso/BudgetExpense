@@ -16,6 +16,7 @@ class Amount: BEBaseModel {
     dynamic var isExpense = true
     dynamic var notes = ""
 
+    // Add location object
     dynamic var category: BECategory?
 
     func day() -> Date {
@@ -25,8 +26,16 @@ class Amount: BEBaseModel {
 
     override var description: String {
 
-        let expense = self.isExpense ? "expense" : "income"
+        var descriptionString = ""
 
-        return "New \(expense) - Date: \(self.date.description) Amount: \(self.amount) Notes: \(self.notes)"
+        let expense = self.isExpense ? "Expense" : "Income"
+
+        descriptionString.append("New \(expense),  Date: \(self.date.description) Amount: \(self.amount)")
+
+        if notes.isEmpty == false {
+            descriptionString.append("Notes: \(self.notes)")
+        }
+
+        return descriptionString
     }
 }
