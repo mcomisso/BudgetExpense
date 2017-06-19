@@ -12,7 +12,7 @@ import UserNotifications
 
 final class BEUserNotificationManager {
 
-    func requestPermission() {
+    func requestPermission(completion: ((Bool)->Void)? = nil) {
 
         DispatchQueue.main.async {
 
@@ -22,6 +22,10 @@ final class BEUserNotificationManager {
                     UIApplication.shared.registerForRemoteNotifications()
                 } else if let e = error {
                     print(e.localizedDescription)
+                }
+
+                if let compl = completion {
+                    compl(success)
                 }
             }
 
