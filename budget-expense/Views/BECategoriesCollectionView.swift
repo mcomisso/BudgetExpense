@@ -108,7 +108,7 @@ extension BECategoriesCollectionView {
             // Add
             self.delegate?.didSelectAddCategory(self)
         } else if indexPath.section == 0 {
-
+            self.delegate?.didSelectCategory(self, category: self.dataSource[indexPath.row] as! BECategory)
         }
     }
 }
