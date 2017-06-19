@@ -117,7 +117,6 @@ final class BETransactionsHistoryCollectionViewController: UICollectionViewContr
                 case .initial(let t):
                     print("Initial")
                     print(t.description)
-//                    strongSelf.collectionView?.reloadSections(IndexSet(integer: index))
 
                 case .update(_, let deletions, let insertions, _):
                     // Find cell and delete it
@@ -204,8 +203,9 @@ extension BETransactionsHistoryCollectionViewController: BETransactionCellDelega
     
     func didPressShare(cell: BETransactionCollectionViewCell, amount: Amount?) {
         // Options to share cell content
-        
-        
+        guard let amount = amount else { return }
+        let activityVC = UIActivityViewController.init(activityItems: [amount.description], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
         
     }
     
