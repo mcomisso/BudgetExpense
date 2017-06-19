@@ -38,7 +38,7 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
         return l
     }()
 
-    var gradiendLayer: CAGradientLayer? = nil
+    var gradientLayer: CAGradientLayer? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,22 +55,31 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
         guard let actualAmount = self.amount else { return }
 
-        amountLabel.text = NSNumber(value: actualAmount.amount).toCurrency()
-        amountLabel.textColor = .white
-
         let verticalIconButton = IconButton(image: Icon.cm.moreVertical, tintColor: Color.blueGrey.base)
         verticalIconButton.tag = CellButtonActionType.options.rawValue
         verticalIconButton.addTarget(self, action: #selector(didSelectButton(_:)), for: .touchUpInside)
 
-
-
-
-        let toolbar = Toolbar(leftViews: [UIImageView.init(image: Iconic.standardDimension(icon: .planeIcon, size: CGSize.init(width: 15, height: 15), color: .white))])
-//        Toolbar(rightViews: [verticalIconButton])
+        let toolbar = Toolbar()
         toolbar.detail = actualAmount.isExpense ? "Expense" : "Income"
-//        toolbar.detailLabel.textAlignment = .left
-//        toolbar.title = actualAmount.category?.name ?? "Test"
-//        toolbar.titleLabel.textAlignment = .left
+        card.toolbar = toolbar
+
+        let amountValue = NSNumber(value: actualAmount.amount).toCurrency()
+
+        amountLabel.text = actualAmount.isExpense ? "-"+amountValue : amountValue
+        amountLabel.textColor = .white
+
+        card.contentView = amountLabel
+
+        if let unwrappedCategory = actualAmount.category {
+
+            card.container.gradientFromColor(unwrappedCategory.color)
+
+            let imageSize = CGSize.init(width: 30, height: 30)
+            let icon = FontAwesomeIcon(named: unwrappedCategory.icon)
+            let imageView = UIImageView(image: Iconic.standardDimension(icon: icon, size: imageSize, color: .white))
+            imageView.contentMode = .scaleAspectFit
+            toolbar.leftViews = [imageView]
+        }
 
         let dateLabel = UILabel()
         dateLabel.font = RobotoFont.regular(with: 12)
@@ -86,15 +95,6 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
         notesText.text = self.amount?.notes
 
         let bottomBar = Bar(leftViews: [dateLabel], rightViews: [shareButton, verticalIconButton], centerViews: [notesText])
-
-        card.toolbar = toolbar
-        card.contentView = amountLabel
-
-        if amount.isExpense {
-            card.container.gradientFromColor(BETheme.Colors.expense)
-        } else {
-            card.container.gradientFromColor(BETheme.Colors.income)
-        }
 
         card.bottomBar = bottomBar
 
@@ -122,8 +122,8 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.gradiendLayer?.removeFromSuperlayer()
-        self.gradiendLayer = nil
+        self.gradientLayer?.removeFromSuperlayer()
+        self.gradientLayer = nil
         self.amountLabel.text = nil
         self.amount = nil
     }
