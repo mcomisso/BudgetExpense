@@ -51,7 +51,11 @@ final class BECardDisplay: Card {
 
     // TOP
     private let topBar = Toolbar()
-    private var categoryLogo: UIImageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+    private lazy var categoryLogo: UIImageView = {
+        let imageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 
     // MIDDLE
 
