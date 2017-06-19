@@ -10,7 +10,7 @@ import UIKit
 
 final class BECurrencySelectorViewController: UITableViewController {
 
-    let currencies: [String] = NSLocale.commonISOCurrencyCodes
+    let currencies: [String] = BERealmManager.shared.listCurrencies()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ extension BECurrencySelectorViewController {
 
             alert.addAction(UIAlertAction.init(title: "Yes", style: .default, handler: { [weak self] (alertaction) in
                 // Signal selection successful
-                BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: text)
+                BERealmManager.shared.setCurrency(forActiveCurrency: false, currencyCode: text)
                 self?.dismiss(animated: true, completion: nil)
             }))
 
@@ -57,11 +57,6 @@ extension BECurrencySelectorViewController {
 
             self.present(alert, animated: true, completion: nil)
         }
-
-
-
-
-
 
     }
 }
