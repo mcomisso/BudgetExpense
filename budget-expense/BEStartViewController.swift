@@ -135,7 +135,7 @@ extension BEHomeViewController {
 
     func prepareViews() {
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Color.blueGrey.base
 
         self.prepareIncomeArrow()
         self.prepareExpenseArrow()
@@ -143,7 +143,7 @@ extension BEHomeViewController {
         self.incomeLabel.textColor = BETheme.Colors.income.withAlphaComponent(0.6)
         self.expenseLabel.textColor = BETheme.Colors.expense.withAlphaComponent(0.6)
 
-        self.amountDisplay.textColor = BETheme.Colors.primaryText
+        self.amountDisplay.textColor = UIColor.white.withAlphaComponent(0.9)
     }
 
     func prepareExpenseArrow() {
