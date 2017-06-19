@@ -427,7 +427,7 @@
                     </view>
                     <connections>
                         <outlet property="actionsStackView" destination="fek-JT-RDx" id="DYg-ym-pW6"/>
-                        <outlet property="cardContainer" destination="nn3-k1-aEE" id="FAp-PR-dhk"/>
+                        <outlet property="cardDisplay" destination="nn3-k1-aEE" id="aCU-n8-Jkm"/>
                         <outlet property="dateButton" destination="HcQ-Gq-VeT" id="ccJ-61-1p8"/>
                         <outlet property="notesTextField" destination="ceH-Im-BC2" id="Vcm-q5-zAk"/>
                         <outlet property="saveButton" destination="ZvF-QA-WP2" id="2Yz-eu-Bap"/>
