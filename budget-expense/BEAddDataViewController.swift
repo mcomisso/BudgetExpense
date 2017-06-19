@@ -25,7 +25,6 @@ final class BEAddDataViewController: UIViewController {
     weak var delegate: BEAddDataViewControllerPresenterDelegate?
 
     // FEEDBACK
-
     fileprivate let feedbackGenerator = SQFeedbackGenerator()
 
 
@@ -38,7 +37,7 @@ final class BEAddDataViewController: UIViewController {
 
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
 
-    @IBOutlet weak var cardContainer: BECardDisplay! // Container with current digits (Material card style)
+    @IBOutlet weak var cardDisplay: BECardDisplay! // Container with current digits (Material card style)
 
     @IBOutlet weak var sideDeleteButton: UIButton! // Delete last digit button
 
@@ -84,7 +83,7 @@ final class BEAddDataViewController: UIViewController {
 
     fileprivate var selectedCategory: BECategory? {
         didSet {
-            self.cardContainer.category = self.selectedCategory
+            self.cardDisplay.category = self.selectedCategory
         }
     }
 
@@ -130,7 +129,7 @@ final class BEAddDataViewController: UIViewController {
     //MARK:-
 
     func setupCardContainer() {
-        self.cardContainer.prepare(with: self.type, category: self.selectedCategory)
+        self.cardDisplay.prepare(with: self.type, category: self.selectedCategory)
     }
 
 
@@ -169,14 +168,17 @@ final class BEAddDataViewController: UIViewController {
     }
 
     func setupActionButtons() {
-        self.saveButton.setTitle("", for: .normal)
 
+        // Save button
+
+        self.saveButton.setTitle("", for: .normal)
         if self.type == .expense {
             self.saveButton.setImage(Icon.cm.check?.tint(with: BETheme.Colors.expense), for: .normal)
         } else {
             self.saveButton.setImage(Icon.cm.check?.tint(with: BETheme.Colors.income), for: .normal)
         }
 
+        // Location
 
         var locationButton: IconButton? = nil
 
@@ -186,17 +188,17 @@ final class BEAddDataViewController: UIViewController {
             locationButton?.addTarget(self, action: #selector(self.didPressLocation), for: .touchUpInside)
         }
 
-        let pictureButton = IconButton(image: Icon.photoCamera)
-
-        pictureButton.tintColor = .white
-
         if let location = locationButton {
             self.actionsStackView.addArrangedSubview(location)
         }
 
-        self.actionsStackView.addArrangedSubview(pictureButton)
+        // Take picture
 
+        let pictureButton = IconButton(image: Icon.photoCamera)
+        pictureButton.tintColor = .white
         pictureButton.addTarget(self, action: #selector(self.didPressPicture), for: .touchUpInside)
+
+        self.actionsStackView.addArrangedSubview(pictureButton)
     }
 
 
@@ -233,12 +235,12 @@ final class BEAddDataViewController: UIViewController {
 
     func didPressDigit(sender: Button) {
         if self.buttons.contains(sender) {
-            self.cardContainer.addDigit(digit: (sender.titleLabel?.text)!)
+            self.cardDisplay.addDigit(digit: (sender.titleLabel?.text)!)
         }
     }
 
     @IBAction func deleteLastDigit(_ sender: AnyObject) {
-        self.cardContainer.deleteDigit()
+        self.cardDisplay.deleteDigit()
     }
 
 
@@ -249,10 +251,10 @@ final class BEAddDataViewController: UIViewController {
     }
 
     @IBAction func saveAmount(_ sender: AnyObject) {
-        let amount = self.cardContainer.getAmount()
+        let amount = self.cardDisplay.getAmount()
 
 //        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
-        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: self.date)
+        BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: self.date, category: self.selectedCategory)
 
         self.transitioningDelegate = self
         self.dismiss(animated: true) { 
@@ -292,6 +294,7 @@ extension BEAddDataViewController: BECategoriesCollectionViewControllerDelegate 
     ///   - category: The category selected
     func didSelectCategory(_ categoriesCollectionViewController: BECategoriesCollectionView, category: BECategory) {
         self.selectedCategory = category
+        self.cardDisplay.category = category
     }
 
     func didSelectAddCategory(_ categoriesCollectionViewController: BECategoriesCollectionView) {
@@ -328,7 +331,7 @@ extension BEAddDataViewController: BEDateSelectorViewControllerDelegate {
         self.date = date
         let dateLabel = UILabel()
         dateLabel.text = BEUtils.longDateFormatter.string(from: self.date)
-        self.cardContainer.bottomBar = Bar.init(centerViews: [dateLabel])
+        self.cardDisplay.bottomBar = Bar.init(centerViews: [dateLabel])
     }
 }
 
