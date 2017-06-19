@@ -55,14 +55,20 @@ final class BEInitialSetupNavigationController: UINavigationController {
 
                                                                     if accepted {
                                                                         // ask notification
-
+                                                                        BEUserNotificationManager().requestPermission(completion: { (success) in
+                                                                            if success {
+                                                                                self?.loadNext()
+                                                                            }
+                                                                        })
+                                                                    } else {
+                                                                        self?.loadNext()
                                                                     }
-
-                                                                    self?.loadNext()
         }
+
 
         let locationControl: InitializerData = InitializerData(title: "Allow location access?",
                                                                description: "Location is used to determine your current country and automatically adjust the currency.",
+
                                                                image: #imageLiteral(resourceName: "location"),
                                                                numberOfActions: 2) { [weak self] (accepted) in
                                                                 // Code
@@ -95,12 +101,6 @@ final class BEInitialSetupNavigationController: UINavigationController {
         super.viewDidLoad()
 
         self.setupInitData()
-
-        print(self.childViewControllers)
-
-        print(self.setupViewControllers)
-
-        print(self.viewControllers)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -114,11 +114,16 @@ final class BEInitialSetupNavigationController: UINavigationController {
 
         self.index += 1
 
-        if self.index < self.dataSource.count {
-            nextVC.setup(self.dataSource[index])
-            self.pushViewController(nextVC, animated: true)
-        } else {
-            self.complete()
+        DispatchQueue.main.async { [weak self] in
+
+            guard let strongSelf = self else { return }
+
+            if strongSelf.index < strongSelf.dataSource.count {
+                nextVC.setup(strongSelf.dataSource[strongSelf.index])
+                strongSelf.pushViewController(nextVC, animated: true)
+            } else {
+                strongSelf.complete()
+            }
         }
     }
 
@@ -132,21 +137,20 @@ final class BEInitialSetupNavigationController: UINavigationController {
 final class BEInitialSetupViewController: UIViewController {
 
     private var data: InitializerData?
-    
-    
+
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var doNotAcceptButton: Button!
     @IBOutlet weak var acceptButton: FlatButton!
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         self.acceptButton.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
         self.doNotAcceptButton.addTarget(self, action: #selector(loadNextPage), for: .touchUpInside)
     }
@@ -155,6 +159,13 @@ final class BEInitialSetupViewController: UIViewController {
         super.viewWillAppear(animated)
 
         guard let data = self.data else { return }
+        if data.numberOfActions == 1 {
+            self.doNotAcceptButton.isHidden = true
+            self.acceptButton.setTitle("Continue", for: .normal)
+        } else if data.numberOfActions == 2 {
+            self.doNotAcceptButton.setTitle("No, thanks", for: .normal)
+            self.acceptButton.setTitle("Allow", for: .normal)
+        }
         self.imageView.image = data.image
         self.titleLabel.text = data.title
         self.descriptionLabel.text = data.description
@@ -163,7 +174,7 @@ final class BEInitialSetupViewController: UIViewController {
     func setup(_ data: InitializerData) {
         self.data = data
     }
-
+    
     func continueAction(_ sender: UIButton) {
         self.data?.completionAction(true)
     }
