@@ -59,14 +59,14 @@ final class BESettingsViewController: FormViewController {
                 $0.options = BERealmManager.shared.listCurrencies()
                 $0.selectorTitle = "Select Active Currency"
 
-            }.onChange({ (row) in
-                guard let currencyCode = row.value else { return }
+                }.onChange({ (row) in
+                    guard let currencyCode = row.value else { return }
 
-                // Needs to set it to false, otherwise will overwrite again
-                BESettings.automaticGeolocation.set(value: false)
+                    // Needs to set it to false, otherwise will overwrite again
+                    BESettings.automaticGeolocation.set(value: false)
 
-                BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: currencyCode)
-            })
+                    BERealmManager.shared.setCurrency(forActiveCurrency: true, currencyCode: currencyCode)
+                })
             <<< SwitchRow() { row in
                 row.title = "Automatic geolocation"
                 row.value = BESettings.automaticGeolocation.boolValue
@@ -87,29 +87,22 @@ final class BESettingsViewController: FormViewController {
                 })
 
 
-        //MARK: REVIEW
+        //MARK: IMPORT EXPORT
 
-        form +++ Section()
-        if #available(iOS 10.3, *) {
-            form.last! <<< ButtonRow() {
-                $0.title = "Write a review"
-                }.onCellSelection({ (cell, row) in
-                    SKStoreReviewController.requestReview()
-                })
-        }
-        if MFMailComposeViewController.canSendMail() {
-            form.last!
+        if BEConstants.Features.IMPORT_EXPORT_ENABLED {
+
+            form +++ Section("Import/export")
                 <<< ButtonRow() {
-                    $0.title = "Send feedback"
-                    }.onCellSelection({ [unowned self] (cell, row) in
-                        // Open
-                        let composer = MFMailComposeViewController()
-                        composer.mailComposeDelegate = self
-                        composer.setSubject("Feedback")
-                        let deviceDetails = "\n\n\nDevice Details:\n\(UIDevice.current.model)\n\(UIDevice.current.name)\n\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
-                        composer.setMessageBody(deviceDetails, isHTML: false)
-                        self.present(composer, animated: true, completion: nil)
+                    $0.title = "Import"
+                    }.onCellSelection({ (cell, row) in
+                        // Present the import flow
                     })
+                <<< ButtonRow() {
+                    $0.title = "Export"
+                    }.onCellSelection({ (cell, row) in
+                        // Present the export flow
+                    })
+
         }
 
 
@@ -144,24 +137,32 @@ final class BESettingsViewController: FormViewController {
                 })
 
 
-        //MARK: IMPORT EXPORT
-
-        form +++ Section("Import/export")
-            <<< ButtonRow() {
-                $0.title = "Import"
-                }.onCellSelection({ (cell, row) in
-                    // Present the import flow
-                })
-            <<< ButtonRow() {
-                $0.title = "Export"
-                }.onCellSelection({ (cell, row) in
-                    // Present the export flow
-                })
-
 
         //MARK: SUPPORT
 
         form +++ Section("Support")
+        if #available(iOS 10.3, *) {
+            form.last! <<< ButtonRow() {
+                $0.title = "Write a review"
+                }.onCellSelection({ (cell, row) in
+                    SKStoreReviewController.requestReview()
+                })
+        }
+        if MFMailComposeViewController.canSendMail() {
+            form.last!
+                <<< ButtonRow() {
+                    $0.title = "Send feedback"
+                    }.onCellSelection({ [unowned self] (cell, row) in
+                        // Open
+                        let composer = MFMailComposeViewController()
+                        composer.mailComposeDelegate = self
+                        composer.setSubject("Feedback")
+                        let deviceDetails = "\n\n\nDevice Details:\n\(UIDevice.current.model)\n\(UIDevice.current.name)\n\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+                        composer.setMessageBody(deviceDetails, isHTML: false)
+                        self.present(composer, animated: true, completion: nil)
+                    })
+        }
+        form.last!
             <<< URLRow() {
                 $0.title = "website"
                 $0.value = URL(string: "http://mcomisso.xyz")!
