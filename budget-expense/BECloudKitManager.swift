@@ -16,11 +16,22 @@ final class BECloudKitManager: BEManagerAmountProtocol {
     let privateDB: CKDatabase
     let publicDB: CKDatabase
 
+    let appZone: CKRecordZone
+
     static let shared = BECloudKitManager()
 
     private init() {
         self.privateDB = self.container.privateCloudDatabase
         self.publicDB = self.container.publicCloudDatabase
+
+        self.appZone = CKRecordZone(zoneID: CKRecordZoneID(zoneName: "com.mcomisso.budgetexpense.appZone", ownerName: CKCurrentUserDefaultName))
+    }
+
+
+    // SUBSCRIPTIONS
+
+    func loadSubscriptions() {
+        let subscription = CKRecordZoneSubscription(zoneID: self.appZone.zoneID)
     }
 
 
