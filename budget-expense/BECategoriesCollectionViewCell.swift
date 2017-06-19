@@ -13,6 +13,14 @@ class BECategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var icon: UIImageView!
 
+    var category: BECategory!
+
+    override var isSelected: Bool {
+        didSet {
+            self.contentView.backgroundColor = isSelected ? category.color : .clear
+            self.icon.image = isSelected ? self.icon.image?.tint(with: .white) : self.icon.image?.tint(with: category.color)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +34,8 @@ class BECategoryCollectionViewCell: UICollectionViewCell {
     }
 
     func setModelCategory(_ category: BECategoryProtocol) {
+        self.category = category as! BECategory
         self.icon.image = category.generateImageFromIcon().tint(with: category.color)
-//        self.contentView.gradientFromColor(category.color)
     }
 
     override func prepareForReuse() {
