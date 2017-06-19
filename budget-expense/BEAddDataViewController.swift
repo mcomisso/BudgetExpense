@@ -24,39 +24,37 @@ final class BEAddDataViewController: UIViewController {
     // DELEGATE
     weak var delegate: BEAddDataViewControllerPresenterDelegate?
 
+    // FEEDBACK
+
+    fileprivate let feedbackGenerator = SQFeedbackGenerator()
+
+
     // Public
     public var type: BEAddDataType = .expense
 
+
+
+    // INTERFACE BUILDER
+
     @IBOutlet var buttons: [Button]! // Array containing all digits buttons
 
-    @IBOutlet weak var cardContainer: Card!
+    @IBOutlet weak var cardContainer: BECardDisplay! // Container with current digits (Material card style)
 
-    @IBOutlet weak var sideDeleteButton: UIButton!
+    @IBOutlet weak var sideDeleteButton: UIButton! // Delete last digit button
+
     @IBOutlet weak var saveButton: RaisedButton! // Delete digit button
 
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dateButton: FlatButton!
+    @IBOutlet weak var dateButton: FlatButton! // Date selector button
 
-    @IBOutlet weak var notesTextField: TextField!
+    @IBOutlet weak var notesTextField: TextField! // Notes text field
 
-    @IBOutlet weak var actionsStackView: UIStackView!
-
-
-    private lazy var currentDigits: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 80)
-        label.sizeToFit()
-        label.text = NSNumber.init(value: 0.00).toCurrency()
-
-        return label
-    }()
-
+    @IBOutlet weak var actionsStackView: UIStackView! // Stackview of buttons (Location and photo capture)
 
 
     // Small view controller that contains all the categories
     var categoriesVC: BECategoriesCollectionView!
+
+    // PRESENTERS
 
     var bottomHalfPresentr: Presentr {
         let p = Presentr(presentationType: .bottomHalf)
@@ -65,7 +63,6 @@ final class BEAddDataViewController: UIViewController {
 
         return p
     }
-
 
     fileprivate lazy var oneThirdPresentr: Presentr = { [weak self] in
         guard let strongSelf = self else { fatalError() }
@@ -77,18 +74,15 @@ final class BEAddDataViewController: UIViewController {
         return p
     }()
 
-    let feedbackGenerator = SQFeedbackGenerator()
-
     fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
         guard let `self` = self else { fatalError() }
         return BETransitioningDismissingAnimator(direction: self.type == .expense ? .down : .up)
         }()
 
-    fileprivate var numericMem = NumericMem() {
-        didSet {
-            self.currentDigits.text = self.numericMem.toNumber().toCurrency()
-        }
-    }
+
+    // PRIVATE VARS
+
+    fileprivate var selectedCategory: BECategory?
 
     fileprivate var date: Date = Date() {
         didSet {
@@ -114,26 +108,13 @@ final class BEAddDataViewController: UIViewController {
         self.notesTextField.textColor = BETheme.Colors.textIcons
         self.notesTextField.delegate = self
 
-        self.notesTextField.dividerActiveColor = .white
-        self.notesTextField.detailColor = .white
-        self.notesTextField.placeholderActiveColor = .white
-
-        self.dateLabel.textColor = BETheme.Colors.textIcons
-        self.dateLabel.text = BEUtils.longDateFormatter.string(from: self.date)
-
-        self.dateButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        self.dateButton.titleLabel?.minimumScaleFactor = 0.5
-        self.dateButton.titleLabel?.numberOfLines = 2
-        self.dateButton.titleLabel?.textAlignment = .center
-        self.dateButton.setTitleColor(.white, for: .normal)
-
         self.setCurrentType()
 
-        self.setupButtons()
+        self.setupNumPadButtons()
 
         self.setupActionButtons()
 
-        self.setupDigits()
+        self.setupCardContainer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,33 +125,43 @@ final class BEAddDataViewController: UIViewController {
 
     //MARK:-
 
-    func setupDigits() {
-        self.cardContainer.depth = Depth(offset: Offset.init(horizontal: 0, vertical: 4), opacity: 0.2, radius: 10)
-        self.cardContainer.contentView = self.currentDigits
-        self.cardContainer.cornerRadius = 15
-        if self.type == .expense {
-            self.cardContainer.container.gradientFromColor(BETheme.Colors.expense)
-        } else {
-            self.cardContainer.container.gradientFromColor(BETheme.Colors.income)
-        }
+    func setupCardContainer() {
+        self.cardContainer.prepare(with: self.type, category: self.selectedCategory)
     }
 
 
     /// Set the current screen type (expense or income)
     func setCurrentType() {
-
         self.view.backgroundColor = Color.blueGrey.base
 
-//        switch self.type {
-//        case .income:
-//            self.view.gradientFromColor(BETheme.Colors.primary)
-//            self.view.backgroundColor = .clear
-//            self.notesTextField.detailColor = Color.teal.accent3
-//        case .expense:
-//            self.view.gradientFromColor(Color.deepOrange.base)
-//            self.view.backgroundColor = .clear
-//            self.notesTextField.detailColor = Color.red.accent3
-//        }
+        self.notesTextField.dividerActiveColor = .white
+        self.notesTextField.detailColor = .white
+        self.notesTextField.placeholderActiveColor = .white
+    }
+
+    func setupNumPadButtons() {
+
+        self.dateButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.dateButton.titleLabel?.minimumScaleFactor = 0.5
+        self.dateButton.titleLabel?.numberOfLines = 2
+        self.dateButton.titleLabel?.textAlignment = .center
+        self.dateButton.setTitleColor(.white, for: .normal)
+
+        self.sideDeleteButton.setTitle("", for: .normal)
+        self.sideDeleteButton.setImage(#imageLiteral(resourceName: "delete").tint(with: .white), for: .normal)
+        self.sideDeleteButton.imageView?.contentMode = .scaleAspectFit
+        self.sideDeleteButton.addTarget(self, action: #selector(self.deleteLastDigit(_:)), for: .touchUpInside)
+        self.sideDeleteButton.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
+
+        for button in self.buttons {
+            button.setTitleColor(BETheme.Colors.textIcons, for: .normal)
+            button.addTarget(self, action: #selector(didPressDigit(sender:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
+
+            let attributedString = NSMutableAttributedString(string: (button.titleLabel?.text)!)
+            attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.characters.count))
+            button.setAttributedTitle(attributedString, for: .normal)
+        }
     }
 
     func setupActionButtons() {
@@ -204,6 +195,9 @@ final class BEAddDataViewController: UIViewController {
         pictureButton.addTarget(self, action: #selector(self.didPressPicture), for: .touchUpInside)
     }
 
+
+    //MARK:- Methods
+
     func didPressLocation() {
         // ASK LOCATION MANAGER TO FETCH
         BELocationManager.shared.requestCurrentLocation()
@@ -222,39 +216,25 @@ final class BEAddDataViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
 
-    func setupButtons() {
-
-        self.sideDeleteButton.setTitle("", for: .normal)
-        self.sideDeleteButton.setImage(#imageLiteral(resourceName: "delete").tint(with: .white), for: .normal)
-        self.sideDeleteButton.imageView?.contentMode = .scaleAspectFit
-        self.sideDeleteButton.addTarget(self, action: #selector(self.deleteLastDigit(_:)), for: .touchUpInside)
-        self.sideDeleteButton.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
-
-        for button in self.buttons {
-            button.setTitleColor(BETheme.Colors.textIcons, for: .normal)
-            button.addTarget(self, action: #selector(didPressDigit(sender:)), for: .touchUpInside)
-            button.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
-
-            let attributedString = NSMutableAttributedString(string: (button.titleLabel?.text)!)
-            attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.characters.count))
-            button.setAttributedTitle(attributedString, for: .normal)
-        }
-    }
-
 
     func feedbackForPressDigit(sender: Button) {
-        self.feedbackGenerator.generateFeedback(type: .notification)
-        BESoundPlayer.play(sound: .click)
+        if BEConstants.Features.HAPTIC_FEEDBACK_ENABLED && BESettings.hapticFeedbackEnabled.boolValue {
+            self.feedbackGenerator.generateFeedback(type: .notification)
+        }
+
+        if BESettings.appSoundsEnabled.boolValue {
+            BESoundPlayer.play(sound: .click)
+        }
     }
 
     func didPressDigit(sender: Button) {
         if self.buttons.contains(sender) {
-            self.numericMem.addDigit(digit: (sender.titleLabel?.text)!)
+            self.cardContainer.addDigit(digit: (sender.titleLabel?.text)!)
         }
     }
 
     @IBAction func deleteLastDigit(_ sender: AnyObject) {
-        self.numericMem.removeDigit()
+        self.cardContainer.deleteDigit()
     }
 
 
@@ -265,7 +245,7 @@ final class BEAddDataViewController: UIViewController {
     }
 
     @IBAction func saveAmount(_ sender: AnyObject) {
-        let amount = self.numericMem.toDouble()
+        let amount = self.cardContainer.getAmount()
 
 //        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
         BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: self.date)
