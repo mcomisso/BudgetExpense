@@ -14,6 +14,7 @@
 		B91318931EF6882E00FE1BDF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91318921EF6882E00FE1BDF /* Settings.storyboard */; };
 		B91318961EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */; };
 		B91318981EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */; };
+		B913189A1EF7C40800FE1BDF /* CardContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91318991EF7C40700FE1BDF /* CardContainer.swift */; };
 		B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */; };
 		B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */; };
 		B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */; };
@@ -97,6 +98,7 @@
 		B91318921EF6882E00FE1BDF /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		B91318951EF6937400FE1BDF /* Pods-budget-expense-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-budget-expense-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-budget-expense/Pods-budget-expense-acknowledgements.plist"; sourceTree = "<group>"; };
 		B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEDateSelectorViewController.swift; sourceTree = "<group>"; };
+		B91318991EF7C40700FE1BDF /* CardContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardContainer.swift; sourceTree = "<group>"; };
 		B91378CE1EEF09F70075B118 /* BECloudKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitHelper.swift; sourceTree = "<group>"; };
 		B91378D11EEF0BCD0075B118 /* BECloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitManager.swift; sourceTree = "<group>"; };
 		B91378D31EEF3D8D0075B118 /* BECloudKitErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECloudKitErrorManager.swift; sourceTree = "<group>"; };
@@ -188,6 +190,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B913189B1EF80D5700FE1BDF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
+				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		B913189C1EF80D5F00FE1BDF /* Initial setup */ = {
+			isa = PBXGroup;
+			children = (
+				B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */,
+			);
+			name = "Initial setup";
+			sourceTree = "<group>";
+		};
+		B913189D1EF80D7200FE1BDF /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */,
+			);
+			name = Transactions;
+			sourceTree = "<group>";
+		};
 		B91378D01EEF0B960075B118 /* CloudKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,11 +230,10 @@
 		B91378D51EEF40CF0075B118 /* ViewControllers  */ = {
 			isa = PBXGroup;
 			children = (
-				B96298D61EF1377A00ED9555 /* BEInitialSetupViewController.swift */,
-				B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */,
-				B9A7F51B1DA8B5930051090F /* BEStartViewController.swift */,
-				B99958031DA217DF007274BB /* BEAddDataViewController.swift */,
+				B913189B1EF80D5700FE1BDF /* Main */,
+				B913189C1EF80D5F00FE1BDF /* Initial setup */,
 				B913188D1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift */,
+				B913189D1EF80D7200FE1BDF /* Transactions */,
 				B943437E1EF2C2DD00A94391 /* BENumpadInputView.swift */,
 				B913188F1EF67D9000FE1BDF /* BESettingsViewController.swift */,
 				B91318971EF6C8FF00FE1BDF /* BEDateSelectorViewController.swift */,
@@ -221,6 +247,7 @@
 			children = (
 				B96298BB1EF0210A00ED9555 /* Cells */,
 				B96298B91EF020E100ED9555 /* BEHeaderView.swift */,
+				B91318991EF7C40700FE1BDF /* CardContainer.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -723,6 +750,7 @@
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
 				B96298F41EF1C6E800ED9555 /* BEBaseModel.swift in Sources */,
 				B9C884221DB3197400D7A9BC /* BEConstants.swift in Sources */,
+				B913189A1EF7C40800FE1BDF /* CardContainer.swift in Sources */,
 				B96298CD1EF0828000ED9555 /* BEOptionsManager.swift in Sources */,
 				B91378CF1EEF09F70075B118 /* BECloudKitHelper.swift in Sources */,
 				B96298C21EF069FD00ED9555 /* R.generated.swift in Sources */,
