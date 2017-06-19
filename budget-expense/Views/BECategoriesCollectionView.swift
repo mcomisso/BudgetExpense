@@ -76,19 +76,16 @@ extension BECategoriesCollectionView {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.categoriesCellIdentifier, for: indexPath) else { fatalError() }
 
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.categoriesCellIdentifier, for: indexPath) as! BECategoryCollectionViewCell
             cell.setModelCategory(self.dataSource[indexPath.row])
             cell.setNeedsLayout()
             cell.layoutSubviews()
-            return cell
         } else {
-
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.categoriesCellIdentifier, for: indexPath) else { fatalError() }
-            cell.setModelCategory(BECategory.init(gliph: "add", color: .white, name: "add"))
-            return cell
+            cell.setModelCategory(BECategory.init(gliph: "plus_sign", color: .white, name: "plus_sign"))
         }
+        return cell
     }
 }
 
