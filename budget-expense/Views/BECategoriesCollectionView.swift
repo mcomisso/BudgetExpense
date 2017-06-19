@@ -10,7 +10,20 @@ import UIKit
 import Material
 
 protocol BECategoriesCollectionViewControllerDelegate: class {
-    func didSelectAddCategory()
+
+
+    /// Triggered when a "+" button is pressed, to create a new category
+    ///
+    /// - Parameter categoriesCollectionViewController: The triggering categoriesViewController
+    func didSelectAddCategory(_ categoriesCollectionViewController: BECategoriesCollectionView)
+
+
+    /// Triggered when a category is tapped
+    ///
+    /// - Parameters:
+    ///   - categoriesCollectionViewController: The triggering categoriesViewController
+    ///   - category: The category selected
+    func didSelectCategory(_ categoriesCollectionViewController: BECategoriesCollectionView, category: BECategory)
 }
 
 class BECategoriesCollectionView: UICollectionViewController {
@@ -48,7 +61,7 @@ class BECategoriesCollectionView: UICollectionViewController {
     func didPressAddCategory() {
         print("Add category!")
 
-        self.delegate?.didSelectAddCategory()
+        self.delegate?.didSelectAddCategory(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +106,9 @@ extension BECategoriesCollectionView {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             // Add
-            self.delegate?.didSelectAddCategory()
+            self.delegate?.didSelectAddCategory(self)
+        } else if indexPath.section == 0 {
+
         }
     }
 }
