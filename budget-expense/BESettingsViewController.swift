@@ -73,6 +73,18 @@ final class BESettingsViewController: FormViewController {
                 }.onChange({ row in
                     BESettings.automaticGeolocation.set(value: row.value!)
                 })
+            <<< SwitchRow() { row in
+                row.title = "Sounds enabled"
+                row.value = BESettings.appSoundsEnabled.boolValue
+                }.onChange({ (row) in
+                    BESettings.appSoundsEnabled.set(value: row.value!)
+                })
+            <<< SwitchRow() {
+                $0.title = "Haptic feedback"
+                $0.value = BESettings.hapticFeedbackEnabled.boolValue
+                }.onChange({ (row) in
+                    BESettings.hapticFeedbackEnabled.set(value: row.value!)
+                })
 
 
         //MARK: REVIEW
