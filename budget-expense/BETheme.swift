@@ -21,8 +21,8 @@ struct BETheme {
         static let secondaryText = Color.darkText.secondary
         static let divider = Color.grey.lighten1
 
-        static let income = Color.teal.base
-        static let expense = Color.red.base
+        static let income = Color.teal.lighten2
+        static let expense = Color.red.lighten2
     }
 }
 
