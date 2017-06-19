@@ -11,14 +11,11 @@ import Foundation
 struct BEConstants {
     struct Features {
         static let CLOUD_KIT_ENABLED = false
+        static let HAPTIC_FEEDBACK_ENABLED = true
+        static let IMPORT_EXPORT_ENABLED = false
     }
 
     struct Values {
-        static let transitionDuration = 0.6
-    }
-    struct Identifiers {
-        static let addDataViewController = "AddDataViewController"
-        static let overviewCellIdentifier = "overviewCellIdentifier"
-        static let categoriesCellIdentifier = "categoriesCellIdentifier"
+        static let transitionDuration = 0.4
     }
 }
