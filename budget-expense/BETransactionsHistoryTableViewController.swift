@@ -14,7 +14,7 @@ import PKHUD
 
 fileprivate struct BETransactions {
     let date: Date
-    let amounts: [Amount]
+    let amounts: Results<Amount>
 
     init(date: Date) {
         self.date = date
@@ -25,6 +25,10 @@ fileprivate struct BETransactions {
 final class BETransactionsHistoryCollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var closeButton: UIBarButtonItem!
+
+    let notificationManager = BENotificationCenterManager()
+
+    var realmNotificationsTokens: [NotificationToken] = []
 
     lazy var skeleton: UIStackView = {
 
@@ -92,15 +96,55 @@ final class BETransactionsHistoryCollectionViewController: UICollectionViewContr
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
+
+    deinit {
+        for token in self.realmNotificationsTokens {
+            token.stop()
+        }
+    }
+
     fileprivate func reloadTransactions(shouldReloadCollectionView: Bool = false) {
         self.transactionsData = BERealmManager.shared.getAvailableDays().map { BETransactions(date: $0) }
+        for (index, collection) in self.transactionsData.enumerated() {
+            let token = collection.amounts.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Amount>>) in
+                guard let strongSelf = self else { return }
+
+                switch changes {
+
+                case .error(let error):
+                    print(error.localizedDescription)
+
+                case .initial(let t):
+                    print("Initial")
+                    print(t.description)
+//                    strongSelf.collectionView?.reloadSections(IndexSet(integer: index))
+
+                case .update(_, let deletions, let insertions, _):
+                    // Find cell and delete it
+
+                    DispatchQueue.main.async {
+
+                        self?.collectionView?.performBatchUpdates({
+                            strongSelf.collectionView?.insertItems(at: insertions.map { IndexPath(item: $0, section: index)})
+
+                            strongSelf.collectionView?.deleteItems(at: deletions.map { IndexPath(item: $0, section: index) })
+
+                        }, completion: { (completed) in
+                            print(completed.description)
+                        })
+                    }
+                }
+            })
+            self.realmNotificationsTokens.append(token)
+        }
+
         if shouldReloadCollectionView {
             self.collectionView?.reloadData()
         }
     }
 
 }
-    // MARK: - Table view data source
+// MARK: - Table view data source
 extension BETransactionsHistoryCollectionViewController {
 
 
@@ -113,7 +157,7 @@ extension BETransactionsHistoryCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BEConstants.Identifiers.overviewCellIdentifier, for: indexPath) as! BETransactionCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.overviewCellIdentifier, for: indexPath)!
 
         let amountObject = self.transactionsData[indexPath.section].amounts[indexPath.row]
 
@@ -123,7 +167,7 @@ extension BETransactionsHistoryCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BEHeaderView.reuseIdentifier, for: indexPath) as! BEHeaderView
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: R.reuseIdentifier.bEHeaderViewReuseIdentifier, for: indexPath)!
 
         reusableView.setDay(date: self.transactionsData[indexPath.section].date, transactions: self.transactionsData[indexPath.section].amounts)
 
@@ -137,56 +181,32 @@ extension BETransactionsHistoryCollectionViewController: BETransactionCellDelega
         // Options to manage
 
         let alertSheet = UIAlertController(title: "What to do?", message: nil, preferredStyle: .actionSheet)
-        alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] (alert) in
+        alertSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
             // Delete from realm
             guard let amount = amount else { return }
+
             BERealmManager.shared.delete(amount: amount, completion: { (success) in
                 if success {
-                    BESoundPlayer.play(sound: .beepOff)
-//                    self?.collectionView?.collectionViewLayout.invalidateLayout()
-
-                    guard let `self` = self else { return }
-
-                    // Find cell and delete it
-                    if let indexPath = self.collectionView?.indexPath(for: cell) {
-
-                        let preCount = self.transactionsData.count
-                        self.reloadTransactions()
-
-                        // Delete section if the dataSource has less values
-                        if self.transactionsData.count < preCount {
-                            self.collectionView?.performBatchUpdates({ 
-                                self.collectionView?.deleteSections(IndexSet(integer: indexPath.section))
-                                self.collectionView?.deleteItems(at: [indexPath])
-                            }, completion: { (completed) in
-                                if completed {
-                                    HUD.flash(.success)
-                                }
-                            })
-
-                        } else {
-                            self.collectionView?.deleteItems(at: [indexPath])
-                        }
+                    if BESettings.appSoundsEnabled.boolValue {
+                        BESoundPlayer.play(sound: .beepOff)
                     }
-
                 } else {
                     // Display error
                     HUD.flash(.error)
                 }
             })
-
         }))
-
+        
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
+        
         self.present(alertSheet, animated: true, completion: nil)
     }
-
+    
     func didPressShare(cell: BETransactionCollectionViewCell, amount: Amount?) {
         // Options to share cell content
-
-
-
+        
+        
+        
     }
     
 }

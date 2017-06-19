@@ -142,8 +142,8 @@ extension BERealmAmountMethods {
         return self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false)
     }
 
-    func getDataForDay(day: Date) -> [Amount] {
-        return Array(self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]).sorted(byKeyPath: "date", ascending: false))
+    func getDataForDay(day: Date) -> Results<Amount> {
+        return self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]).sorted(byKeyPath: "date", ascending: false)
     }
 
 
@@ -237,7 +237,12 @@ extension BERealmManager {
 extension BERealmManager {
 
     func deleteAllData() {
-        self.realm.deleteAll()
+        let realm = self.realm
+        try? realm.write {
+            realm.deleteAll()
+        }
+
+        BEInitialData.loadIntoRealm()
     }
 
     var isEmpty: Bool {

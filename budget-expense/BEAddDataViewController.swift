@@ -82,7 +82,11 @@ final class BEAddDataViewController: UIViewController {
 
     // PRIVATE VARS
 
-    fileprivate var selectedCategory: BECategory?
+    fileprivate var selectedCategory: BECategory? {
+        didSet {
+            self.cardContainer.category = self.selectedCategory
+        }
+    }
 
     fileprivate var date: Date = Date() {
         didSet {
@@ -281,7 +285,16 @@ extension BEAddDataViewController: UITextFieldDelegate {
 
 extension BEAddDataViewController: BECategoriesCollectionViewControllerDelegate {
 
-    func didSelectAddCategory() {
+    /// Triggered when a category is tapped
+    ///
+    /// - Parameters:
+    ///   - categoriesCollectionViewController: The triggering categoriesViewController
+    ///   - category: The category selected
+    func didSelectCategory(_ categoriesCollectionViewController: BECategoriesCollectionView, category: BECategory) {
+        self.selectedCategory = category
+    }
+
+    func didSelectAddCategory(_ categoriesCollectionViewController: BECategoriesCollectionView) {
 
         // Category CreationVC
 
