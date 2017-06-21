@@ -52,6 +52,8 @@
 		B96298F21EF1C61E00ED9555 /* BECategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298F11EF1C61E00ED9555 /* BECategory.swift */; };
 		B96298F41EF1C6E800ED9555 /* BEBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96298F31EF1C6E700ED9555 /* BEBaseModel.swift */; };
 		B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9635F981E01180600AC6652 /* BETransitionMananger.swift */; };
+		B97C102F1EFAB80C00958289 /* BERestCountriesWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C102E1EFAB80C00958289 /* BERestCountriesWebService.swift */; };
+		B97C10311EFAB83400958289 /* BEParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C10301EFAB83400958289 /* BEParser.swift */; };
 		B9869D0F1DB496600087CBB7 /* BEUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9869D0E1DB496600087CBB7 /* BEUtils.swift */; };
 		B98A85541DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */; };
 		B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */; };
@@ -135,6 +137,8 @@
 		B96298F11EF1C61E00ED9555 /* BECategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BECategory.swift; sourceTree = "<group>"; };
 		B96298F31EF1C6E700ED9555 /* BEBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEBaseModel.swift; sourceTree = "<group>"; };
 		B9635F981E01180600AC6652 /* BETransitionMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransitionMananger.swift; sourceTree = "<group>"; };
+		B97C102E1EFAB80C00958289 /* BERestCountriesWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BERestCountriesWebService.swift; sourceTree = "<group>"; };
+		B97C10301EFAB83400958289 /* BEParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEParser.swift; sourceTree = "<group>"; };
 		B9869D0E1DB496600087CBB7 /* BEUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEUtils.swift; sourceTree = "<group>"; };
 		B98A85531DB4341A00EEF953 /* BETransactionsHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransactionsHistoryTableViewController.swift; sourceTree = "<group>"; };
 		B98A85551DB44E0E00EEF953 /* BECategoriesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BECategoriesCollectionView.swift; path = Views/BECategoriesCollectionView.swift; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				B938A9851EF3E9C70058FE87 /* BECurrencyWebService.swift */,
+				B97C102E1EFAB80C00958289 /* BERestCountriesWebService.swift */,
+				B97C10301EFAB83400958289 /* BEParser.swift */,
 			);
 			name = WebServices;
 			sourceTree = "<group>";
@@ -743,6 +749,7 @@
 				B9635F991E01180600AC6652 /* BETransitionMananger.swift in Sources */,
 				B9B847FB1EED9C6100DF7C39 /* BELocationManager.swift in Sources */,
 				B938A9861EF3E9C70058FE87 /* BECurrencyWebService.swift in Sources */,
+				B97C10311EFAB83400958289 /* BEParser.swift in Sources */,
 				B91378D41EEF3D8D0075B118 /* BECloudKitErrorManager.swift in Sources */,
 				B9B848001EEDB9B500DF7C39 /* CloudKitAccount.swift in Sources */,
 				B98A85561DB44E0E00EEF953 /* BECategoriesCollectionView.swift in Sources */,
@@ -756,6 +763,7 @@
 				B91378D21EEF0BCD0075B118 /* BECloudKitManager.swift in Sources */,
 				B96298E61EF18EED00ED9555 /* BEColors.swift in Sources */,
 				B96298DB1EF171A200ED9555 /* BECategoryColorCell.swift in Sources */,
+				B97C102F1EFAB80C00958289 /* BERestCountriesWebService.swift in Sources */,
 				B913188E1EF57C1A00FE1BDF /* BECurrencySelectorViewController.swift in Sources */,
 				B99958021DA217DF007274BB /* AppDelegate.swift in Sources */,
 				B96298D31EF0940A00ED9555 /* BECategorySelector.swift in Sources */,
