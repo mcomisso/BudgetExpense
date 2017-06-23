@@ -453,7 +453,7 @@
         <scene sceneID="YKx-gH-V8F">
             <objects>
                 <collectionViewController id="nTj-fN-6vp" customClass="BECategoriesCollectionView" customModule="budget_expense" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZM0-Oo-huH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZM0-Oo-huH">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+fileprivate let baseURL = URL(string: "https://restcountries.eu/rest/v2/alpha")!
+
 final class BERestCountriesWebService {
     let parser = BEParser()
 
@@ -17,7 +19,7 @@ final class BERestCountriesWebService {
 
         manager.session.configuration.timeoutIntervalForRequest = 5
 
-        var urlComponents = URLComponents(url: restCountriesURL, resolvingAgainstBaseURL: false)!
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
         let countryCode = URLQueryItem(name: "codes", value: code)
         let filterFields = URLQueryItem(name: "fields", value: "name;currencies")
 

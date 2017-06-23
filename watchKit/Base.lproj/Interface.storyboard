@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Home-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Home" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchKit" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="50" alignment="center" id="87u-Yn-z6N">
+                            <items>
+                                <picker width="0.20000000000000001" height="1" alignment="right" focusStyle="stack" indicatorMode="shownWhileFocused" id="8sB-FP-kfU"/>
+                                <picker width="0.20000000000000001" height="1" alignment="right" focusStyle="stack" id="RwW-D9-fgX"/>
+                                <picker width="0.20000000000000001" height="1" alignment="right" focusStyle="stack" id="z3h-dZ-aJh"/>
+                                <picker width="0.20000000000000001" height="1" alignment="right" focusStyle="stack" id="otw-2z-19W"/>
+                                <group width="0.20000000000000001" alignment="left" id="J8h-iu-bPa">
+                                    <items>
+                                        <picker width="1" height="1" alignment="right" focusStyle="stack" id="Vri-zV-bxQ"/>
+                                    </items>
+                                </group>
+                            </items>
+                            <gestureRecognizers>
+                                <swipeGestureRecognizer id="Rqa-gL-Sd6">
+                                    <connections>
+                                        <action selector="didSwipeLeft:" destination="AgC-eL-Hgc" id="dwB-rb-jDy"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer id="3R4-SE-Myy">
+                                    <connections>
+                                        <action selector="didSwipeRight:" destination="AgC-eL-Hgc" id="za7-IO-X6Y"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                            </gestureRecognizers>
+                        </group>
+                        <button width="1" alignment="left" title="Income" id="THj-U1-aTu">
+                            <color key="backgroundColor" red="0.20655064115768376" green="0.74382362565445026" blue="0.52241773683074177" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </button>
+                        <button width="1" alignment="left" title="Expense" id="Cuh-Y5-g5V">
+                            <color key="backgroundColor" red="0.78315199607329844" green="0.32011928647876109" blue="0.36270637339028866" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="didSwipeLeftGR" destination="Rqa-gL-Sd6" id="on9-4Y-5Dn"/>
+                        <outlet property="didSwipeRightGR" destination="3R4-SE-Myy" id="q8d-DJ-jul"/>
+                        <outlet property="picker2" destination="RwW-D9-fgX" id="mrD-A9-DMt"/>
+                        <outlet property="picker3" destination="z3h-dZ-aJh" id="3FC-hV-AfL"/>
+                        <outlet property="picker4" destination="otw-2z-19W" id="8et-zG-TLz"/>
+                        <outlet property="picker5" destination="Vri-zV-bxQ" id="o9W-tH-zYg"/>
+                        <outlet property="pickerObject" destination="8sB-FP-kfU" id="21t-Mf-I6n"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="34" y="44"/>
+        </scene>
+    </scenes>
+</document>

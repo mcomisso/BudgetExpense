@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwifyJSON
+import SwiftyJSON
 
 final class BEParser {
 

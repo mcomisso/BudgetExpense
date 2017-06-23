@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BECurrencyLabelView" customModule="budget_expense" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="515" height="153"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k80-d7-YFS">
+                    <rect key="frame" x="76" y="8" width="431" height="137"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AZU-1m-KNy">
+                    <rect key="frame" x="8" y="8" width="60" height="137"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eQ-bA-WpH">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="68.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfK-kv-QYa">
+                            <rect key="frame" x="0.0" y="68.5" width="60" height="68.5"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="didCompleteConversion:" destination="iN0-l3-epB" eventType="touchUpInside" id="v1C-py-Mfs"/>
+                                <action selector="didTouchConversion:" destination="iN0-l3-epB" eventType="touchDown" id="hvz-gK-ugF"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="q1w-e0-Rcv"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="k80-d7-YFS" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="0Xg-fN-rZj"/>
+                <constraint firstItem="AZU-1m-KNy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="87S-WB-h5O"/>
+                <constraint firstAttribute="bottomMargin" secondItem="AZU-1m-KNy" secondAttribute="bottom" id="BmV-te-oRt"/>
+                <constraint firstItem="k80-d7-YFS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="J1m-Be-iD3"/>
+                <constraint firstItem="AZU-1m-KNy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="L9z-FH-re1"/>
+                <constraint firstItem="k80-d7-YFS" firstAttribute="leading" secondItem="AZU-1m-KNy" secondAttribute="trailing" constant="8" id="pWi-P6-wPk"/>
+                <constraint firstAttribute="bottomMargin" secondItem="k80-d7-YFS" secondAttribute="bottom" id="sdu-Uh-iYF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="convertCurrency" destination="FfK-kv-QYa" id="az8-AB-8Bp"/>
+                <outlet property="currentCurrency" destination="3eQ-bA-WpH" id="eKE-rk-6Ht"/>
+                <outlet property="digitsText" destination="k80-d7-YFS" id="k15-9v-Ffa"/>
+                <outlet property="stackView" destination="AZU-1m-KNy" id="YnC-ir-LqU"/>
+                <outlet property="stackViewWidthConstraint" destination="q1w-e0-Rcv" id="jrt-kL-aha"/>
+            </connections>
+            <point key="canvasLocation" x="-110.5" y="98.5"/>
+        </view>
+    </objects>
+</document>

@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 
 fileprivate let baseURL = URL(string: "https://api.fixer.io/latest")!
-fileprivate let restCountriesURL = URL(string: "https://restcountries.eu/rest/v2/alpha")!
 
 final class BECurrencyWebService {
 
