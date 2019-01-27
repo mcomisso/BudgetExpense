@@ -24,14 +24,14 @@ final class BECloudKitManager: BEManagerAmountProtocol {
         self.privateDB = self.container.privateCloudDatabase
         self.publicDB = self.container.publicCloudDatabase
 
-        self.appZone = CKRecordZone(zoneID: CKRecordZoneID(zoneName: "com.mcomisso.budgetexpense.appZone", ownerName: CKCurrentUserDefaultName))
+        self.appZone = CKRecordZone(zoneID: CKRecordZone.ID(zoneName: "com.mcomisso.budgetexpense.appZone", ownerName: CKCurrentUserDefaultName))
     }
 
 
     // SUBSCRIPTIONS
 
     func loadSubscriptions() {
-        let subscription = CKRecordZoneSubscription(zoneID: self.appZone.zoneID)
+        _ = CKRecordZoneSubscription(zoneID: self.appZone.zoneID)
     }
 
 

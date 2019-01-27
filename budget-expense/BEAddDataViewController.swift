@@ -71,7 +71,7 @@ final class BEAddDataViewController: UIViewController {
         p.blurStyle = .regular
         p.blurBackground = true
         return p
-    }()
+        }()
 
     fileprivate lazy var dismissAnimator: BETransitioningDismissingAnimator = { [weak self] in
         guard let `self` = self else { fatalError() }
@@ -162,7 +162,7 @@ final class BEAddDataViewController: UIViewController {
             button.addTarget(self, action: #selector(feedbackForPressDigit(sender:)), for: .touchDown)
 
             let attributedString = NSMutableAttributedString(string: (button.titleLabel?.text)!)
-            attributedString.setAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.characters.count))
+            attributedString.setAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)], range: NSMakeRange(0, attributedString.string.count))
             button.setAttributedTitle(attributedString, for: .normal)
         }
     }
@@ -204,12 +204,12 @@ final class BEAddDataViewController: UIViewController {
 
     //MARK:- Methods
 
-    func didPressLocation() {
+    @objc func didPressLocation() {
         // ASK LOCATION MANAGER TO FETCH
         BELocationManager.shared.requestCurrentLocation()
     }
 
-    func didPressPicture() {
+    @objc func didPressPicture() {
         let actionSheet = UIAlertController(title: "Choose a source", message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (action) in
             // Select from gallery
@@ -223,7 +223,7 @@ final class BEAddDataViewController: UIViewController {
     }
 
 
-    func feedbackForPressDigit(sender: Button) {
+    @objc func feedbackForPressDigit(sender: Button) {
         if BEConstants.Features.HAPTIC_FEEDBACK_ENABLED && BESettings.hapticFeedbackEnabled.boolValue {
             self.feedbackGenerator.generateFeedback(type: .notification)
         }
@@ -233,7 +233,7 @@ final class BEAddDataViewController: UIViewController {
         }
     }
 
-    func didPressDigit(sender: Button) {
+    @objc func didPressDigit(sender: Button) {
         if self.buttons.contains(sender) {
             self.cardDisplay.addDigit(digit: (sender.titleLabel?.text)!)
         }
@@ -253,7 +253,7 @@ final class BEAddDataViewController: UIViewController {
     @IBAction func saveAmount(_ sender: AnyObject) {
         let amount = self.cardDisplay.getAmount()
 
-//        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
+        //        BECloudKitManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: Date())
         BERealmManager.shared.save(amount: amount, type: self.type, notes: self.notesTextField.text!, date: self.date, category: self.selectedCategory)
 
         self.transitioningDelegate = self
@@ -307,17 +307,17 @@ extension BEAddDataViewController: BECategoriesCollectionViewControllerDelegate 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == R.segue.bEAddDataViewController.embeddedCategoriesSegue.identifier {
-            self.categoriesVC = segue.destination as! BECategoriesCollectionView
+        if let segueUnwrap = R.segue.bEAddDataViewController.embeddedCategoriesSegue(segue: segue) {
+            self.categoriesVC = segueUnwrap.destination
             self.categoriesVC.delegate = self
         }
     }
 
 }
 
-extension BEAddDataViewController {
+extension BEAddDataViewController: UIViewControllerTransitioningDelegate {
 
-    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.dismissAnimator
     }
 }

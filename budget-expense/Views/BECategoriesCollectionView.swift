@@ -58,7 +58,7 @@ class BECategoriesCollectionView: UICollectionViewController {
         }
     }
 
-    func didPressAddCategory() {
+    @objc func didPressAddCategory() {
         print("Add category!")
 
         self.delegate?.didSelectAddCategory(self)

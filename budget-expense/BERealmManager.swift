@@ -34,11 +34,11 @@ final class BERealmManager {
         }
     }
 
-    func addNotification(callback: @escaping NotificationBlock) -> NotificationToken {
-
-        let token = self.realm.addNotificationBlock(callback)
-        return token
-    }
+//    func addNotification(callback: @escaping NotificationBlock) -> NotificationToken {
+//
+////        let token = self.realm.addNotificationBlock(callback)
+////        return token
+//    }
 
 }
 
@@ -124,7 +124,7 @@ extension BERealmAmountMethods {
 
     func getAvailableDays() -> [Date] {
 
-        let dateResults = Set(self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false).map { $0.date.startOfDay })
+        let dateResults = Set(self.realm.objects(Amount.self).sorted(byKeyPath: "date", ascending: false).map { $0.date.dateAt(.startOfDay) })
 
         return Array(dateResults).sorted(by: { (lhs, rhs) -> Bool in
             if lhs.compare(rhs) == ComparisonResult.orderedAscending {
@@ -143,7 +143,7 @@ extension BERealmAmountMethods {
     }
 
     func getDataForDay(day: Date) -> Results<Amount> {
-        return self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.startOfDay, day.endOfDay]).sorted(byKeyPath: "date", ascending: false)
+        return self.realm.objects(Amount.self).filter("date BETWEEN %@", [day.dateAt(.startOfDay), day.dateAt(.endOfDay)]).sorted(byKeyPath: "date", ascending: false)
     }
 
 

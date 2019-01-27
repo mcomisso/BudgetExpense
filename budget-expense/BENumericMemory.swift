@@ -44,7 +44,7 @@ struct NumericMem {
     }
 
     mutating func addDigit(digit: String) {
-        let characters = digit.characters.map { String($0) }
+        let characters = digit.map { String($0) }
 
         for char in characters {
             self.numberStack.addElement(element: char)

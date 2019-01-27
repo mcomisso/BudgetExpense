@@ -103,7 +103,7 @@ class BETransactionCollectionViewCell: UICollectionViewCell {
         card.bottomBar?.backgroundColor = .white
     }
 
-    func didSelectButton(_ sender: Any) {
+    @objc func didSelectButton(_ sender: Any) {
         guard let button = sender as? Button,
             let action = CellButtonActionType.init(rawValue: button.tag) else { return }
 

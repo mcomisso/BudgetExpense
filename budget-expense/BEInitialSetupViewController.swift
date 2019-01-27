@@ -175,11 +175,11 @@ final class BEInitialSetupViewController: UIViewController {
         self.data = data
     }
     
-    func continueAction(_ sender: UIButton) {
+    @objc func continueAction(_ sender: UIButton) {
         self.data?.completionAction(true)
     }
     
-    func loadNextPage() {
+    @objc func loadNextPage() {
         self.data?.completionAction(false)
     }
 }

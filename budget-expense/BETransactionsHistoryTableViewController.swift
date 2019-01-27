@@ -99,14 +99,14 @@ final class BETransactionsHistoryCollectionViewController: UICollectionViewContr
 
     deinit {
         for token in self.realmNotificationsTokens {
-            token.stop()
+            token.invalidate()
         }
     }
 
     fileprivate func reloadTransactions(shouldReloadCollectionView: Bool = false) {
         self.transactionsData = BERealmManager.shared.getAvailableDays().map { BETransactions(date: $0) }
         for (index, collection) in self.transactionsData.enumerated() {
-            let token = collection.amounts.addNotificationBlock({ [weak self] (changes: RealmCollectionChange<Results<Amount>>) in
+            let token = collection.amounts.observe({ [weak self] (changes: RealmCollectionChange<Results<Amount>>) in
                 guard let strongSelf = self else { return }
 
                 switch changes {
@@ -182,7 +182,7 @@ extension BETransactionsHistoryCollectionViewController: BETransactionCellDelega
         let alertSheet = UIAlertController(title: "What to do?", message: nil, preferredStyle: .actionSheet)
 
         alertSheet.addAction(UIAlertAction.init(title: "Edit", style: .default, handler: { (_) in
-            guard let amount = amount else { return }
+            guard amount != nil else { return }
             // Open editing
 
             // Just open again the addDataViewController

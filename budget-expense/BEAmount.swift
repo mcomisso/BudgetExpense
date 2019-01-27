@@ -11,13 +11,13 @@ import RealmSwift
 
 class Amount: BEBaseModel {
 
-    dynamic var date: Date = Date()
-    dynamic var amount = 0.0
-    dynamic var isExpense = true
-    dynamic var notes = ""
+    @objc dynamic var date: Date = Date()
+    @objc dynamic var amount = 0.0
+    @objc dynamic var isExpense = true
+    @objc dynamic var notes = ""
 
     // Add location object
-    dynamic var category: BECategory?
+    @objc dynamic var category: BECategory?
 
     func day() -> Date {
         let components = Calendar(identifier: .gregorian).dateComponents([.day, .month, .year], from: self.date)

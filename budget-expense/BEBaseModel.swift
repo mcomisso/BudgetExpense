@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class BEBaseModel: Object {
-    dynamic var id = UUID.init().uuidString
+    @objc dynamic var id = UUID.init().uuidString
 
     override class func primaryKey() -> String? { return "id" }
 }

@@ -11,6 +11,6 @@ import RealmSwift
 
 
 class Budget: BEBaseModel {
-    dynamic var week: Int = 1
+    @objc dynamic var week: Int = 1
 }
 

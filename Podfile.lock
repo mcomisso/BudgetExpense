@@ -1,82 +1,108 @@
 PODS:
-  - AcknowList (1.2)
-  - Alamofire (4.5.0)
-  - Crashlytics (3.8.4):
-    - Fabric (~> 1.6.3)
-  - Eureka (3.0.0)
-  - Fabric (1.6.11)
-  - Iconic (1.2)
-  - KDCircularProgress (1.5.2)
-  - Material (2.6.3):
-    - Material/Core (= 2.6.3)
-  - Material/Core (2.6.3)
-  - PKHUD (4.2.3)
-  - Presentr (1.2.3)
-  - R.swift (3.3.0):
-    - R.swift.Library (~> 3.0.2)
-  - R.swift.Library (3.0.2)
-  - Realm (2.8.3):
-    - Realm/Headers (= 2.8.3)
-  - Realm/Headers (2.8.3)
-  - RealmSwift (2.8.3):
-    - Realm (= 2.8.3)
+  - AcknowList (1.8)
+  - Alamofire (4.8.1)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Eureka (4.3.1)
+  - Fabric (1.9.0)
+  - Iconic (1.5)
+  - KDCircularProgress (1.5.3)
+  - Material (2.16.4):
+    - Material/Core (= 2.16.4)
+  - Material/Core (2.16.4):
+    - Motion (~> 1.4.3)
+  - Motion (1.4.3):
+    - Motion/Core (= 1.4.3)
+  - Motion/Core (1.4.3)
+  - PKHUD (5.2.1)
+  - Presentr (1.9)
+  - R.swift (5.0.2):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.0)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
   - SQFeedbackGenerator (0.1.1)
-  - SwiftCharts (0.6)
-  - SwiftDate (4.1.2)
-  - SwiftyJSON (3.1.4)
+  - SwiftCharts (0.6.3)
+  - SwiftDate (5.1.0)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - AcknowList
   - Alamofire
   - Crashlytics
   - Eureka
-  - Iconic (from `https://github.com/dzenbot/Iconic.git`, tag `1.3`)
-  - KDCircularProgress
+  - Iconic (from `https://github.com/robbiet480/Iconic.git`, branch `swift-4.2`)
+  - KDCircularProgress (from `https://github.com/kaandedeoglu/KDCircularProgress.git`, branch `master`)
   - Material (~> 2.0)
-  - PKHUD (~> 4.0)
+  - PKHUD
   - Presentr
   - R.swift
   - RealmSwift
   - SQFeedbackGenerator
-  - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
+  - SwiftCharts
   - SwiftDate
   - SwiftyJSON
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AcknowList
+    - Alamofire
+    - Crashlytics
+    - Eureka
+    - Fabric
+    - Material
+    - Motion
+    - PKHUD
+    - Presentr
+    - R.swift
+    - R.swift.Library
+    - Realm
+    - RealmSwift
+    - SQFeedbackGenerator
+    - SwiftCharts
+    - SwiftDate
+    - SwiftyJSON
+
 EXTERNAL SOURCES:
   Iconic:
-    :git: https://github.com/dzenbot/Iconic.git
-    :tag: '1.3'
-  SwiftCharts:
-    :git: https://github.com/i-schuetz/SwiftCharts.git
+    :branch: swift-4.2
+    :git: https://github.com/robbiet480/Iconic.git
+  KDCircularProgress:
+    :branch: master
+    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
 
 CHECKOUT OPTIONS:
   Iconic:
-    :git: https://github.com/dzenbot/Iconic.git
-    :tag: '1.3'
-  SwiftCharts:
-    :commit: 7b1467a734d6951124bc0c8b44d45203567046da
-    :git: https://github.com/i-schuetz/SwiftCharts.git
+    :commit: f984e1e7e0ded870a09f79d980e498b24427af9c
+    :git: https://github.com/robbiet480/Iconic.git
+  KDCircularProgress:
+    :commit: 06f166642e35d5f6025b85e51d61565417c8c093
+    :git: https://github.com/kaandedeoglu/KDCircularProgress.git
 
 SPEC CHECKSUMS:
-  AcknowList: 18ccee4d933a153622416cce2d36e6864ec147ea
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  Iconic: 03d941cfad0c499ba0cde153cfbea6de6487f936
-  KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
-  Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
-  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
-  Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
-  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
-  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
-  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
+  AcknowList: 5b8820004d019d0a8d6a091ea2392dcb54bd3ad2
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Iconic: e44b1519ce9f95657ff55cd6183fad1ec37c7464
+  KDCircularProgress: 685f965f9788794448c863b7f89caa11399660ea
+  Material: 4ed78690b09ffd148b5ffab6b4367fb1d8da1cd3
+  Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  Presentr: 7078d7eb5d1661ebeaae60c9e42a1e534de1b993
+  R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
+  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   SQFeedbackGenerator: 007356526d4a45da5251505c91687a3743b58a00
-  SwiftCharts: 84f84c2a94a3f51f055eeaacd9b8dc3ada3380eb
-  SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftCharts: 1535b5e228702af2c9c4d60c2a408f2f0f579fa8
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: ab795174554cafda63e655d712f593f72d60f23e
+PODFILE CHECKSUM: 8087efd21b9d2092c4aa75a148b8c484afda8122
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3

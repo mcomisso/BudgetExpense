@@ -13,7 +13,7 @@ class BECategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var icon: UIImageView!
 
-    var category: BECategory!
+    var category: BECategoryProtocol!
 
     override var isSelected: Bool {
         didSet {
@@ -34,7 +34,7 @@ class BECategoryCollectionViewCell: UICollectionViewCell {
     }
 
     func setModelCategory(_ category: BECategoryProtocol) {
-        self.category = category as! BECategory
+        self.category = category
         self.icon.image = category.generateImageFromIcon().tint(with: category.color)
     }
 

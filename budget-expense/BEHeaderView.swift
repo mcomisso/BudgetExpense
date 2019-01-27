@@ -60,7 +60,7 @@ final class BEHeaderView: UICollectionReusableView {
         self.transactions = transactions
         self.day = date
 
-        let token = self.transactions.addNotificationBlock { [weak self] (changes: RealmCollectionChange<Results<Amount>>) in
+        let token = self.transactions.observe { [weak self] (changes: RealmCollectionChange<Results<Amount>>) in
             switch changes {
             case .error(let error):
                 print("Error " + error.localizedDescription)
@@ -80,7 +80,7 @@ final class BEHeaderView: UICollectionReusableView {
 
     deinit {
         for token in self.notificationsTokens {
-            token.stop()
+            token.invalidate()
         }
     }
 
@@ -91,7 +91,7 @@ final class BEHeaderView: UICollectionReusableView {
 
 
         for token in self.notificationsTokens {
-            token.stop()
+            token.invalidate()
         }
 
         self.day = nil

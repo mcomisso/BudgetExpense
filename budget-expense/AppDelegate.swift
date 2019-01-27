@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let locationManager = BELocationManager()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
         // These settings must be initialized before instantiating the app coordinator
         BESettingsManager.initializeDefaults()
@@ -50,3 +50,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+

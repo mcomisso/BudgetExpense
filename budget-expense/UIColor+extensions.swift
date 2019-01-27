@@ -49,7 +49,7 @@ public extension UIColor {
             cString = (cString as NSString).substring(from: 1)
         }
 
-        if (cString.characters.count == 6) {
+        if (cString.count == 6) {
             let rString = (cString as NSString).substring(to: 2)
             let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)
             let bString = ((cString as NSString).substring(from: 4) as NSString).substring(to: 2)

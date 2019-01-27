@@ -247,7 +247,7 @@ struct _R: Rswift.Validatable {
       let name = "BECurrencyLabelView"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> BECurrencyLabelView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BECurrencyLabelView
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil as! [UINib.OptionsKey : Any])[0] as? BECurrencyLabelView
       }
       
       fileprivate init() {}

@@ -58,7 +58,8 @@ final class BEDateSelectorViewController: UIViewController {
         } else  if datePicker.date.isToday  {
             self.dateStringLabel.text = "Today"
         } else {
-            self.dateStringLabel.text = datePicker.date.weekdayName
+            self.dateStringLabel.text =
+                datePicker.date.weekdayName(.default)
         }
 
         UIView.animate(withDuration: 0.7) { [weak self] in

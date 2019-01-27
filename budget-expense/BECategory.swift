@@ -11,12 +11,12 @@ import RealmSwift
 
 class BECategory: BEBaseModel, BECategoryProtocol {
 
-    dynamic var name: String = ""
+    @objc dynamic var name: String = ""
 
     // This describes the icon gliph
-    dynamic var icon: String = ""
+    @objc dynamic var icon: String = ""
 
-    dynamic var colorData: Data = Data()
+    @objc dynamic var colorData: Data = Data()
 
     var color: UIColor {
         get {

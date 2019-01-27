@@ -11,6 +11,6 @@ import RealmSwift
 
 class Account: BEBaseModel {
 
-    dynamic var name = ""
+    @objc dynamic var name = ""
     let amounts = List<Amount>()
 }

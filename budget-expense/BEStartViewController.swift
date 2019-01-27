@@ -162,24 +162,24 @@ extension BEHomeViewController {
 
 extension BEHomeViewController: UIGestureRecognizerDelegate {
 
-    func showSettingsViewController() {
+    @objc func showSettingsViewController() {
         self.delegate?.didSelectShowSettings(self)
     }
 
-    func transactionsDetails(recognizer: UITapGestureRecognizer) {
+    @objc func transactionsDetails(recognizer: UITapGestureRecognizer) {
         self.delegate?.didSelectListScreen(self)
     }
 
-    func inputData(recognizer: UISwipeGestureRecognizer) {
+    @objc func inputData(recognizer: UISwipeGestureRecognizer) {
 
         switch recognizer.direction {
-        case UISwipeGestureRecognizerDirection.down:
+        case UISwipeGestureRecognizer.Direction.down:
 
             // APPCOORDINATOR
 
             self.delegate?.didSelectIncomeScreen(self)
 
-        case UISwipeGestureRecognizerDirection.up:
+        case UISwipeGestureRecognizer.Direction.up:
 
             // Transitioning to appCoordinator
 
@@ -192,12 +192,12 @@ extension BEHomeViewController: UIGestureRecognizerDelegate {
     }
 }
 
-extension BEHomeViewController {
-    override func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+extension BEHomeViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.presentAnimator
     }
     
-    override func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
         
     }
